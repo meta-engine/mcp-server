@@ -24,15 +24,18 @@ All notable changes to MetaEngine MCP Server will be documented in this file.
 - MCP resources for documentation access
 - Privacy policy
 - MIT license
+- **CustomFile identifier resolution** - Reference customFiles by identifier for automatic namespace imports
 
 ### Features
 - Multi-language code generation with zero syntax errors
 - Perfect cross-file import resolution
+- Semantic dependency resolution via customFile identifiers
 - Generic type system support
 - Batch generation (20-100 files per request)
 - Dry run mode for previewing output
 - Skip existing files (stub pattern support)
 - Automatic directory creation
+- Automatic namespace calculation from file paths
 
 ## [0.9.x] - Pre-release versions
 
