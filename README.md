@@ -99,6 +99,7 @@ Detailed guides are included in the NPM package and available through MCP resour
 - **Free** — no API key, no signup, unlimited requests
 - **Private** — specs sent for generation are never saved or logged (see [PRIVACY.md](./PRIVACY.md))
 - **Local** — MCP server runs on your machine, MIT licensed
+- **Terms** — See [TERMS.md](./TERMS.md) for usage terms
 
 ---
 
