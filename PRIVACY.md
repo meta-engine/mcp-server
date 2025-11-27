@@ -24,7 +24,9 @@ When you use MetaEngine MCP Server through Claude Code, Claude Desktop, or any M
 - **Your existing source code** — never sent to our servers
 - **File contents** — only generation specs are transmitted
 - **Personal information** — no names, emails, or identifying data
-- **Usage analytics** — no tracking or telemetry
+- **Specification contents** — not logged or saved (ephemeral processing only)
+- **Generated code** — returned to you and immediately discarded
+- **User identifiers** — anonymous service, no tracking of individual users
 - **API keys or credentials** — MetaEngine requires no authentication
 
 ---
@@ -40,12 +42,33 @@ Data sent to the MetaEngine API is used exclusively for:
 
 ### Data Retention
 
-**Important**: Type specifications and generated code are **never saved, logged, or stored** on MetaEngine servers.
+**Code Specifications and Generated Code:**
 
-- Data exists **only in memory** during the API request
-- Data is **immediately discarded** after the response is sent
-- **No persistent storage** of any user data
-- **No data retention** beyond the request lifecycle
+Type specifications and generated code are **never saved or logged**:
+
+- Spec contents exist **only in memory** during the API request
+- Generated code is **immediately discarded** after the response is sent
+- **No persistent storage** of specification contents or generated code
+- **No retention** of your type definitions or output
+
+**Performance Telemetry (Anonymous):**
+
+For performance monitoring and API reliability, we collect **anonymous request metadata only**:
+
+- ✅ Request timestamp
+- ✅ Response latency (processing time)
+- ✅ Request size (bytes)
+- ✅ HTTP status codes
+- ✅ Error types (if any)
+
+**NOT Collected:**
+- ❌ Type specification contents
+- ❌ Generated code contents
+- ❌ User identifiers or personal information
+- ❌ IP addresses or location data
+- ❌ Authentication tokens (none exist)
+
+This telemetry is **anonymous** and used solely for performance optimization and service reliability monitoring.
 
 ---
 
