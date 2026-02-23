@@ -2,7 +2,7 @@
 
 All notable changes to MetaEngine MCP Server will be documented in this file.
 
-## [1.1.2] - 2026-02-23
+## [1.1.3] - 2026-02-23
 
 ### Changed
 - **Dynamic tool descriptions** — full AI guide is now embedded in the `generate_code` tool description on first use, then swapped to a short directive after first successful call via `tools/list_changed` notification. This guarantees AI assistants read the guide before composing their first call, without permanently bloating context.
@@ -67,7 +67,7 @@ Development and testing phase with 50+ iterations of feature parity and bug fixe
 
 ## Version History Summary
 
-- **1.1.2** - Dynamic tool descriptions with guide injection
+- **1.1.3** - Dynamic tool descriptions with guide injection
 - **1.1.1** - Swift and PHP enum fix
 - **1.1.0** - Swift, PHP support; C# optional namespace
 - **1.0.1** - Anthropic Directory compliance updates
