@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![MCP](https://img.shields.io/badge/MCP-Compatible-green)](https://modelcontextprotocol.io)
 
-**Model Context Protocol server for AI-assisted code generation across 8 languages.**
+**Model Context Protocol server for AI-assisted code generation across 10 languages.**
 
 Turn one conversation into 50 consistent files. Claude architects, MetaEngine builds.
 
@@ -44,7 +44,7 @@ MetaEngine is a specialized tool for AI assistants like Claude Code and Claude D
 ### When Claude Uses This Tool
 
 - Generating **20-100 interconnected files** where consistency matters
-- **Multi-language projects** (same architecture in TypeScript, Python, Go, C#, Java, Kotlin, Groovy, Scala)
+- **Multi-language projects** (same architecture in TypeScript, Python, Go, C#, Java, Kotlin, Groovy, Scala, Swift, PHP)
 - **Pattern multiplication** (same structure applied to many entities)
 - Complex **import management** across deep namespaces
 
@@ -69,8 +69,10 @@ Both approaches are valid. Claude picks the right tool for the job.
 - Kotlin
 - Groovy
 - Scala
+- Swift
+- PHP
 
-Each generates idiomatic code (data classes in Kotlin, case classes in Scala, etc.)
+Each generates idiomatic code (data classes in Kotlin, case classes in Scala, structs in Swift, etc.)
 
 ---
 
@@ -86,11 +88,10 @@ The tipping point is around 20 files—below that, Claude's direct generation is
 
 ## Documentation
 
-Detailed guides are included in the NPM package and available through MCP resources:
+The AI guide is automatically embedded in the tool description on first use — no manual reading required. For reference:
 
-- **AI_ASSISTANT_GUIDE.md** — Complete reference for AI assistants
-- **QUICK_START.md** — Patterns and configurations
-- **EXAMPLES.md** — Real-world usage across all languages
+- **METAENGINE_AI_GUIDE.md** — Critical rules, patterns, language notes, and common mistakes
+- **EXAMPLES.md** — Real-world usage with input/output across all languages
 
 ---
 

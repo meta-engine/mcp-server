@@ -2,6 +2,28 @@
 
 All notable changes to MetaEngine MCP Server will be documented in this file.
 
+## [1.1.2] - 2026-02-23
+
+### Changed
+- **Dynamic tool descriptions** — full AI guide is now embedded in the `generate_code` tool description on first use, then swapped to a short directive after first successful call via `tools/list_changed` notification. This guarantees AI assistants read the guide before composing their first call, without permanently bloating context.
+- **`metaengine_initialize` as recovery mechanism** — removed stale hardcoded response with outdated API references; now returns the guide file content directly. Serves as post-compaction recovery when the short directive tells the AI to reload the guide.
+- Consolidated documentation: replaced `AI_ASSISTANT_GUIDE.md` and `QUICK_START.md` with a single `METAENGINE_AI_GUIDE.md` covering critical rules, patterns, language notes, and common mistakes.
+- MCP resources simplified from 3 to 2 (guide + examples).
+
+## [1.1.1] - 2025-12-05
+
+### Fixed
+- Added missing Swift and PHP to MCP tool enum definitions
+
+## [1.1.0] - 2025-12-03
+
+### Added
+- **Swift and PHP** language support (10 languages total)
+- C# optional namespace: when `packageName` is omitted, no namespace declaration is generated (ideal for GlobalUsings)
+
+### Fixed
+- Go and Python generation improvements
+
 ## [1.0.1] - 2025-11-27
 
 ### Added
@@ -45,6 +67,9 @@ Development and testing phase with 50+ iterations of feature parity and bug fixe
 
 ## Version History Summary
 
+- **1.1.2** - Dynamic tool descriptions with guide injection
+- **1.1.1** - Swift and PHP enum fix
+- **1.1.0** - Swift, PHP support; C# optional namespace
 - **1.0.1** - Anthropic Directory compliance updates
 - **1.0.0** - Production release (GA)
 - **0.9.x** - Beta testing and refinement
