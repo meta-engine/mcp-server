@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![MCP](https://img.shields.io/badge/MCP-Compatible-green)](https://modelcontextprotocol.io)
 
-**Model Context Protocol server for AI-assisted code generation across 10 languages.**
+**Model Context Protocol server for AI-assisted code generation across 11 languages.**
 
 Turn one conversation into 50 consistent files. Claude architects, MetaEngine builds.
 
@@ -37,14 +37,26 @@ That's it. No API key, no signup, free to use.
 
 ---
 
+## What Claude Can Generate
+
+- `generate_code` — classes, interfaces, enums, and generics → ready-to-compile source files
+- `generate_openapi` — typed clients and servers from an OpenAPI spec (10 frameworks)
+- `generate_graphql` — typed clients from GraphQL SDL (10 frameworks)
+- `generate_protobuf` — typed stubs from `.proto` files (10 frameworks)
+- `generate_sql` — language models from SQL DDL (11 languages)
+
+Claude picks the right tool based on your spec.
+
+---
+
 ## What It Does
 
-MetaEngine is a specialized tool for AI assistants like Claude Code and Claude Desktop. Instead of generating files one by one, you describe what you need in natural language—Claude constructs the type specifications, and MetaEngine generates all files instantly with perfect imports and namespaces.
+MetaEngine is a specialized tool for AI assistants like Claude Code and Claude Desktop. Instead of generating files one by one, you describe what you need in natural language — Claude constructs the spec, and MetaEngine generates all files in one round trip with automatic imports and namespace resolution.
 
 ### When Claude Uses This Tool
 
 - Generating **20-100 interconnected files** where consistency matters
-- **Multi-language projects** (same architecture in TypeScript, Python, Go, C#, Java, Kotlin, Groovy, Scala, Swift, PHP)
+- **Multi-language projects** (same architecture in TypeScript, Python, Go, C#, Java, Kotlin, Groovy, Scala, Swift, PHP, Rust)
 - **Pattern multiplication** (same structure applied to many entities)
 - Complex **import management** across deep namespaces
 
@@ -71,8 +83,9 @@ Both approaches are valid. Claude picks the right tool for the job.
 - Scala
 - Swift
 - PHP
+- Rust
 
-Each generates idiomatic code (data classes in Kotlin, case classes in Scala, structs in Swift, etc.)
+Each generates idiomatic code (data classes in Kotlin, case classes in Scala, structs in Swift and Rust, etc.)
 
 ---
 
