@@ -63,3 +63,7 @@ All notable changes to MetaEngine MCP Server will be documented in this file.
 - Three core tools: `generate_code`, `load_spec_from_file`, `metaengine_initialize`.
 - CustomFile identifier resolution for automatic namespace imports across generated files.
 - MCP resources for documentation access; MIT license.
+
+## [0.9.x] - Pre-release
+
+50+ iterations to land `generate_code`: feature parity, cross-language import resolution, and bug fixes across all supported languages before the GA cut.
