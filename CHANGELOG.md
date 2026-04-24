@@ -2,6 +2,26 @@
 
 All notable changes to MetaEngine MCP Server will be documented in this file.
 
+## [1.2.2] - 2026-04-24
+
+### Added
+- `generate_openapi` → `fetchOptions` now exposes `useMiddleware` (emit `onRequest` / `onResponse` / `onError` hooks) and `useImportMetaEnv` (use `import.meta.env` for base-URL access in Vite / SvelteKit). Parity with the `@metaengine/openapi-fetch` CLI flags `--middleware` and `--import-meta-env`.
+- `generate_code` language enum and tool description now include `rust` — the backend already supported it, but the tool schema was rejecting the value before the request reached the handler.
+
+### Changed
+- Typed API client regenerated against the latest WebAPI Swagger — `HttpError.response` is now optional and network errors surface as `HttpError(status=0)` instead of raw `fetch` rejections.
+- JVM `Date` mapping unified across Java, Kotlin, Groovy, Scala — Groovy and Scala previously emitted `LocalDateTime`; now all four use `OffsetDateTime`.
+- Go `Number` / integer aligned to native `int` (was `int32`, the outlier across languages).
+- Java + Kotlin framework coupling (Jackson / kotlinx.serialization annotations) is now opt-in instead of forced on every generated type.
+
+### Fixed — `generate_code` wire-bugs
+- **Kotlin** — enums now emit a primary constructor when members carry values; class body `val`s are default-initialized (previously caused compile failures).
+- **Scala** — case classes emit the primary parameter list; field `val`s are no longer bare.
+- **Swift** — non-optional stored properties get synthesized default initializers; `Codable` / `Sendable` conformance is retained on data-class subclasses.
+- **Groovy** — enums with `(int)` arguments now emit a primary constructor + field, so explicit integer values are no longer silently dropped.
+- **Go** — integer enums emit explicit member values instead of `iota`, preserving spec-defined numbering.
+- **C#** — removed redundant self-`using {namespace};` inside the same namespace.
+
 ## [1.2.1] - 2026-04-21
 
 ### Fixed
