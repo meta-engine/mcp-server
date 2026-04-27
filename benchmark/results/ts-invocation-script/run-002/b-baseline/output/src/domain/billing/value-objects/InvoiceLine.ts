@@ -1,0 +1,8 @@
+/** Value object InvoiceLine. */
+export interface InvoiceLine {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  name: string;
+  description: string;
+}

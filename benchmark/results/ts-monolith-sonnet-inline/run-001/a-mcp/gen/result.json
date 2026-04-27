@@ -1,0 +1,101 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 263718,
+  "duration_api_ms": 261430,
+  "num_turns": 5,
+  "result": "DONE\n\n68 TypeScript files generated in a single `generate_code` call \u2014 6 aggregate classes, 18 service classes, 29 value-object interfaces, and 15 enums \u2014 spanning all modules (`shared`, `catalog`, `customers`, `orders`, `orders/cart`, `orders/checkout`, `orders/fulfillment`, `billing`, `notifications`) plus the two cross-module orchestrators.",
+  "stop_reason": "end_turn",
+  "session_id": "d6cc1bca-1618-4d2d-81f1-35a2f440bd4c",
+  "total_cost_usd": 0.6781626000000001,
+  "usage": {
+    "input_tokens": 9,
+    "cache_creation_input_tokens": 64514,
+    "cache_read_input_tokens": 223837,
+    "output_tokens": 23956,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 64514,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 96,
+        "cache_read_input_tokens": 76455,
+        "cache_creation_input_tokens": 210,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 210
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 9622,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.009717,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 9,
+      "outputTokens": 23956,
+      "cacheReadInputTokens": 223837,
+      "cacheCreationInputTokens": 64514,
+      "webSearchRequests": 0,
+      "costUSD": 0.6684456,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "d8973c04-8518-427d-a966-d5ec09b62413",
+  "phases": {
+    "warmup": {
+      "messages": 0,
+      "visible_output_tokens": 0,
+      "tool_input_chars": 0,
+      "tool_input_tokens_estimated": 0,
+      "input_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0
+    },
+    "generation": {
+      "messages": 5,
+      "visible_output_tokens": 34,
+      "tool_input_chars": 30294,
+      "tool_input_tokens_estimated": 8655,
+      "input_tokens": 9,
+      "cache_creation_input_tokens": 64514,
+      "cache_read_input_tokens": 223837
+    }
+  },
+  "measurement": {
+    "authoritative_total_output_tokens": 23956,
+    "measured_visible_output_tokens": 34,
+    "measured_tool_input_chars": 30294,
+    "measured_tool_input_tokens_estimated": 8655,
+    "thinking_residual_unmeasured_tokens": 15267,
+    "tool_input_chars_per_token_assumed": 3.5,
+    "note": "Authoritative total comes from the result event's usage.output_tokens. Visible+tool_input are exact-per-message; thinking residual is the remainder and cannot be precisely allocated to warmup vs generation from stream data alone. Phase split applies to visible+tool_input only."
+  },
+  "boundary_trigger": "gen_tool",
+  "marker_found": true,
+  "start_phase": "generation"
+}

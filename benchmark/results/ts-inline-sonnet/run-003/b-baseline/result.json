@@ -1,0 +1,101 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 144550,
+  "duration_api_ms": 148113,
+  "num_turns": 73,
+  "result": "DONE",
+  "stop_reason": "end_turn",
+  "session_id": "789512ff-a890-4a29-8075-a3e660e9c82f",
+  "total_cost_usd": 0.54445045,
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 78927,
+    "cache_read_input_tokens": 46054,
+    "output_tokens": 15571,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 78927,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 5,
+        "cache_read_input_tokens": 12151,
+        "cache_creation_input_tokens": 50501,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 50501
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 5,
+      "outputTokens": 15571,
+      "cacheReadInputTokens": 46054,
+      "cacheCreationInputTokens": 78927,
+      "webSearchRequests": 0,
+      "costUSD": 0.54337245,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 998,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001078,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "0abb6f93-cb87-4709-be2c-95ec2dc31187",
+  "phases": {
+    "warmup": {
+      "messages": 0,
+      "visible_output_tokens": 0,
+      "tool_input_chars": 0,
+      "tool_input_tokens_estimated": 0,
+      "input_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0
+    },
+    "generation": {
+      "messages": 3,
+      "visible_output_tokens": 16,
+      "tool_input_chars": 38115,
+      "tool_input_tokens_estimated": 10890,
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 78927,
+      "cache_read_input_tokens": 46054
+    }
+  },
+  "measurement": {
+    "authoritative_total_output_tokens": 15571,
+    "measured_visible_output_tokens": 16,
+    "measured_tool_input_chars": 38115,
+    "measured_tool_input_tokens_estimated": 10890,
+    "thinking_residual_unmeasured_tokens": 4665,
+    "tool_input_chars_per_token_assumed": 3.5,
+    "note": "Authoritative total comes from the result event's usage.output_tokens. Visible+tool_input are exact-per-message; thinking residual is the remainder and cannot be precisely allocated to warmup vs generation from stream data alone. Phase split applies to visible+tool_input only."
+  },
+  "boundary_trigger": null,
+  "marker_found": false,
+  "start_phase": "generation"
+}

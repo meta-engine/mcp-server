@@ -1,0 +1,28 @@
+package com.metaengine.demo.analytics.services;
+
+import com.metaengine.demo.analytics.aggregates.Event;
+import java.util.List;
+
+/** MetricsAggregator service for the analytics domain. */
+public class MetricsAggregator {
+
+    /** Create a new Event. */
+    public Event create(Event input) {
+        throw new UnsupportedOperationException("not implemented");
+    }
+
+    /** Find an Event by id. May return null. */
+    public Event findById(String id) {
+        throw new UnsupportedOperationException("not implemented");
+    }
+
+    /** List events up to the given limit. */
+    public List<Event> list(int limit) {
+        throw new UnsupportedOperationException("not implemented");
+    }
+
+    /** Delete an Event by id. */
+    public void delete(String id) {
+        throw new UnsupportedOperationException("not implemented");
+    }
+}

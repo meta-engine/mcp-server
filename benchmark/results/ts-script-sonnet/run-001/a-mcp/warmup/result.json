@@ -1,0 +1,101 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 150383,
+  "duration_api_ms": 151753,
+  "num_turns": 6,
+  "result": "606-line summary written to the target path. It covers: all 7 tools and their full schemas, every field in `generate_code` (classes, interfaces, enums, customFiles, arrayTypes, dictionaryTypes, concreteGenericClasses/Interfaces), all critical rules with explanations, primitive type mappings per language, auto-import exclusions per language, 10 common mistakes, and complete code patterns for cross-references, generics, enums, DI services, custom files, and interface method signatures.\n\nWARMUP_DONE",
+  "stop_reason": "end_turn",
+  "session_id": "4af452e7-3eda-420b-ab6f-84cc6d8fdd76",
+  "total_cost_usd": 0.38080425,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 46735,
+    "cache_read_input_tokens": 155830,
+    "output_tokens": 10515,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 46735,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 126,
+        "cache_read_input_tokens": 46530,
+        "cache_creation_input_tokens": 205,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 205
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 948,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0010379999999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 10515,
+      "cacheReadInputTokens": 155830,
+      "cacheCreationInputTokens": 46735,
+      "webSearchRequests": 0,
+      "costUSD": 0.37976625,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "41b31049-6090-4f54-ac9b-1d24ee4d618c",
+  "phases": {
+    "warmup": {
+      "messages": 6,
+      "visible_output_tokens": 69,
+      "tool_input_chars": 32892,
+      "tool_input_tokens_estimated": 9398,
+      "input_tokens": 12,
+      "cache_creation_input_tokens": 46735,
+      "cache_read_input_tokens": 155830
+    },
+    "generation": {
+      "messages": 0,
+      "visible_output_tokens": 0,
+      "tool_input_chars": 0,
+      "tool_input_tokens_estimated": 0,
+      "input_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0
+    }
+  },
+  "measurement": {
+    "authoritative_total_output_tokens": 10515,
+    "measured_visible_output_tokens": 69,
+    "measured_tool_input_chars": 32892,
+    "measured_tool_input_tokens_estimated": 9398,
+    "thinking_residual_unmeasured_tokens": 1048,
+    "tool_input_chars_per_token_assumed": 3.5,
+    "note": "Authoritative total comes from the result event's usage.output_tokens. Visible+tool_input are exact-per-message; thinking residual is the remainder and cannot be precisely allocated to warmup vs generation from stream data alone. Phase split applies to visible+tool_input only."
+  },
+  "boundary_trigger": null,
+  "marker_found": false,
+  "start_phase": "warmup"
+}

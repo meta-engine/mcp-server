@@ -1,0 +1,101 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 164628,
+  "duration_api_ms": 165274,
+  "num_turns": 6,
+  "result": "558-line summary written covering all tools, the complete `generate_code` input schema (every field, type, optionality), critical rules, auto-import tables per language, TypeScript-specific notes, all key patterns, and the common-mistakes list. The generation session has everything it needs without re-reading docs.\n\nWARMUP_DONE",
+  "stop_reason": "end_turn",
+  "session_id": "0f05068c-ab36-4f5e-9275-4bae7aaad6eb",
+  "total_cost_usd": 0.30803635,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 33331,
+    "cache_read_input_tokens": 165987,
+    "output_tokens": 8812,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 33331,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 78,
+        "cache_read_input_tokens": 44881,
+        "cache_creation_input_tokens": 201,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 201
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 948,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001033,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 8812,
+      "cacheReadInputTokens": 165987,
+      "cacheCreationInputTokens": 33331,
+      "webSearchRequests": 0,
+      "costUSD": 0.30700335,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "86d3cc37-a10c-4414-bc23-e4a2ece76822",
+  "phases": {
+    "warmup": {
+      "messages": 6,
+      "visible_output_tokens": 78,
+      "tool_input_chars": 27758,
+      "tool_input_tokens_estimated": 7931,
+      "input_tokens": 12,
+      "cache_creation_input_tokens": 33331,
+      "cache_read_input_tokens": 165987
+    },
+    "generation": {
+      "messages": 0,
+      "visible_output_tokens": 0,
+      "tool_input_chars": 0,
+      "tool_input_tokens_estimated": 0,
+      "input_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0
+    }
+  },
+  "measurement": {
+    "authoritative_total_output_tokens": 8812,
+    "measured_visible_output_tokens": 78,
+    "measured_tool_input_chars": 27758,
+    "measured_tool_input_tokens_estimated": 7931,
+    "thinking_residual_unmeasured_tokens": 803,
+    "tool_input_chars_per_token_assumed": 3.5,
+    "note": "Authoritative total comes from the result event's usage.output_tokens. Visible+tool_input are exact-per-message; thinking residual is the remainder and cannot be precisely allocated to warmup vs generation from stream data alone. Phase split applies to visible+tool_input only."
+  },
+  "boundary_trigger": null,
+  "marker_found": false,
+  "start_phase": "warmup"
+}

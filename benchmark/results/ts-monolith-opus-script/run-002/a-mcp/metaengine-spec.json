@@ -1,0 +1,1820 @@
+{
+  "language": "typescript",
+  "skipExisting": false,
+  "classes": [
+    {
+      "name": "Product",
+      "typeIdentifier": "product",
+      "path": "src/catalog/aggregates",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "typeIdentifier": "id"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "price",
+          "typeIdentifier": "money"
+        },
+        {
+          "name": "state",
+          "typeIdentifier": "product-state"
+        }
+      ]
+    },
+    {
+      "name": "ProductService",
+      "typeIdentifier": "product-service",
+      "path": "src/catalog/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$product>): $product { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: $id): $product | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            },
+            {
+              "placeholder": "$product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $product[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: $id): void { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "InventoryService",
+      "typeIdentifier": "inventory-service",
+      "path": "src/catalog/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$product>): $product { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: $id): $product | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            },
+            {
+              "placeholder": "$product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $product[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: $id): void { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "PricingEngine",
+      "typeIdentifier": "pricing-engine",
+      "path": "src/catalog/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$product>): $product { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: $id): $product | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            },
+            {
+              "placeholder": "$product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $product[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: $id): void { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Customer",
+      "typeIdentifier": "customer",
+      "path": "src/customers/aggregates",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "typeIdentifier": "id"
+        },
+        {
+          "name": "email",
+          "typeIdentifier": "email"
+        },
+        {
+          "name": "status",
+          "typeIdentifier": "customer-status"
+        },
+        {
+          "name": "createdAt",
+          "typeIdentifier": "timestamp"
+        }
+      ]
+    },
+    {
+      "name": "CustomerService",
+      "typeIdentifier": "customer-service",
+      "path": "src/customers/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$customer>): $customer { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$customer",
+              "typeIdentifier": "customer"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: $id): $customer | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            },
+            {
+              "placeholder": "$customer",
+              "typeIdentifier": "customer"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $customer[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$customer",
+              "typeIdentifier": "customer"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: $id): void { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AddressService",
+      "typeIdentifier": "address-service",
+      "path": "src/customers/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$customer>): $customer { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$customer",
+              "typeIdentifier": "customer"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: $id): $customer | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            },
+            {
+              "placeholder": "$customer",
+              "typeIdentifier": "customer"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $customer[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$customer",
+              "typeIdentifier": "customer"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: $id): void { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Order",
+      "typeIdentifier": "order",
+      "path": "src/orders/aggregates",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "typeIdentifier": "id"
+        },
+        {
+          "name": "customerId",
+          "typeIdentifier": "id"
+        },
+        {
+          "name": "status",
+          "typeIdentifier": "order-status"
+        },
+        {
+          "name": "total",
+          "typeIdentifier": "order-total"
+        }
+      ]
+    },
+    {
+      "name": "OrderService",
+      "typeIdentifier": "order-service",
+      "path": "src/orders/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$order>): $order { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: $id): $order | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            },
+            {
+              "placeholder": "$order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $order[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: $id): void { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Cart",
+      "typeIdentifier": "cart",
+      "path": "src/orders/cart/aggregates",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "typeIdentifier": "id"
+        },
+        {
+          "name": "customerId",
+          "typeIdentifier": "id"
+        },
+        {
+          "name": "state",
+          "typeIdentifier": "cart-state"
+        }
+      ]
+    },
+    {
+      "name": "CartService",
+      "typeIdentifier": "cart-service",
+      "path": "src/orders/cart/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$cart>): $cart { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$cart",
+              "typeIdentifier": "cart"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: $id): $cart | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            },
+            {
+              "placeholder": "$cart",
+              "typeIdentifier": "cart"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $cart[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$cart",
+              "typeIdentifier": "cart"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: $id): void { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CheckoutService",
+      "typeIdentifier": "checkout-service",
+      "path": "src/orders/checkout/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$checkoutSession>): $checkoutSession { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$checkoutSession",
+              "typeIdentifier": "checkout-session"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: $id): $checkoutSession | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            },
+            {
+              "placeholder": "$checkoutSession",
+              "typeIdentifier": "checkout-session"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $checkoutSession[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$checkoutSession",
+              "typeIdentifier": "checkout-session"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: $id): void { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "DiscountService",
+      "typeIdentifier": "discount-service",
+      "path": "src/orders/checkout/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$checkoutSession>): $checkoutSession { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$checkoutSession",
+              "typeIdentifier": "checkout-session"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: $id): $checkoutSession | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            },
+            {
+              "placeholder": "$checkoutSession",
+              "typeIdentifier": "checkout-session"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $checkoutSession[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$checkoutSession",
+              "typeIdentifier": "checkout-session"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: $id): void { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Shipment",
+      "typeIdentifier": "shipment",
+      "path": "src/orders/fulfillment/aggregates",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "typeIdentifier": "id"
+        },
+        {
+          "name": "orderId",
+          "typeIdentifier": "id"
+        },
+        {
+          "name": "state",
+          "typeIdentifier": "shipment-state"
+        },
+        {
+          "name": "tracking",
+          "typeIdentifier": "tracking-info"
+        }
+      ]
+    },
+    {
+      "name": "FulfillmentService",
+      "typeIdentifier": "fulfillment-service",
+      "path": "src/orders/fulfillment/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$shipment>): $shipment { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: $id): $shipment | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            },
+            {
+              "placeholder": "$shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $shipment[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: $id): void { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CarrierGateway",
+      "typeIdentifier": "carrier-gateway",
+      "path": "src/orders/fulfillment/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$shipment>): $shipment { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: $id): $shipment | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            },
+            {
+              "placeholder": "$shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $shipment[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: $id): void { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Invoice",
+      "typeIdentifier": "invoice",
+      "path": "src/billing/aggregates",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "typeIdentifier": "id"
+        },
+        {
+          "name": "orderId",
+          "typeIdentifier": "id"
+        },
+        {
+          "name": "status",
+          "typeIdentifier": "invoice-status"
+        },
+        {
+          "name": "totalAmount",
+          "typeIdentifier": "money"
+        }
+      ]
+    },
+    {
+      "name": "BillingService",
+      "typeIdentifier": "billing-service",
+      "path": "src/billing/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$invoice>): $invoice { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: $id): $invoice | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            },
+            {
+              "placeholder": "$invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $invoice[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: $id): void { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "PaymentGateway",
+      "typeIdentifier": "payment-gateway",
+      "path": "src/billing/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$invoice>): $invoice { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: $id): $invoice | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            },
+            {
+              "placeholder": "$invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $invoice[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: $id): void { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "RefundService",
+      "typeIdentifier": "refund-service",
+      "path": "src/billing/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$invoice>): $invoice { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: $id): $invoice | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            },
+            {
+              "placeholder": "$invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $invoice[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: $id): void { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "NotificationService",
+      "typeIdentifier": "notification-service",
+      "path": "src/notifications/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$emailTemplate>): $emailTemplate { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$emailTemplate",
+              "typeIdentifier": "email-template"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: $id): $emailTemplate | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            },
+            {
+              "placeholder": "$emailTemplate",
+              "typeIdentifier": "email-template"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $emailTemplate[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$emailTemplate",
+              "typeIdentifier": "email-template"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: $id): void { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "DeliveryDispatcher",
+      "typeIdentifier": "delivery-dispatcher",
+      "path": "src/notifications/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$emailTemplate>): $emailTemplate { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$emailTemplate",
+              "typeIdentifier": "email-template"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: $id): $emailTemplate | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            },
+            {
+              "placeholder": "$emailTemplate",
+              "typeIdentifier": "email-template"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $emailTemplate[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$emailTemplate",
+              "typeIdentifier": "email-template"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: $id): void { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CheckoutOrchestrator",
+      "typeIdentifier": "checkout-orchestrator",
+      "path": "src/orchestrators/services",
+      "customCode": [
+        {
+          "code": "placeOrder(cartId: $id, customerId: $id, paymentMethodId: $paymentMethod): $order { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            },
+            {
+              "placeholder": "$paymentMethod",
+              "typeIdentifier": "payment-method"
+            },
+            {
+              "placeholder": "$order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "validateCart(cart: $cart): $result { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$cart",
+              "typeIdentifier": "cart"
+            },
+            {
+              "placeholder": "$result",
+              "typeIdentifier": "result"
+            }
+          ]
+        },
+        {
+          "code": "computeTotal(cart: $cart): $money { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$cart",
+              "typeIdentifier": "cart"
+            },
+            {
+              "placeholder": "$money",
+              "typeIdentifier": "money"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FulfillmentOrchestrator",
+      "typeIdentifier": "fulfillment-orchestrator",
+      "path": "src/orchestrators/services",
+      "customCode": [
+        {
+          "code": "shipOrder(orderId: $id): $shipment { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            },
+            {
+              "placeholder": "$shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "notifyCustomer(customer: $customer, shipment: $shipment): $result { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$customer",
+              "typeIdentifier": "customer"
+            },
+            {
+              "placeholder": "$shipment",
+              "typeIdentifier": "shipment"
+            },
+            {
+              "placeholder": "$result",
+              "typeIdentifier": "result"
+            }
+          ]
+        },
+        {
+          "code": "trackShipment(shipmentId: $id): $trackingInfo { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$id",
+              "typeIdentifier": "id"
+            },
+            {
+              "placeholder": "$trackingInfo",
+              "typeIdentifier": "tracking-info"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "interfaces": [
+    {
+      "name": "Money",
+      "typeIdentifier": "money",
+      "path": "src/shared/value-objects",
+      "properties": [
+        {
+          "name": "amount",
+          "primitiveType": "Number"
+        },
+        {
+          "name": "currency",
+          "typeIdentifier": "currency"
+        }
+      ]
+    },
+    {
+      "name": "Id",
+      "typeIdentifier": "id",
+      "path": "src/shared/value-objects",
+      "properties": [
+        {
+          "name": "value",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "Timestamp",
+      "typeIdentifier": "timestamp",
+      "path": "src/shared/value-objects",
+      "properties": [
+        {
+          "name": "epochSeconds",
+          "primitiveType": "Number"
+        },
+        {
+          "name": "iso",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "Result",
+      "typeIdentifier": "result",
+      "path": "src/shared/value-objects",
+      "properties": [
+        {
+          "name": "success",
+          "primitiveType": "Boolean"
+        },
+        {
+          "name": "errorMessage",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "Sku",
+      "typeIdentifier": "sku",
+      "path": "src/catalog/value-objects",
+      "properties": [
+        {
+          "name": "value",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "Category",
+      "typeIdentifier": "category",
+      "path": "src/catalog/value-objects",
+      "properties": [
+        {
+          "name": "id",
+          "typeIdentifier": "id"
+        },
+        {
+          "name": "createdAt",
+          "typeIdentifier": "timestamp"
+        },
+        {
+          "name": "updatedAt",
+          "typeIdentifier": "timestamp"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "ProductVariant",
+      "typeIdentifier": "product-variant",
+      "path": "src/catalog/value-objects",
+      "properties": [
+        {
+          "name": "sku",
+          "typeIdentifier": "sku"
+        },
+        {
+          "name": "price",
+          "typeIdentifier": "money"
+        },
+        {
+          "name": "stockLevel",
+          "primitiveType": "Number"
+        }
+      ]
+    },
+    {
+      "name": "ProductDescription",
+      "typeIdentifier": "product-description",
+      "path": "src/catalog/value-objects",
+      "properties": [
+        {
+          "name": "id",
+          "typeIdentifier": "id"
+        },
+        {
+          "name": "createdAt",
+          "typeIdentifier": "timestamp"
+        },
+        {
+          "name": "updatedAt",
+          "typeIdentifier": "timestamp"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "Email",
+      "typeIdentifier": "email",
+      "path": "src/customers/value-objects",
+      "properties": [
+        {
+          "name": "value",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "Address",
+      "typeIdentifier": "address",
+      "path": "src/customers/value-objects",
+      "properties": [
+        {
+          "name": "street",
+          "primitiveType": "String"
+        },
+        {
+          "name": "city",
+          "primitiveType": "String"
+        },
+        {
+          "name": "country",
+          "primitiveType": "String"
+        },
+        {
+          "name": "postalCode",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "PaymentMethod",
+      "typeIdentifier": "payment-method",
+      "path": "src/customers/value-objects",
+      "properties": [
+        {
+          "name": "kind",
+          "typeIdentifier": "payment-method-kind"
+        },
+        {
+          "name": "lastFour",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "Profile",
+      "typeIdentifier": "profile",
+      "path": "src/customers/value-objects",
+      "properties": [
+        {
+          "name": "id",
+          "typeIdentifier": "id"
+        },
+        {
+          "name": "createdAt",
+          "typeIdentifier": "timestamp"
+        },
+        {
+          "name": "updatedAt",
+          "typeIdentifier": "timestamp"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "PhoneNumber",
+      "typeIdentifier": "phone-number",
+      "path": "src/customers/value-objects",
+      "properties": [
+        {
+          "name": "value",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "OrderLine",
+      "typeIdentifier": "order-line",
+      "path": "src/orders/value-objects",
+      "properties": [
+        {
+          "name": "productId",
+          "typeIdentifier": "id"
+        },
+        {
+          "name": "quantity",
+          "primitiveType": "Number"
+        },
+        {
+          "name": "unitPrice",
+          "typeIdentifier": "money"
+        }
+      ]
+    },
+    {
+      "name": "OrderTotal",
+      "typeIdentifier": "order-total",
+      "path": "src/orders/value-objects",
+      "properties": [
+        {
+          "name": "subtotal",
+          "typeIdentifier": "money"
+        },
+        {
+          "name": "tax",
+          "typeIdentifier": "money"
+        },
+        {
+          "name": "grandTotal",
+          "typeIdentifier": "money"
+        }
+      ]
+    },
+    {
+      "name": "CartLine",
+      "typeIdentifier": "cart-line",
+      "path": "src/orders/cart/value-objects",
+      "properties": [
+        {
+          "name": "productId",
+          "typeIdentifier": "id"
+        },
+        {
+          "name": "quantity",
+          "primitiveType": "Number"
+        }
+      ]
+    },
+    {
+      "name": "CartDiscount",
+      "typeIdentifier": "cart-discount",
+      "path": "src/orders/cart/value-objects",
+      "properties": [
+        {
+          "name": "code",
+          "primitiveType": "String"
+        },
+        {
+          "name": "amount",
+          "typeIdentifier": "money"
+        }
+      ]
+    },
+    {
+      "name": "CheckoutSession",
+      "typeIdentifier": "checkout-session",
+      "path": "src/orders/checkout/value-objects",
+      "properties": [
+        {
+          "name": "cartId",
+          "typeIdentifier": "id"
+        },
+        {
+          "name": "customerId",
+          "typeIdentifier": "id"
+        },
+        {
+          "name": "shippingMethodId",
+          "typeIdentifier": "id"
+        }
+      ]
+    },
+    {
+      "name": "ShippingMethod",
+      "typeIdentifier": "shipping-method",
+      "path": "src/orders/checkout/value-objects",
+      "properties": [
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "cost",
+          "typeIdentifier": "money"
+        }
+      ]
+    },
+    {
+      "name": "Coupon",
+      "typeIdentifier": "coupon",
+      "path": "src/orders/checkout/value-objects",
+      "properties": [
+        {
+          "name": "code",
+          "primitiveType": "String"
+        },
+        {
+          "name": "discount",
+          "typeIdentifier": "money"
+        }
+      ]
+    },
+    {
+      "name": "TrackingInfo",
+      "typeIdentifier": "tracking-info",
+      "path": "src/orders/fulfillment/value-objects",
+      "properties": [
+        {
+          "name": "carrier",
+          "typeIdentifier": "carrier"
+        },
+        {
+          "name": "trackingNumber",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "DeliveryWindow",
+      "typeIdentifier": "delivery-window",
+      "path": "src/orders/fulfillment/value-objects",
+      "properties": [
+        {
+          "name": "earliest",
+          "typeIdentifier": "timestamp"
+        },
+        {
+          "name": "latest",
+          "typeIdentifier": "timestamp"
+        }
+      ]
+    },
+    {
+      "name": "ShipmentRoute",
+      "typeIdentifier": "shipment-route",
+      "path": "src/orders/fulfillment/value-objects",
+      "properties": [
+        {
+          "name": "id",
+          "typeIdentifier": "id"
+        },
+        {
+          "name": "createdAt",
+          "typeIdentifier": "timestamp"
+        },
+        {
+          "name": "updatedAt",
+          "typeIdentifier": "timestamp"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "InvoiceLine",
+      "typeIdentifier": "invoice-line",
+      "path": "src/billing/value-objects",
+      "properties": [
+        {
+          "name": "description",
+          "primitiveType": "String"
+        },
+        {
+          "name": "amount",
+          "typeIdentifier": "money"
+        }
+      ]
+    },
+    {
+      "name": "Payment",
+      "typeIdentifier": "payment",
+      "path": "src/billing/value-objects",
+      "properties": [
+        {
+          "name": "amount",
+          "typeIdentifier": "money"
+        },
+        {
+          "name": "status",
+          "typeIdentifier": "payment-status"
+        }
+      ]
+    },
+    {
+      "name": "Refund",
+      "typeIdentifier": "refund",
+      "path": "src/billing/value-objects",
+      "properties": [
+        {
+          "name": "amount",
+          "typeIdentifier": "money"
+        },
+        {
+          "name": "reason",
+          "typeIdentifier": "refund-reason"
+        }
+      ]
+    },
+    {
+      "name": "TaxLine",
+      "typeIdentifier": "tax-line",
+      "path": "src/billing/value-objects",
+      "properties": [
+        {
+          "name": "rate",
+          "primitiveType": "Number"
+        },
+        {
+          "name": "amount",
+          "typeIdentifier": "money"
+        }
+      ]
+    },
+    {
+      "name": "EmailTemplate",
+      "typeIdentifier": "email-template",
+      "path": "src/notifications/value-objects",
+      "properties": [
+        {
+          "name": "subject",
+          "primitiveType": "String"
+        },
+        {
+          "name": "body",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "NotificationContent",
+      "typeIdentifier": "notification-content",
+      "path": "src/notifications/value-objects",
+      "properties": [
+        {
+          "name": "kind",
+          "typeIdentifier": "notification-kind"
+        },
+        {
+          "name": "payload",
+          "primitiveType": "String"
+        }
+      ]
+    }
+  ],
+  "enums": [
+    {
+      "name": "Currency",
+      "typeIdentifier": "currency",
+      "path": "src/shared/enums",
+      "members": [
+        {
+          "name": "Usd",
+          "value": 0
+        },
+        {
+          "name": "Eur",
+          "value": 1
+        },
+        {
+          "name": "Gbp",
+          "value": 2
+        },
+        {
+          "name": "Jpy",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "name": "ProductState",
+      "typeIdentifier": "product-state",
+      "path": "src/catalog/enums",
+      "members": [
+        {
+          "name": "Draft",
+          "value": 0
+        },
+        {
+          "name": "Active",
+          "value": 1
+        },
+        {
+          "name": "Archived",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "name": "ProductCategoryKind",
+      "typeIdentifier": "product-category-kind",
+      "path": "src/catalog/enums",
+      "members": [
+        {
+          "name": "Physical",
+          "value": 0
+        },
+        {
+          "name": "Digital",
+          "value": 1
+        },
+        {
+          "name": "Service",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "name": "CustomerStatus",
+      "typeIdentifier": "customer-status",
+      "path": "src/customers/enums",
+      "members": [
+        {
+          "name": "Active",
+          "value": 0
+        },
+        {
+          "name": "Suspended",
+          "value": 1
+        },
+        {
+          "name": "Deleted",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "name": "PaymentMethodKind",
+      "typeIdentifier": "payment-method-kind",
+      "path": "src/customers/enums",
+      "members": [
+        {
+          "name": "CreditCard",
+          "value": 0
+        },
+        {
+          "name": "DebitCard",
+          "value": 1
+        },
+        {
+          "name": "BankTransfer",
+          "value": 2
+        },
+        {
+          "name": "Wallet",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "name": "OrderStatus",
+      "typeIdentifier": "order-status",
+      "path": "src/orders/enums",
+      "members": [
+        {
+          "name": "Draft",
+          "value": 0
+        },
+        {
+          "name": "Placed",
+          "value": 1
+        },
+        {
+          "name": "Paid",
+          "value": 2
+        },
+        {
+          "name": "Shipped",
+          "value": 3
+        },
+        {
+          "name": "Delivered",
+          "value": 4
+        },
+        {
+          "name": "Cancelled",
+          "value": 5
+        }
+      ]
+    },
+    {
+      "name": "CartState",
+      "typeIdentifier": "cart-state",
+      "path": "src/orders/cart/enums",
+      "members": [
+        {
+          "name": "Active",
+          "value": 0
+        },
+        {
+          "name": "Abandoned",
+          "value": 1
+        },
+        {
+          "name": "CheckedOut",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "name": "CheckoutState",
+      "typeIdentifier": "checkout-state",
+      "path": "src/orders/checkout/enums",
+      "members": [
+        {
+          "name": "Pending",
+          "value": 0
+        },
+        {
+          "name": "Ready",
+          "value": 1
+        },
+        {
+          "name": "Confirmed",
+          "value": 2
+        },
+        {
+          "name": "Failed",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "name": "ShipmentState",
+      "typeIdentifier": "shipment-state",
+      "path": "src/orders/fulfillment/enums",
+      "members": [
+        {
+          "name": "Pending",
+          "value": 0
+        },
+        {
+          "name": "InTransit",
+          "value": 1
+        },
+        {
+          "name": "Delivered",
+          "value": 2
+        },
+        {
+          "name": "Lost",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "name": "Carrier",
+      "typeIdentifier": "carrier",
+      "path": "src/orders/fulfillment/enums",
+      "members": [
+        {
+          "name": "Ups",
+          "value": 0
+        },
+        {
+          "name": "Fedex",
+          "value": 1
+        },
+        {
+          "name": "Dhl",
+          "value": 2
+        },
+        {
+          "name": "Usps",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "name": "PaymentStatus",
+      "typeIdentifier": "payment-status",
+      "path": "src/billing/enums",
+      "members": [
+        {
+          "name": "Pending",
+          "value": 0
+        },
+        {
+          "name": "Succeeded",
+          "value": 1
+        },
+        {
+          "name": "Failed",
+          "value": 2
+        },
+        {
+          "name": "Refunded",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "name": "RefundReason",
+      "typeIdentifier": "refund-reason",
+      "path": "src/billing/enums",
+      "members": [
+        {
+          "name": "CustomerRequest",
+          "value": 0
+        },
+        {
+          "name": "Defective",
+          "value": 1
+        },
+        {
+          "name": "Duplicate",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "name": "InvoiceStatus",
+      "typeIdentifier": "invoice-status",
+      "path": "src/billing/enums",
+      "members": [
+        {
+          "name": "Pending",
+          "value": 0
+        },
+        {
+          "name": "Paid",
+          "value": 1
+        },
+        {
+          "name": "Overdue",
+          "value": 2
+        },
+        {
+          "name": "Void",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "name": "NotificationKind",
+      "typeIdentifier": "notification-kind",
+      "path": "src/notifications/enums",
+      "members": [
+        {
+          "name": "Email",
+          "value": 0
+        },
+        {
+          "name": "Sms",
+          "value": 1
+        },
+        {
+          "name": "Push",
+          "value": 2
+        },
+        {
+          "name": "Webhook",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "name": "DeliveryState",
+      "typeIdentifier": "delivery-state",
+      "path": "src/notifications/enums",
+      "members": [
+        {
+          "name": "Queued",
+          "value": 0
+        },
+        {
+          "name": "Sent",
+          "value": 1
+        },
+        {
+          "name": "Delivered",
+          "value": 2
+        },
+        {
+          "name": "Failed",
+          "value": 3
+        }
+      ]
+    }
+  ]
+}

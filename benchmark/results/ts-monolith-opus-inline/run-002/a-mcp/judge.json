@@ -1,0 +1,13 @@
+{
+  "verdict": "pass",
+  "language": "typescript",
+  "ts_file_count": 68,
+  "expected_total": 68,
+  "tsc_errors": 0,
+  "structural_counts": {
+    "pass": 68,
+    "structural_fail": 0,
+    "missing": 0
+  },
+  "issues_per_entity": []
+}

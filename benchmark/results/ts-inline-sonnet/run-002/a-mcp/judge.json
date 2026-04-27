@@ -1,0 +1,24 @@
+{
+  "verdict": "missing_entities",
+  "language": "typescript",
+  "ts_file_count": 71,
+  "expected_total": 71,
+  "tsc_errors": 0,
+  "structural_counts": {
+    "pass": 70,
+    "structural_fail": 0,
+    "missing": 1
+  },
+  "issues_per_entity": [
+    {
+      "kind": "aggregate",
+      "name": "Event",
+      "domain": "analytics",
+      "status": "missing",
+      "file": null,
+      "issues": [
+        "no aggregate `Event` (class) under any aggregates/ dir"
+      ]
+    }
+  ]
+}

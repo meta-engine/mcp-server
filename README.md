@@ -91,11 +91,12 @@ Each generates idiomatic code (data classes in Kotlin, case classes in Scala, st
 
 ## Performance
 
-- **Instant generation** — 25-100 files in one call
-- **3.8x faster** than file-by-file generation at scale
-- **57% fewer tokens** — compact spec vs full file text
+- **Single round-trip generation** — 25-100 files in one call
+- **Shorter agent loops** vs file-by-file `Write` — agents that batch through this MCP run with substantially fewer turns and lower cumulative context re-reads.
 
-The tipping point is around 20 files—below that, Claude's direct generation is simpler.
+The tipping point is around 20 files — below that, Claude's direct generation is simpler.
+
+For reproducible measurements across languages, models, and spec shapes, see [`benchmark/`](./benchmark) — a self-contained harness with the prompts, judging tools, and 15 canonical result folders. Numbers there are illustrations from one author's runs at N=5 per cell; reproduce in your own environment to see what holds for you.
 
 ---
 

@@ -1,0 +1,2095 @@
+{
+  "language": "typescript",
+  "classes": [
+    {
+      "name": "Order",
+      "typeIdentifier": "order",
+      "path": "src/domain/ordering/aggregates",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "Order aggregate root for the ordering domain."
+    },
+    {
+      "name": "OrderService",
+      "typeIdentifier": "order-service",
+      "path": "src/domain/ordering/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$Order>): $Order { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: string): $Order | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $Order[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: string): void { throw new Error('not implemented'); }"
+        }
+      ],
+      "comment": "OrderService service."
+    },
+    {
+      "name": "OrderRepository",
+      "typeIdentifier": "order-repository",
+      "path": "src/domain/ordering/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$Order>): $Order { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: string): $Order | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $Order[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: string): void { throw new Error('not implemented'); }"
+        }
+      ],
+      "comment": "OrderRepository service."
+    },
+    {
+      "name": "OrderValidator",
+      "typeIdentifier": "order-validator",
+      "path": "src/domain/ordering/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$Order>): $Order { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: string): $Order | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $Order[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: string): void { throw new Error('not implemented'); }"
+        }
+      ],
+      "comment": "OrderValidator service."
+    },
+    {
+      "name": "Product",
+      "typeIdentifier": "product",
+      "path": "src/domain/catalog/aggregates",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "Product aggregate root for the catalog domain."
+    },
+    {
+      "name": "ProductService",
+      "typeIdentifier": "product-service",
+      "path": "src/domain/catalog/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$Product>): $Product { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: string): $Product | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $Product[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: string): void { throw new Error('not implemented'); }"
+        }
+      ],
+      "comment": "ProductService service."
+    },
+    {
+      "name": "ProductRepository",
+      "typeIdentifier": "product-repository",
+      "path": "src/domain/catalog/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$Product>): $Product { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: string): $Product | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $Product[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: string): void { throw new Error('not implemented'); }"
+        }
+      ],
+      "comment": "ProductRepository service."
+    },
+    {
+      "name": "PricingEngine",
+      "typeIdentifier": "pricing-engine",
+      "path": "src/domain/catalog/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$Product>): $Product { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: string): $Product | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $Product[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: string): void { throw new Error('not implemented'); }"
+        }
+      ],
+      "comment": "PricingEngine service."
+    },
+    {
+      "name": "Invoice",
+      "typeIdentifier": "invoice",
+      "path": "src/domain/billing/aggregates",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "Invoice aggregate root for the billing domain."
+    },
+    {
+      "name": "InvoiceService",
+      "typeIdentifier": "invoice-service",
+      "path": "src/domain/billing/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$Invoice>): $Invoice { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: string): $Invoice | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $Invoice[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: string): void { throw new Error('not implemented'); }"
+        }
+      ],
+      "comment": "InvoiceService service."
+    },
+    {
+      "name": "InvoiceRepository",
+      "typeIdentifier": "invoice-repository",
+      "path": "src/domain/billing/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$Invoice>): $Invoice { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: string): $Invoice | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $Invoice[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: string): void { throw new Error('not implemented'); }"
+        }
+      ],
+      "comment": "InvoiceRepository service."
+    },
+    {
+      "name": "TaxCalculator",
+      "typeIdentifier": "tax-calculator",
+      "path": "src/domain/billing/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$Invoice>): $Invoice { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: string): $Invoice | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $Invoice[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: string): void { throw new Error('not implemented'); }"
+        }
+      ],
+      "comment": "TaxCalculator service."
+    },
+    {
+      "name": "Shipment",
+      "typeIdentifier": "shipment",
+      "path": "src/domain/shipping/aggregates",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "Shipment aggregate root for the shipping domain."
+    },
+    {
+      "name": "ShipmentService",
+      "typeIdentifier": "shipment-service",
+      "path": "src/domain/shipping/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$Shipment>): $Shipment { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: string): $Shipment | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $Shipment[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: string): void { throw new Error('not implemented'); }"
+        }
+      ],
+      "comment": "ShipmentService service."
+    },
+    {
+      "name": "ShipmentRepository",
+      "typeIdentifier": "shipment-repository",
+      "path": "src/domain/shipping/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$Shipment>): $Shipment { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: string): $Shipment | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $Shipment[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: string): void { throw new Error('not implemented'); }"
+        }
+      ],
+      "comment": "ShipmentRepository service."
+    },
+    {
+      "name": "CarrierGateway",
+      "typeIdentifier": "carrier-gateway",
+      "path": "src/domain/shipping/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$Shipment>): $Shipment { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: string): $Shipment | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $Shipment[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: string): void { throw new Error('not implemented'); }"
+        }
+      ],
+      "comment": "CarrierGateway service."
+    },
+    {
+      "name": "User",
+      "typeIdentifier": "user",
+      "path": "src/domain/identity/aggregates",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "User aggregate root for the identity domain."
+    },
+    {
+      "name": "UserService",
+      "typeIdentifier": "user-service",
+      "path": "src/domain/identity/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$User>): $User { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$User",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: string): $User | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$User",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $User[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$User",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: string): void { throw new Error('not implemented'); }"
+        }
+      ],
+      "comment": "UserService service."
+    },
+    {
+      "name": "UserRepository",
+      "typeIdentifier": "user-repository",
+      "path": "src/domain/identity/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$User>): $User { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$User",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: string): $User | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$User",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $User[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$User",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: string): void { throw new Error('not implemented'); }"
+        }
+      ],
+      "comment": "UserRepository service."
+    },
+    {
+      "name": "AuthService",
+      "typeIdentifier": "auth-service",
+      "path": "src/domain/identity/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$User>): $User { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$User",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: string): $User | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$User",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $User[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$User",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: string): void { throw new Error('not implemented'); }"
+        }
+      ],
+      "comment": "AuthService service."
+    },
+    {
+      "name": "TokenService",
+      "typeIdentifier": "token-service",
+      "path": "src/domain/identity/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$User>): $User { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$User",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: string): $User | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$User",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $User[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$User",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: string): void { throw new Error('not implemented'); }"
+        }
+      ],
+      "comment": "TokenService service."
+    },
+    {
+      "name": "StockItem",
+      "typeIdentifier": "stock-item",
+      "path": "src/domain/inventory/aggregates",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "StockItem aggregate root for the inventory domain."
+    },
+    {
+      "name": "StockService",
+      "typeIdentifier": "stock-service",
+      "path": "src/domain/inventory/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$StockItem>): $StockItem { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$StockItem",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: string): $StockItem | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$StockItem",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $StockItem[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$StockItem",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: string): void { throw new Error('not implemented'); }"
+        }
+      ],
+      "comment": "StockService service."
+    },
+    {
+      "name": "StockRepository",
+      "typeIdentifier": "stock-repository",
+      "path": "src/domain/inventory/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$StockItem>): $StockItem { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$StockItem",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: string): $StockItem | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$StockItem",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $StockItem[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$StockItem",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: string): void { throw new Error('not implemented'); }"
+        }
+      ],
+      "comment": "StockRepository service."
+    },
+    {
+      "name": "ReservationService",
+      "typeIdentifier": "reservation-service",
+      "path": "src/domain/inventory/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$StockItem>): $StockItem { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$StockItem",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: string): $StockItem | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$StockItem",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $StockItem[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$StockItem",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: string): void { throw new Error('not implemented'); }"
+        }
+      ],
+      "comment": "ReservationService service."
+    },
+    {
+      "name": "Notification",
+      "typeIdentifier": "notification",
+      "path": "src/domain/notification/aggregates",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "Notification aggregate root for the notification domain."
+    },
+    {
+      "name": "NotificationService",
+      "typeIdentifier": "notification-service",
+      "path": "src/domain/notification/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$Notification>): $Notification { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: string): $Notification | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $Notification[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: string): void { throw new Error('not implemented'); }"
+        }
+      ],
+      "comment": "NotificationService service."
+    },
+    {
+      "name": "NotificationRepository",
+      "typeIdentifier": "notification-repository",
+      "path": "src/domain/notification/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$Notification>): $Notification { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: string): $Notification | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $Notification[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: string): void { throw new Error('not implemented'); }"
+        }
+      ],
+      "comment": "NotificationRepository service."
+    },
+    {
+      "name": "DeliveryDispatcher",
+      "typeIdentifier": "delivery-dispatcher",
+      "path": "src/domain/notification/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$Notification>): $Notification { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: string): $Notification | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $Notification[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: string): void { throw new Error('not implemented'); }"
+        }
+      ],
+      "comment": "DeliveryDispatcher service."
+    },
+    {
+      "name": "Event",
+      "typeIdentifier": "event",
+      "path": "src/domain/analytics/aggregates",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "Event aggregate root for the analytics domain."
+    },
+    {
+      "name": "EventService",
+      "typeIdentifier": "event-service",
+      "path": "src/domain/analytics/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$Event>): $Event { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: string): $Event | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $Event[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: string): void { throw new Error('not implemented'); }"
+        }
+      ],
+      "comment": "EventService service."
+    },
+    {
+      "name": "EventRepository",
+      "typeIdentifier": "event-repository",
+      "path": "src/domain/analytics/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$Event>): $Event { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: string): $Event | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $Event[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: string): void { throw new Error('not implemented'); }"
+        }
+      ],
+      "comment": "EventRepository service."
+    },
+    {
+      "name": "MetricsAggregator",
+      "typeIdentifier": "metrics-aggregator",
+      "path": "src/domain/analytics/services",
+      "customCode": [
+        {
+          "code": "create(input: Partial<$Event>): $Event { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "findById(id: string): $Event | null { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "list(limit: number): $Event[] { throw new Error('not implemented'); }",
+          "templateRefs": [
+            {
+              "placeholder": "$Event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "delete(id: string): void { throw new Error('not implemented'); }"
+        }
+      ],
+      "comment": "MetricsAggregator service."
+    }
+  ],
+  "interfaces": [
+    {
+      "name": "OrderLine",
+      "typeIdentifier": "order-line",
+      "path": "src/domain/ordering/value-objects",
+      "properties": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "OrderLine value object."
+    },
+    {
+      "name": "ShippingAddress",
+      "typeIdentifier": "shipping-address",
+      "path": "src/domain/ordering/value-objects",
+      "properties": [
+        {
+          "name": "street",
+          "primitiveType": "String"
+        },
+        {
+          "name": "city",
+          "primitiveType": "String"
+        },
+        {
+          "name": "country",
+          "primitiveType": "String"
+        },
+        {
+          "name": "postalCode",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "ShippingAddress value object."
+    },
+    {
+      "name": "BillingAddress",
+      "typeIdentifier": "billing-address",
+      "path": "src/domain/ordering/value-objects",
+      "properties": [
+        {
+          "name": "street",
+          "primitiveType": "String"
+        },
+        {
+          "name": "city",
+          "primitiveType": "String"
+        },
+        {
+          "name": "country",
+          "primitiveType": "String"
+        },
+        {
+          "name": "postalCode",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "BillingAddress value object."
+    },
+    {
+      "name": "OrderTotal",
+      "typeIdentifier": "order-total",
+      "path": "src/domain/ordering/value-objects",
+      "properties": [
+        {
+          "name": "amount",
+          "primitiveType": "Number"
+        },
+        {
+          "name": "currency",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "OrderTotal value object."
+    },
+    {
+      "name": "Sku",
+      "typeIdentifier": "sku",
+      "path": "src/domain/catalog/value-objects",
+      "properties": [
+        {
+          "name": "value",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "Sku value object."
+    },
+    {
+      "name": "Price",
+      "typeIdentifier": "price",
+      "path": "src/domain/catalog/value-objects",
+      "properties": [
+        {
+          "name": "amount",
+          "primitiveType": "Number"
+        },
+        {
+          "name": "currency",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "Price value object."
+    },
+    {
+      "name": "ProductDescription",
+      "typeIdentifier": "product-description",
+      "path": "src/domain/catalog/value-objects",
+      "properties": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "ProductDescription value object."
+    },
+    {
+      "name": "Category",
+      "typeIdentifier": "category",
+      "path": "src/domain/catalog/value-objects",
+      "properties": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "Category value object."
+    },
+    {
+      "name": "InvoiceLine",
+      "typeIdentifier": "invoice-line",
+      "path": "src/domain/billing/value-objects",
+      "properties": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "InvoiceLine value object."
+    },
+    {
+      "name": "TaxLine",
+      "typeIdentifier": "tax-line",
+      "path": "src/domain/billing/value-objects",
+      "properties": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "TaxLine value object."
+    },
+    {
+      "name": "Discount",
+      "typeIdentifier": "discount",
+      "path": "src/domain/billing/value-objects",
+      "properties": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "Discount value object."
+    },
+    {
+      "name": "PaymentTerms",
+      "typeIdentifier": "payment-terms",
+      "path": "src/domain/billing/value-objects",
+      "properties": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "PaymentTerms value object."
+    },
+    {
+      "name": "TrackingNumber",
+      "typeIdentifier": "tracking-number",
+      "path": "src/domain/shipping/value-objects",
+      "properties": [
+        {
+          "name": "value",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "TrackingNumber value object."
+    },
+    {
+      "name": "DeliveryWindow",
+      "typeIdentifier": "delivery-window",
+      "path": "src/domain/shipping/value-objects",
+      "properties": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "DeliveryWindow value object."
+    },
+    {
+      "name": "ShipmentRoute",
+      "typeIdentifier": "shipment-route",
+      "path": "src/domain/shipping/value-objects",
+      "properties": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "ShipmentRoute value object."
+    },
+    {
+      "name": "Email",
+      "typeIdentifier": "email",
+      "path": "src/domain/identity/value-objects",
+      "properties": [
+        {
+          "name": "value",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "Email value object."
+    },
+    {
+      "name": "PasswordHash",
+      "typeIdentifier": "password-hash",
+      "path": "src/domain/identity/value-objects",
+      "properties": [
+        {
+          "name": "value",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "PasswordHash value object."
+    },
+    {
+      "name": "Profile",
+      "typeIdentifier": "profile",
+      "path": "src/domain/identity/value-objects",
+      "properties": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "Profile value object."
+    },
+    {
+      "name": "Permission",
+      "typeIdentifier": "permission",
+      "path": "src/domain/identity/value-objects",
+      "properties": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "Permission value object."
+    },
+    {
+      "name": "WarehouseLocation",
+      "typeIdentifier": "warehouse-location",
+      "path": "src/domain/inventory/value-objects",
+      "properties": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "WarehouseLocation value object."
+    },
+    {
+      "name": "Quantity",
+      "typeIdentifier": "quantity",
+      "path": "src/domain/inventory/value-objects",
+      "properties": [
+        {
+          "name": "amount",
+          "primitiveType": "Number"
+        },
+        {
+          "name": "unit",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "Quantity value object."
+    },
+    {
+      "name": "Reservation",
+      "typeIdentifier": "reservation",
+      "path": "src/domain/inventory/value-objects",
+      "properties": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "Reservation value object."
+    },
+    {
+      "name": "Template",
+      "typeIdentifier": "template",
+      "path": "src/domain/notification/value-objects",
+      "properties": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "Template value object."
+    },
+    {
+      "name": "Recipient",
+      "typeIdentifier": "recipient",
+      "path": "src/domain/notification/value-objects",
+      "properties": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "Recipient value object."
+    },
+    {
+      "name": "DeliveryAttempt",
+      "typeIdentifier": "delivery-attempt",
+      "path": "src/domain/notification/value-objects",
+      "properties": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "DeliveryAttempt value object."
+    },
+    {
+      "name": "EventPayload",
+      "typeIdentifier": "event-payload",
+      "path": "src/domain/analytics/value-objects",
+      "properties": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "EventPayload value object."
+    },
+    {
+      "name": "Metric",
+      "typeIdentifier": "metric",
+      "path": "src/domain/analytics/value-objects",
+      "properties": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "Metric value object."
+    },
+    {
+      "name": "Dimension",
+      "typeIdentifier": "dimension",
+      "path": "src/domain/analytics/value-objects",
+      "properties": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "comment": "Dimension value object."
+    }
+  ],
+  "enums": [
+    {
+      "name": "OrderStatus",
+      "typeIdentifier": "order-status",
+      "path": "src/domain/ordering/enums",
+      "members": [
+        {
+          "name": "Draft",
+          "value": 0
+        },
+        {
+          "name": "Placed",
+          "value": 1
+        },
+        {
+          "name": "Paid",
+          "value": 2
+        },
+        {
+          "name": "Shipped",
+          "value": 3
+        },
+        {
+          "name": "Delivered",
+          "value": 4
+        },
+        {
+          "name": "Cancelled",
+          "value": 5
+        }
+      ],
+      "comment": "OrderStatus enum."
+    },
+    {
+      "name": "ProductState",
+      "typeIdentifier": "product-state",
+      "path": "src/domain/catalog/enums",
+      "members": [
+        {
+          "name": "Draft",
+          "value": 0
+        },
+        {
+          "name": "Active",
+          "value": 1
+        },
+        {
+          "name": "Archived",
+          "value": 2
+        }
+      ],
+      "comment": "ProductState enum."
+    },
+    {
+      "name": "InvoiceStatus",
+      "typeIdentifier": "invoice-status",
+      "path": "src/domain/billing/enums",
+      "members": [
+        {
+          "name": "Pending",
+          "value": 0
+        },
+        {
+          "name": "Paid",
+          "value": 1
+        },
+        {
+          "name": "Overdue",
+          "value": 2
+        },
+        {
+          "name": "Void",
+          "value": 3
+        }
+      ],
+      "comment": "InvoiceStatus enum."
+    },
+    {
+      "name": "Carrier",
+      "typeIdentifier": "carrier",
+      "path": "src/domain/shipping/enums",
+      "members": [
+        {
+          "name": "Ups",
+          "value": 0
+        },
+        {
+          "name": "Fedex",
+          "value": 1
+        },
+        {
+          "name": "Dhl",
+          "value": 2
+        },
+        {
+          "name": "Usps",
+          "value": 3
+        }
+      ],
+      "comment": "Carrier enum."
+    },
+    {
+      "name": "ShipmentState",
+      "typeIdentifier": "shipment-state",
+      "path": "src/domain/shipping/enums",
+      "members": [
+        {
+          "name": "Pending",
+          "value": 0
+        },
+        {
+          "name": "InTransit",
+          "value": 1
+        },
+        {
+          "name": "Delivered",
+          "value": 2
+        },
+        {
+          "name": "Lost",
+          "value": 3
+        }
+      ],
+      "comment": "ShipmentState enum."
+    },
+    {
+      "name": "Role",
+      "typeIdentifier": "role",
+      "path": "src/domain/identity/enums",
+      "members": [
+        {
+          "name": "Admin",
+          "value": 0
+        },
+        {
+          "name": "User",
+          "value": 1
+        },
+        {
+          "name": "Service",
+          "value": 2
+        }
+      ],
+      "comment": "Role enum."
+    },
+    {
+      "name": "StockState",
+      "typeIdentifier": "stock-state",
+      "path": "src/domain/inventory/enums",
+      "members": [
+        {
+          "name": "InStock",
+          "value": 0
+        },
+        {
+          "name": "Reserved",
+          "value": 1
+        },
+        {
+          "name": "Depleted",
+          "value": 2
+        }
+      ],
+      "comment": "StockState enum."
+    },
+    {
+      "name": "Channel",
+      "typeIdentifier": "channel",
+      "path": "src/domain/notification/enums",
+      "members": [
+        {
+          "name": "Email",
+          "value": 0
+        },
+        {
+          "name": "Sms",
+          "value": 1
+        },
+        {
+          "name": "Push",
+          "value": 2
+        },
+        {
+          "name": "Webhook",
+          "value": 3
+        }
+      ],
+      "comment": "Channel enum."
+    },
+    {
+      "name": "DeliveryState",
+      "typeIdentifier": "delivery-state",
+      "path": "src/domain/notification/enums",
+      "members": [
+        {
+          "name": "Queued",
+          "value": 0
+        },
+        {
+          "name": "Sent",
+          "value": 1
+        },
+        {
+          "name": "Delivered",
+          "value": 2
+        },
+        {
+          "name": "Failed",
+          "value": 3
+        }
+      ],
+      "comment": "DeliveryState enum."
+    },
+    {
+      "name": "EventType",
+      "typeIdentifier": "event-type",
+      "path": "src/domain/analytics/enums",
+      "members": [
+        {
+          "name": "Click",
+          "value": 0
+        },
+        {
+          "name": "View",
+          "value": 1
+        },
+        {
+          "name": "Purchase",
+          "value": 2
+        },
+        {
+          "name": "Signup",
+          "value": 3
+        }
+      ],
+      "comment": "EventType enum."
+    }
+  ]
+}

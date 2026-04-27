@@ -1,0 +1,2094 @@
+{
+  "language": "python",
+  "packageName": "metaengine_demo",
+  "classes": [
+    {
+      "name": "Order",
+      "typeIdentifier": "order",
+      "path": "ordering/aggregates",
+      "comment": "Order aggregate root for the ordering domain.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "OrderLine",
+      "typeIdentifier": "order-line",
+      "path": "ordering/value_objects",
+      "comment": "OrderLine value object.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "ShippingAddress",
+      "typeIdentifier": "shipping-address",
+      "path": "ordering/value_objects",
+      "comment": "ShippingAddress value object.",
+      "constructorParameters": [
+        {
+          "name": "street",
+          "primitiveType": "String"
+        },
+        {
+          "name": "city",
+          "primitiveType": "String"
+        },
+        {
+          "name": "country",
+          "primitiveType": "String"
+        },
+        {
+          "name": "postalCode",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "BillingAddress",
+      "typeIdentifier": "billing-address",
+      "path": "ordering/value_objects",
+      "comment": "BillingAddress value object.",
+      "constructorParameters": [
+        {
+          "name": "street",
+          "primitiveType": "String"
+        },
+        {
+          "name": "city",
+          "primitiveType": "String"
+        },
+        {
+          "name": "country",
+          "primitiveType": "String"
+        },
+        {
+          "name": "postalCode",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "OrderTotal",
+      "typeIdentifier": "order-total",
+      "path": "ordering/value_objects",
+      "comment": "OrderTotal value object.",
+      "constructorParameters": [
+        {
+          "name": "amount",
+          "primitiveType": "Number"
+        },
+        {
+          "name": "currency",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "OrderService",
+      "typeIdentifier": "order-service",
+      "path": "ordering/services",
+      "comment": "OrderService service.",
+      "customCode": [
+        {
+          "code": "def create(self, input: dict) -> $Order:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "def find_by_id(self, id: str) -> $Order | None:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "def list(self, limit: int) -> list[$Order]:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "def delete(self, id: str) -> None:\n    raise NotImplementedError('not implemented')"
+        }
+      ]
+    },
+    {
+      "name": "OrderRepository",
+      "typeIdentifier": "order-repository",
+      "path": "ordering/services",
+      "comment": "OrderRepository service.",
+      "customCode": [
+        {
+          "code": "def create(self, input: dict) -> $Order:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "def find_by_id(self, id: str) -> $Order | None:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "def list(self, limit: int) -> list[$Order]:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "def delete(self, id: str) -> None:\n    raise NotImplementedError('not implemented')"
+        }
+      ]
+    },
+    {
+      "name": "OrderValidator",
+      "typeIdentifier": "order-validator",
+      "path": "ordering/services",
+      "comment": "OrderValidator service.",
+      "customCode": [
+        {
+          "code": "def create(self, input: dict) -> $Order:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "def find_by_id(self, id: str) -> $Order | None:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "def list(self, limit: int) -> list[$Order]:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "def delete(self, id: str) -> None:\n    raise NotImplementedError('not implemented')"
+        }
+      ]
+    },
+    {
+      "name": "Product",
+      "typeIdentifier": "product",
+      "path": "catalog/aggregates",
+      "comment": "Product aggregate root for the catalog domain.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "Sku",
+      "typeIdentifier": "sku",
+      "path": "catalog/value_objects",
+      "comment": "Sku value object.",
+      "constructorParameters": [
+        {
+          "name": "value",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "Price",
+      "typeIdentifier": "price",
+      "path": "catalog/value_objects",
+      "comment": "Price value object.",
+      "constructorParameters": [
+        {
+          "name": "amount",
+          "primitiveType": "Number"
+        },
+        {
+          "name": "currency",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "ProductDescription",
+      "typeIdentifier": "product-description",
+      "path": "catalog/value_objects",
+      "comment": "ProductDescription value object.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "Category",
+      "typeIdentifier": "category",
+      "path": "catalog/value_objects",
+      "comment": "Category value object.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "ProductService",
+      "typeIdentifier": "product-service",
+      "path": "catalog/services",
+      "comment": "ProductService service.",
+      "customCode": [
+        {
+          "code": "def create(self, input: dict) -> $Product:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "def find_by_id(self, id: str) -> $Product | None:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "def list(self, limit: int) -> list[$Product]:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "def delete(self, id: str) -> None:\n    raise NotImplementedError('not implemented')"
+        }
+      ]
+    },
+    {
+      "name": "ProductRepository",
+      "typeIdentifier": "product-repository",
+      "path": "catalog/services",
+      "comment": "ProductRepository service.",
+      "customCode": [
+        {
+          "code": "def create(self, input: dict) -> $Product:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "def find_by_id(self, id: str) -> $Product | None:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "def list(self, limit: int) -> list[$Product]:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "def delete(self, id: str) -> None:\n    raise NotImplementedError('not implemented')"
+        }
+      ]
+    },
+    {
+      "name": "PricingEngine",
+      "typeIdentifier": "pricing-engine",
+      "path": "catalog/services",
+      "comment": "PricingEngine service.",
+      "customCode": [
+        {
+          "code": "def create(self, input: dict) -> $Product:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "def find_by_id(self, id: str) -> $Product | None:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "def list(self, limit: int) -> list[$Product]:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "def delete(self, id: str) -> None:\n    raise NotImplementedError('not implemented')"
+        }
+      ]
+    },
+    {
+      "name": "Invoice",
+      "typeIdentifier": "invoice",
+      "path": "billing/aggregates",
+      "comment": "Invoice aggregate root for the billing domain.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "InvoiceLine",
+      "typeIdentifier": "invoice-line",
+      "path": "billing/value_objects",
+      "comment": "InvoiceLine value object.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "TaxLine",
+      "typeIdentifier": "tax-line",
+      "path": "billing/value_objects",
+      "comment": "TaxLine value object.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "Discount",
+      "typeIdentifier": "discount",
+      "path": "billing/value_objects",
+      "comment": "Discount value object.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "PaymentTerms",
+      "typeIdentifier": "payment-terms",
+      "path": "billing/value_objects",
+      "comment": "PaymentTerms value object.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "InvoiceService",
+      "typeIdentifier": "invoice-service",
+      "path": "billing/services",
+      "comment": "InvoiceService service.",
+      "customCode": [
+        {
+          "code": "def create(self, input: dict) -> $Invoice:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "def find_by_id(self, id: str) -> $Invoice | None:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "def list(self, limit: int) -> list[$Invoice]:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "def delete(self, id: str) -> None:\n    raise NotImplementedError('not implemented')"
+        }
+      ]
+    },
+    {
+      "name": "InvoiceRepository",
+      "typeIdentifier": "invoice-repository",
+      "path": "billing/services",
+      "comment": "InvoiceRepository service.",
+      "customCode": [
+        {
+          "code": "def create(self, input: dict) -> $Invoice:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "def find_by_id(self, id: str) -> $Invoice | None:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "def list(self, limit: int) -> list[$Invoice]:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "def delete(self, id: str) -> None:\n    raise NotImplementedError('not implemented')"
+        }
+      ]
+    },
+    {
+      "name": "TaxCalculator",
+      "typeIdentifier": "tax-calculator",
+      "path": "billing/services",
+      "comment": "TaxCalculator service.",
+      "customCode": [
+        {
+          "code": "def create(self, input: dict) -> $Invoice:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "def find_by_id(self, id: str) -> $Invoice | None:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "def list(self, limit: int) -> list[$Invoice]:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "def delete(self, id: str) -> None:\n    raise NotImplementedError('not implemented')"
+        }
+      ]
+    },
+    {
+      "name": "Shipment",
+      "typeIdentifier": "shipment",
+      "path": "shipping/aggregates",
+      "comment": "Shipment aggregate root for the shipping domain.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "TrackingNumber",
+      "typeIdentifier": "tracking-number",
+      "path": "shipping/value_objects",
+      "comment": "TrackingNumber value object.",
+      "constructorParameters": [
+        {
+          "name": "value",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "DeliveryWindow",
+      "typeIdentifier": "delivery-window",
+      "path": "shipping/value_objects",
+      "comment": "DeliveryWindow value object.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "ShipmentRoute",
+      "typeIdentifier": "shipment-route",
+      "path": "shipping/value_objects",
+      "comment": "ShipmentRoute value object.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "ShipmentService",
+      "typeIdentifier": "shipment-service",
+      "path": "shipping/services",
+      "comment": "ShipmentService service.",
+      "customCode": [
+        {
+          "code": "def create(self, input: dict) -> $Shipment:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "def find_by_id(self, id: str) -> $Shipment | None:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "def list(self, limit: int) -> list[$Shipment]:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "def delete(self, id: str) -> None:\n    raise NotImplementedError('not implemented')"
+        }
+      ]
+    },
+    {
+      "name": "ShipmentRepository",
+      "typeIdentifier": "shipment-repository",
+      "path": "shipping/services",
+      "comment": "ShipmentRepository service.",
+      "customCode": [
+        {
+          "code": "def create(self, input: dict) -> $Shipment:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "def find_by_id(self, id: str) -> $Shipment | None:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "def list(self, limit: int) -> list[$Shipment]:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "def delete(self, id: str) -> None:\n    raise NotImplementedError('not implemented')"
+        }
+      ]
+    },
+    {
+      "name": "CarrierGateway",
+      "typeIdentifier": "carrier-gateway",
+      "path": "shipping/services",
+      "comment": "CarrierGateway service.",
+      "customCode": [
+        {
+          "code": "def create(self, input: dict) -> $Shipment:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "def find_by_id(self, id: str) -> $Shipment | None:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "def list(self, limit: int) -> list[$Shipment]:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "def delete(self, id: str) -> None:\n    raise NotImplementedError('not implemented')"
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "typeIdentifier": "user",
+      "path": "identity/aggregates",
+      "comment": "User aggregate root for the identity domain.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "Email",
+      "typeIdentifier": "email",
+      "path": "identity/value_objects",
+      "comment": "Email value object.",
+      "constructorParameters": [
+        {
+          "name": "value",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "PasswordHash",
+      "typeIdentifier": "password-hash",
+      "path": "identity/value_objects",
+      "comment": "PasswordHash value object.",
+      "constructorParameters": [
+        {
+          "name": "value",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "Profile",
+      "typeIdentifier": "profile",
+      "path": "identity/value_objects",
+      "comment": "Profile value object.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "Permission",
+      "typeIdentifier": "permission",
+      "path": "identity/value_objects",
+      "comment": "Permission value object.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "UserService",
+      "typeIdentifier": "user-service",
+      "path": "identity/services",
+      "comment": "UserService service.",
+      "customCode": [
+        {
+          "code": "def create(self, input: dict) -> $User:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$User",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "def find_by_id(self, id: str) -> $User | None:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$User",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "def list(self, limit: int) -> list[$User]:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$User",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "def delete(self, id: str) -> None:\n    raise NotImplementedError('not implemented')"
+        }
+      ]
+    },
+    {
+      "name": "UserRepository",
+      "typeIdentifier": "user-repository",
+      "path": "identity/services",
+      "comment": "UserRepository service.",
+      "customCode": [
+        {
+          "code": "def create(self, input: dict) -> $User:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$User",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "def find_by_id(self, id: str) -> $User | None:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$User",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "def list(self, limit: int) -> list[$User]:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$User",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "def delete(self, id: str) -> None:\n    raise NotImplementedError('not implemented')"
+        }
+      ]
+    },
+    {
+      "name": "AuthService",
+      "typeIdentifier": "auth-service",
+      "path": "identity/services",
+      "comment": "AuthService service.",
+      "customCode": [
+        {
+          "code": "def create(self, input: dict) -> $User:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$User",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "def find_by_id(self, id: str) -> $User | None:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$User",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "def list(self, limit: int) -> list[$User]:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$User",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "def delete(self, id: str) -> None:\n    raise NotImplementedError('not implemented')"
+        }
+      ]
+    },
+    {
+      "name": "TokenService",
+      "typeIdentifier": "token-service",
+      "path": "identity/services",
+      "comment": "TokenService service.",
+      "customCode": [
+        {
+          "code": "def create(self, input: dict) -> $User:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$User",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "def find_by_id(self, id: str) -> $User | None:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$User",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "def list(self, limit: int) -> list[$User]:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$User",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "def delete(self, id: str) -> None:\n    raise NotImplementedError('not implemented')"
+        }
+      ]
+    },
+    {
+      "name": "StockItem",
+      "typeIdentifier": "stock-item",
+      "path": "inventory/aggregates",
+      "comment": "StockItem aggregate root for the inventory domain.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "WarehouseLocation",
+      "typeIdentifier": "warehouse-location",
+      "path": "inventory/value_objects",
+      "comment": "WarehouseLocation value object.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "Quantity",
+      "typeIdentifier": "quantity",
+      "path": "inventory/value_objects",
+      "comment": "Quantity value object.",
+      "constructorParameters": [
+        {
+          "name": "amount",
+          "primitiveType": "Number"
+        },
+        {
+          "name": "unit",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "Reservation",
+      "typeIdentifier": "reservation",
+      "path": "inventory/value_objects",
+      "comment": "Reservation value object.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "StockService",
+      "typeIdentifier": "stock-service",
+      "path": "inventory/services",
+      "comment": "StockService service.",
+      "customCode": [
+        {
+          "code": "def create(self, input: dict) -> $StockItem:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$StockItem",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "def find_by_id(self, id: str) -> $StockItem | None:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$StockItem",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "def list(self, limit: int) -> list[$StockItem]:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$StockItem",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "def delete(self, id: str) -> None:\n    raise NotImplementedError('not implemented')"
+        }
+      ]
+    },
+    {
+      "name": "StockRepository",
+      "typeIdentifier": "stock-repository",
+      "path": "inventory/services",
+      "comment": "StockRepository service.",
+      "customCode": [
+        {
+          "code": "def create(self, input: dict) -> $StockItem:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$StockItem",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "def find_by_id(self, id: str) -> $StockItem | None:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$StockItem",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "def list(self, limit: int) -> list[$StockItem]:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$StockItem",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "def delete(self, id: str) -> None:\n    raise NotImplementedError('not implemented')"
+        }
+      ]
+    },
+    {
+      "name": "ReservationService",
+      "typeIdentifier": "reservation-service",
+      "path": "inventory/services",
+      "comment": "ReservationService service.",
+      "customCode": [
+        {
+          "code": "def create(self, input: dict) -> $StockItem:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$StockItem",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "def find_by_id(self, id: str) -> $StockItem | None:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$StockItem",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "def list(self, limit: int) -> list[$StockItem]:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$StockItem",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "def delete(self, id: str) -> None:\n    raise NotImplementedError('not implemented')"
+        }
+      ]
+    },
+    {
+      "name": "Notification",
+      "typeIdentifier": "notification",
+      "path": "notification/aggregates",
+      "comment": "Notification aggregate root for the notification domain.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "Template",
+      "typeIdentifier": "template",
+      "path": "notification/value_objects",
+      "comment": "Template value object.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "Recipient",
+      "typeIdentifier": "recipient",
+      "path": "notification/value_objects",
+      "comment": "Recipient value object.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "DeliveryAttempt",
+      "typeIdentifier": "delivery-attempt",
+      "path": "notification/value_objects",
+      "comment": "DeliveryAttempt value object.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "NotificationService",
+      "typeIdentifier": "notification-service",
+      "path": "notification/services",
+      "comment": "NotificationService service.",
+      "customCode": [
+        {
+          "code": "def create(self, input: dict) -> $Notification:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "def find_by_id(self, id: str) -> $Notification | None:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "def list(self, limit: int) -> list[$Notification]:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "def delete(self, id: str) -> None:\n    raise NotImplementedError('not implemented')"
+        }
+      ]
+    },
+    {
+      "name": "NotificationRepository",
+      "typeIdentifier": "notification-repository",
+      "path": "notification/services",
+      "comment": "NotificationRepository service.",
+      "customCode": [
+        {
+          "code": "def create(self, input: dict) -> $Notification:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "def find_by_id(self, id: str) -> $Notification | None:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "def list(self, limit: int) -> list[$Notification]:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "def delete(self, id: str) -> None:\n    raise NotImplementedError('not implemented')"
+        }
+      ]
+    },
+    {
+      "name": "DeliveryDispatcher",
+      "typeIdentifier": "delivery-dispatcher",
+      "path": "notification/services",
+      "comment": "DeliveryDispatcher service.",
+      "customCode": [
+        {
+          "code": "def create(self, input: dict) -> $Notification:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "def find_by_id(self, id: str) -> $Notification | None:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "def list(self, limit: int) -> list[$Notification]:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "def delete(self, id: str) -> None:\n    raise NotImplementedError('not implemented')"
+        }
+      ]
+    },
+    {
+      "name": "Event",
+      "typeIdentifier": "event",
+      "path": "analytics/aggregates",
+      "comment": "Event aggregate root for the analytics domain.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "EventPayload",
+      "typeIdentifier": "event-payload",
+      "path": "analytics/value_objects",
+      "comment": "EventPayload value object.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "Metric",
+      "typeIdentifier": "metric",
+      "path": "analytics/value_objects",
+      "comment": "Metric value object.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "Dimension",
+      "typeIdentifier": "dimension",
+      "path": "analytics/value_objects",
+      "comment": "Dimension value object.",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ]
+    },
+    {
+      "name": "EventService",
+      "typeIdentifier": "event-service",
+      "path": "analytics/services",
+      "comment": "EventService service.",
+      "customCode": [
+        {
+          "code": "def create(self, input: dict) -> $Event:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "def find_by_id(self, id: str) -> $Event | None:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "def list(self, limit: int) -> list[$Event]:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "def delete(self, id: str) -> None:\n    raise NotImplementedError('not implemented')"
+        }
+      ]
+    },
+    {
+      "name": "EventRepository",
+      "typeIdentifier": "event-repository",
+      "path": "analytics/services",
+      "comment": "EventRepository service.",
+      "customCode": [
+        {
+          "code": "def create(self, input: dict) -> $Event:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "def find_by_id(self, id: str) -> $Event | None:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "def list(self, limit: int) -> list[$Event]:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "def delete(self, id: str) -> None:\n    raise NotImplementedError('not implemented')"
+        }
+      ]
+    },
+    {
+      "name": "MetricsAggregator",
+      "typeIdentifier": "metrics-aggregator",
+      "path": "analytics/services",
+      "comment": "MetricsAggregator service.",
+      "customCode": [
+        {
+          "code": "def create(self, input: dict) -> $Event:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "def find_by_id(self, id: str) -> $Event | None:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "def list(self, limit: int) -> list[$Event]:\n    raise NotImplementedError('not implemented')",
+          "templateRefs": [
+            {
+              "placeholder": "$Event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "def delete(self, id: str) -> None:\n    raise NotImplementedError('not implemented')"
+        }
+      ]
+    }
+  ],
+  "enums": [
+    {
+      "name": "OrderStatus",
+      "typeIdentifier": "order-status",
+      "path": "ordering/enums",
+      "comment": "OrderStatus enum.",
+      "members": [
+        {
+          "name": "Draft",
+          "value": 0
+        },
+        {
+          "name": "Placed",
+          "value": 1
+        },
+        {
+          "name": "Paid",
+          "value": 2
+        },
+        {
+          "name": "Shipped",
+          "value": 3
+        },
+        {
+          "name": "Delivered",
+          "value": 4
+        },
+        {
+          "name": "Cancelled",
+          "value": 5
+        }
+      ]
+    },
+    {
+      "name": "ProductState",
+      "typeIdentifier": "product-state",
+      "path": "catalog/enums",
+      "comment": "ProductState enum.",
+      "members": [
+        {
+          "name": "Draft",
+          "value": 0
+        },
+        {
+          "name": "Active",
+          "value": 1
+        },
+        {
+          "name": "Archived",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "name": "InvoiceStatus",
+      "typeIdentifier": "invoice-status",
+      "path": "billing/enums",
+      "comment": "InvoiceStatus enum.",
+      "members": [
+        {
+          "name": "Pending",
+          "value": 0
+        },
+        {
+          "name": "Paid",
+          "value": 1
+        },
+        {
+          "name": "Overdue",
+          "value": 2
+        },
+        {
+          "name": "Void",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "name": "Carrier",
+      "typeIdentifier": "carrier",
+      "path": "shipping/enums",
+      "comment": "Carrier enum.",
+      "members": [
+        {
+          "name": "Ups",
+          "value": 0
+        },
+        {
+          "name": "Fedex",
+          "value": 1
+        },
+        {
+          "name": "Dhl",
+          "value": 2
+        },
+        {
+          "name": "Usps",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "name": "ShipmentState",
+      "typeIdentifier": "shipment-state",
+      "path": "shipping/enums",
+      "comment": "ShipmentState enum.",
+      "members": [
+        {
+          "name": "Pending",
+          "value": 0
+        },
+        {
+          "name": "InTransit",
+          "value": 1
+        },
+        {
+          "name": "Delivered",
+          "value": 2
+        },
+        {
+          "name": "Lost",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "name": "Role",
+      "typeIdentifier": "role",
+      "path": "identity/enums",
+      "comment": "Role enum.",
+      "members": [
+        {
+          "name": "Admin",
+          "value": 0
+        },
+        {
+          "name": "User",
+          "value": 1
+        },
+        {
+          "name": "Service",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "name": "StockState",
+      "typeIdentifier": "stock-state",
+      "path": "inventory/enums",
+      "comment": "StockState enum.",
+      "members": [
+        {
+          "name": "InStock",
+          "value": 0
+        },
+        {
+          "name": "Reserved",
+          "value": 1
+        },
+        {
+          "name": "Depleted",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "name": "Channel",
+      "typeIdentifier": "channel",
+      "path": "notification/enums",
+      "comment": "Channel enum.",
+      "members": [
+        {
+          "name": "Email",
+          "value": 0
+        },
+        {
+          "name": "Sms",
+          "value": 1
+        },
+        {
+          "name": "Push",
+          "value": 2
+        },
+        {
+          "name": "Webhook",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "name": "DeliveryState",
+      "typeIdentifier": "delivery-state",
+      "path": "notification/enums",
+      "comment": "DeliveryState enum.",
+      "members": [
+        {
+          "name": "Queued",
+          "value": 0
+        },
+        {
+          "name": "Sent",
+          "value": 1
+        },
+        {
+          "name": "Delivered",
+          "value": 2
+        },
+        {
+          "name": "Failed",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "name": "EventType",
+      "typeIdentifier": "event-type",
+      "path": "analytics/enums",
+      "comment": "EventType enum.",
+      "members": [
+        {
+          "name": "Click",
+          "value": 0
+        },
+        {
+          "name": "View",
+          "value": 1
+        },
+        {
+          "name": "Purchase",
+          "value": 2
+        },
+        {
+          "name": "Signup",
+          "value": 3
+        }
+      ]
+    }
+  ]
+}

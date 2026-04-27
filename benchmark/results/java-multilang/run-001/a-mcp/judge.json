@@ -1,0 +1,13 @@
+{
+  "verdict": "pass",
+  "language": "java",
+  "ts_file_count": 71,
+  "expected_total": 71,
+  "tsc_errors": 0,
+  "structural_counts": {
+    "pass": 71,
+    "structural_fail": 0,
+    "missing": 0
+  },
+  "issues_per_entity": []
+}

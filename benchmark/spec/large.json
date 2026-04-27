@@ -1,0 +1,2288 @@
+{
+  "domains": [
+    {
+      "name": "ordering",
+      "types": [
+        {
+          "name": "Order",
+          "kind": "aggregate",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "OrderLine",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "ShippingAddress",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "street",
+              "type": "string"
+            },
+            {
+              "name": "city",
+              "type": "string"
+            },
+            {
+              "name": "country",
+              "type": "string"
+            },
+            {
+              "name": "postalCode",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "BillingAddress",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "street",
+              "type": "string"
+            },
+            {
+              "name": "city",
+              "type": "string"
+            },
+            {
+              "name": "country",
+              "type": "string"
+            },
+            {
+              "name": "postalCode",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "OrderTotal",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "amount",
+              "type": "number"
+            },
+            {
+              "name": "currency",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "OrderStatus",
+          "kind": "enum",
+          "members": [
+            {
+              "name": "Draft",
+              "value": 0
+            },
+            {
+              "name": "Placed",
+              "value": 1
+            },
+            {
+              "name": "Paid",
+              "value": 2
+            },
+            {
+              "name": "Shipped",
+              "value": 3
+            },
+            {
+              "name": "Delivered",
+              "value": 4
+            },
+            {
+              "name": "Cancelled",
+              "value": 5
+            }
+          ],
+          "valueLabels": [
+            "draft",
+            "placed",
+            "paid",
+            "shipped",
+            "delivered",
+            "cancelled"
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "OrderService",
+          "methods": [
+            {
+              "name": "create",
+              "params": [
+                {
+                  "name": "input",
+                  "type": "Partial<Order>"
+                }
+              ],
+              "returns": "Order"
+            },
+            {
+              "name": "findById",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "Order | null"
+            },
+            {
+              "name": "list",
+              "params": [
+                {
+                  "name": "limit",
+                  "type": "number"
+                }
+              ],
+              "returns": "Order[]"
+            },
+            {
+              "name": "delete",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "void"
+            }
+          ]
+        },
+        {
+          "name": "OrderRepository",
+          "methods": [
+            {
+              "name": "create",
+              "params": [
+                {
+                  "name": "input",
+                  "type": "Partial<Order>"
+                }
+              ],
+              "returns": "Order"
+            },
+            {
+              "name": "findById",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "Order | null"
+            },
+            {
+              "name": "list",
+              "params": [
+                {
+                  "name": "limit",
+                  "type": "number"
+                }
+              ],
+              "returns": "Order[]"
+            },
+            {
+              "name": "delete",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "void"
+            }
+          ]
+        },
+        {
+          "name": "OrderValidator",
+          "methods": [
+            {
+              "name": "create",
+              "params": [
+                {
+                  "name": "input",
+                  "type": "Partial<Order>"
+                }
+              ],
+              "returns": "Order"
+            },
+            {
+              "name": "findById",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "Order | null"
+            },
+            {
+              "name": "list",
+              "params": [
+                {
+                  "name": "limit",
+                  "type": "number"
+                }
+              ],
+              "returns": "Order[]"
+            },
+            {
+              "name": "delete",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "void"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "catalog",
+      "types": [
+        {
+          "name": "Product",
+          "kind": "aggregate",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "Sku",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "value",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "Price",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "amount",
+              "type": "number"
+            },
+            {
+              "name": "currency",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "ProductDescription",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "Category",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "ProductState",
+          "kind": "enum",
+          "members": [
+            {
+              "name": "Draft",
+              "value": 0
+            },
+            {
+              "name": "Active",
+              "value": 1
+            },
+            {
+              "name": "Archived",
+              "value": 2
+            }
+          ],
+          "valueLabels": [
+            "draft",
+            "active",
+            "archived"
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "ProductService",
+          "methods": [
+            {
+              "name": "create",
+              "params": [
+                {
+                  "name": "input",
+                  "type": "Partial<Product>"
+                }
+              ],
+              "returns": "Product"
+            },
+            {
+              "name": "findById",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "Product | null"
+            },
+            {
+              "name": "list",
+              "params": [
+                {
+                  "name": "limit",
+                  "type": "number"
+                }
+              ],
+              "returns": "Product[]"
+            },
+            {
+              "name": "delete",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "void"
+            }
+          ]
+        },
+        {
+          "name": "ProductRepository",
+          "methods": [
+            {
+              "name": "create",
+              "params": [
+                {
+                  "name": "input",
+                  "type": "Partial<Product>"
+                }
+              ],
+              "returns": "Product"
+            },
+            {
+              "name": "findById",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "Product | null"
+            },
+            {
+              "name": "list",
+              "params": [
+                {
+                  "name": "limit",
+                  "type": "number"
+                }
+              ],
+              "returns": "Product[]"
+            },
+            {
+              "name": "delete",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "void"
+            }
+          ]
+        },
+        {
+          "name": "PricingEngine",
+          "methods": [
+            {
+              "name": "create",
+              "params": [
+                {
+                  "name": "input",
+                  "type": "Partial<Product>"
+                }
+              ],
+              "returns": "Product"
+            },
+            {
+              "name": "findById",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "Product | null"
+            },
+            {
+              "name": "list",
+              "params": [
+                {
+                  "name": "limit",
+                  "type": "number"
+                }
+              ],
+              "returns": "Product[]"
+            },
+            {
+              "name": "delete",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "void"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "billing",
+      "types": [
+        {
+          "name": "Invoice",
+          "kind": "aggregate",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "InvoiceLine",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "TaxLine",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "Discount",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "PaymentTerms",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "InvoiceStatus",
+          "kind": "enum",
+          "members": [
+            {
+              "name": "Pending",
+              "value": 0
+            },
+            {
+              "name": "Paid",
+              "value": 1
+            },
+            {
+              "name": "Overdue",
+              "value": 2
+            },
+            {
+              "name": "Void",
+              "value": 3
+            }
+          ],
+          "valueLabels": [
+            "pending",
+            "paid",
+            "overdue",
+            "void"
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "InvoiceService",
+          "methods": [
+            {
+              "name": "create",
+              "params": [
+                {
+                  "name": "input",
+                  "type": "Partial<Invoice>"
+                }
+              ],
+              "returns": "Invoice"
+            },
+            {
+              "name": "findById",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "Invoice | null"
+            },
+            {
+              "name": "list",
+              "params": [
+                {
+                  "name": "limit",
+                  "type": "number"
+                }
+              ],
+              "returns": "Invoice[]"
+            },
+            {
+              "name": "delete",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "void"
+            }
+          ]
+        },
+        {
+          "name": "InvoiceRepository",
+          "methods": [
+            {
+              "name": "create",
+              "params": [
+                {
+                  "name": "input",
+                  "type": "Partial<Invoice>"
+                }
+              ],
+              "returns": "Invoice"
+            },
+            {
+              "name": "findById",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "Invoice | null"
+            },
+            {
+              "name": "list",
+              "params": [
+                {
+                  "name": "limit",
+                  "type": "number"
+                }
+              ],
+              "returns": "Invoice[]"
+            },
+            {
+              "name": "delete",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "void"
+            }
+          ]
+        },
+        {
+          "name": "TaxCalculator",
+          "methods": [
+            {
+              "name": "create",
+              "params": [
+                {
+                  "name": "input",
+                  "type": "Partial<Invoice>"
+                }
+              ],
+              "returns": "Invoice"
+            },
+            {
+              "name": "findById",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "Invoice | null"
+            },
+            {
+              "name": "list",
+              "params": [
+                {
+                  "name": "limit",
+                  "type": "number"
+                }
+              ],
+              "returns": "Invoice[]"
+            },
+            {
+              "name": "delete",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "void"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "shipping",
+      "types": [
+        {
+          "name": "Shipment",
+          "kind": "aggregate",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "TrackingNumber",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "value",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "DeliveryWindow",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "ShipmentRoute",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "Carrier",
+          "kind": "enum",
+          "members": [
+            {
+              "name": "Ups",
+              "value": 0
+            },
+            {
+              "name": "Fedex",
+              "value": 1
+            },
+            {
+              "name": "Dhl",
+              "value": 2
+            },
+            {
+              "name": "Usps",
+              "value": 3
+            }
+          ],
+          "valueLabels": [
+            "ups",
+            "fedex",
+            "dhl",
+            "usps"
+          ]
+        },
+        {
+          "name": "ShipmentState",
+          "kind": "enum",
+          "members": [
+            {
+              "name": "Pending",
+              "value": 0
+            },
+            {
+              "name": "InTransit",
+              "value": 1
+            },
+            {
+              "name": "Delivered",
+              "value": 2
+            },
+            {
+              "name": "Lost",
+              "value": 3
+            }
+          ],
+          "valueLabels": [
+            "pending",
+            "in_transit",
+            "delivered",
+            "lost"
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "ShipmentService",
+          "methods": [
+            {
+              "name": "create",
+              "params": [
+                {
+                  "name": "input",
+                  "type": "Partial<Shipment>"
+                }
+              ],
+              "returns": "Shipment"
+            },
+            {
+              "name": "findById",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "Shipment | null"
+            },
+            {
+              "name": "list",
+              "params": [
+                {
+                  "name": "limit",
+                  "type": "number"
+                }
+              ],
+              "returns": "Shipment[]"
+            },
+            {
+              "name": "delete",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "void"
+            }
+          ]
+        },
+        {
+          "name": "ShipmentRepository",
+          "methods": [
+            {
+              "name": "create",
+              "params": [
+                {
+                  "name": "input",
+                  "type": "Partial<Shipment>"
+                }
+              ],
+              "returns": "Shipment"
+            },
+            {
+              "name": "findById",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "Shipment | null"
+            },
+            {
+              "name": "list",
+              "params": [
+                {
+                  "name": "limit",
+                  "type": "number"
+                }
+              ],
+              "returns": "Shipment[]"
+            },
+            {
+              "name": "delete",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "void"
+            }
+          ]
+        },
+        {
+          "name": "CarrierGateway",
+          "methods": [
+            {
+              "name": "create",
+              "params": [
+                {
+                  "name": "input",
+                  "type": "Partial<Shipment>"
+                }
+              ],
+              "returns": "Shipment"
+            },
+            {
+              "name": "findById",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "Shipment | null"
+            },
+            {
+              "name": "list",
+              "params": [
+                {
+                  "name": "limit",
+                  "type": "number"
+                }
+              ],
+              "returns": "Shipment[]"
+            },
+            {
+              "name": "delete",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "void"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "identity",
+      "types": [
+        {
+          "name": "User",
+          "kind": "aggregate",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "Email",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "value",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "PasswordHash",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "value",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "Profile",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "Permission",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "Role",
+          "kind": "enum",
+          "members": [
+            {
+              "name": "Admin",
+              "value": 0
+            },
+            {
+              "name": "User",
+              "value": 1
+            },
+            {
+              "name": "Service",
+              "value": 2
+            }
+          ],
+          "valueLabels": [
+            "admin",
+            "user",
+            "service"
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "UserService",
+          "methods": [
+            {
+              "name": "create",
+              "params": [
+                {
+                  "name": "input",
+                  "type": "Partial<User>"
+                }
+              ],
+              "returns": "User"
+            },
+            {
+              "name": "findById",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "User | null"
+            },
+            {
+              "name": "list",
+              "params": [
+                {
+                  "name": "limit",
+                  "type": "number"
+                }
+              ],
+              "returns": "User[]"
+            },
+            {
+              "name": "delete",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "void"
+            }
+          ]
+        },
+        {
+          "name": "UserRepository",
+          "methods": [
+            {
+              "name": "create",
+              "params": [
+                {
+                  "name": "input",
+                  "type": "Partial<User>"
+                }
+              ],
+              "returns": "User"
+            },
+            {
+              "name": "findById",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "User | null"
+            },
+            {
+              "name": "list",
+              "params": [
+                {
+                  "name": "limit",
+                  "type": "number"
+                }
+              ],
+              "returns": "User[]"
+            },
+            {
+              "name": "delete",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "void"
+            }
+          ]
+        },
+        {
+          "name": "AuthService",
+          "methods": [
+            {
+              "name": "create",
+              "params": [
+                {
+                  "name": "input",
+                  "type": "Partial<User>"
+                }
+              ],
+              "returns": "User"
+            },
+            {
+              "name": "findById",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "User | null"
+            },
+            {
+              "name": "list",
+              "params": [
+                {
+                  "name": "limit",
+                  "type": "number"
+                }
+              ],
+              "returns": "User[]"
+            },
+            {
+              "name": "delete",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "void"
+            }
+          ]
+        },
+        {
+          "name": "TokenService",
+          "methods": [
+            {
+              "name": "create",
+              "params": [
+                {
+                  "name": "input",
+                  "type": "Partial<User>"
+                }
+              ],
+              "returns": "User"
+            },
+            {
+              "name": "findById",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "User | null"
+            },
+            {
+              "name": "list",
+              "params": [
+                {
+                  "name": "limit",
+                  "type": "number"
+                }
+              ],
+              "returns": "User[]"
+            },
+            {
+              "name": "delete",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "void"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "inventory",
+      "types": [
+        {
+          "name": "StockItem",
+          "kind": "aggregate",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "WarehouseLocation",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "Quantity",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "amount",
+              "type": "number"
+            },
+            {
+              "name": "unit",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "Reservation",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "StockState",
+          "kind": "enum",
+          "members": [
+            {
+              "name": "InStock",
+              "value": 0
+            },
+            {
+              "name": "Reserved",
+              "value": 1
+            },
+            {
+              "name": "Depleted",
+              "value": 2
+            }
+          ],
+          "valueLabels": [
+            "in_stock",
+            "reserved",
+            "depleted"
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "StockService",
+          "methods": [
+            {
+              "name": "create",
+              "params": [
+                {
+                  "name": "input",
+                  "type": "Partial<StockItem>"
+                }
+              ],
+              "returns": "StockItem"
+            },
+            {
+              "name": "findById",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "StockItem | null"
+            },
+            {
+              "name": "list",
+              "params": [
+                {
+                  "name": "limit",
+                  "type": "number"
+                }
+              ],
+              "returns": "StockItem[]"
+            },
+            {
+              "name": "delete",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "void"
+            }
+          ]
+        },
+        {
+          "name": "StockRepository",
+          "methods": [
+            {
+              "name": "create",
+              "params": [
+                {
+                  "name": "input",
+                  "type": "Partial<StockItem>"
+                }
+              ],
+              "returns": "StockItem"
+            },
+            {
+              "name": "findById",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "StockItem | null"
+            },
+            {
+              "name": "list",
+              "params": [
+                {
+                  "name": "limit",
+                  "type": "number"
+                }
+              ],
+              "returns": "StockItem[]"
+            },
+            {
+              "name": "delete",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "void"
+            }
+          ]
+        },
+        {
+          "name": "ReservationService",
+          "methods": [
+            {
+              "name": "create",
+              "params": [
+                {
+                  "name": "input",
+                  "type": "Partial<StockItem>"
+                }
+              ],
+              "returns": "StockItem"
+            },
+            {
+              "name": "findById",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "StockItem | null"
+            },
+            {
+              "name": "list",
+              "params": [
+                {
+                  "name": "limit",
+                  "type": "number"
+                }
+              ],
+              "returns": "StockItem[]"
+            },
+            {
+              "name": "delete",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "void"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "notification",
+      "types": [
+        {
+          "name": "Notification",
+          "kind": "aggregate",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "Template",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "Recipient",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "DeliveryAttempt",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "Channel",
+          "kind": "enum",
+          "members": [
+            {
+              "name": "Email",
+              "value": 0
+            },
+            {
+              "name": "Sms",
+              "value": 1
+            },
+            {
+              "name": "Push",
+              "value": 2
+            },
+            {
+              "name": "Webhook",
+              "value": 3
+            }
+          ],
+          "valueLabels": [
+            "email",
+            "sms",
+            "push",
+            "webhook"
+          ]
+        },
+        {
+          "name": "DeliveryState",
+          "kind": "enum",
+          "members": [
+            {
+              "name": "Queued",
+              "value": 0
+            },
+            {
+              "name": "Sent",
+              "value": 1
+            },
+            {
+              "name": "Delivered",
+              "value": 2
+            },
+            {
+              "name": "Failed",
+              "value": 3
+            }
+          ],
+          "valueLabels": [
+            "queued",
+            "sent",
+            "delivered",
+            "failed"
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "NotificationService",
+          "methods": [
+            {
+              "name": "create",
+              "params": [
+                {
+                  "name": "input",
+                  "type": "Partial<Notification>"
+                }
+              ],
+              "returns": "Notification"
+            },
+            {
+              "name": "findById",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "Notification | null"
+            },
+            {
+              "name": "list",
+              "params": [
+                {
+                  "name": "limit",
+                  "type": "number"
+                }
+              ],
+              "returns": "Notification[]"
+            },
+            {
+              "name": "delete",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "void"
+            }
+          ]
+        },
+        {
+          "name": "NotificationRepository",
+          "methods": [
+            {
+              "name": "create",
+              "params": [
+                {
+                  "name": "input",
+                  "type": "Partial<Notification>"
+                }
+              ],
+              "returns": "Notification"
+            },
+            {
+              "name": "findById",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "Notification | null"
+            },
+            {
+              "name": "list",
+              "params": [
+                {
+                  "name": "limit",
+                  "type": "number"
+                }
+              ],
+              "returns": "Notification[]"
+            },
+            {
+              "name": "delete",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "void"
+            }
+          ]
+        },
+        {
+          "name": "DeliveryDispatcher",
+          "methods": [
+            {
+              "name": "create",
+              "params": [
+                {
+                  "name": "input",
+                  "type": "Partial<Notification>"
+                }
+              ],
+              "returns": "Notification"
+            },
+            {
+              "name": "findById",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "Notification | null"
+            },
+            {
+              "name": "list",
+              "params": [
+                {
+                  "name": "limit",
+                  "type": "number"
+                }
+              ],
+              "returns": "Notification[]"
+            },
+            {
+              "name": "delete",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "void"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "analytics",
+      "types": [
+        {
+          "name": "Event",
+          "kind": "aggregate",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "EventPayload",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "Metric",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "Dimension",
+          "kind": "value_object",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "Date"
+            },
+            {
+              "name": "updatedAt",
+              "type": "Date"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "EventType",
+          "kind": "enum",
+          "members": [
+            {
+              "name": "Click",
+              "value": 0
+            },
+            {
+              "name": "View",
+              "value": 1
+            },
+            {
+              "name": "Purchase",
+              "value": 2
+            },
+            {
+              "name": "Signup",
+              "value": 3
+            }
+          ],
+          "valueLabels": [
+            "click",
+            "view",
+            "purchase",
+            "signup"
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "EventService",
+          "methods": [
+            {
+              "name": "create",
+              "params": [
+                {
+                  "name": "input",
+                  "type": "Partial<Event>"
+                }
+              ],
+              "returns": "Event"
+            },
+            {
+              "name": "findById",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "Event | null"
+            },
+            {
+              "name": "list",
+              "params": [
+                {
+                  "name": "limit",
+                  "type": "number"
+                }
+              ],
+              "returns": "Event[]"
+            },
+            {
+              "name": "delete",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "void"
+            }
+          ]
+        },
+        {
+          "name": "EventRepository",
+          "methods": [
+            {
+              "name": "create",
+              "params": [
+                {
+                  "name": "input",
+                  "type": "Partial<Event>"
+                }
+              ],
+              "returns": "Event"
+            },
+            {
+              "name": "findById",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "Event | null"
+            },
+            {
+              "name": "list",
+              "params": [
+                {
+                  "name": "limit",
+                  "type": "number"
+                }
+              ],
+              "returns": "Event[]"
+            },
+            {
+              "name": "delete",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "void"
+            }
+          ]
+        },
+        {
+          "name": "MetricsAggregator",
+          "methods": [
+            {
+              "name": "create",
+              "params": [
+                {
+                  "name": "input",
+                  "type": "Partial<Event>"
+                }
+              ],
+              "returns": "Event"
+            },
+            {
+              "name": "findById",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "Event | null"
+            },
+            {
+              "name": "list",
+              "params": [
+                {
+                  "name": "limit",
+                  "type": "number"
+                }
+              ],
+              "returns": "Event[]"
+            },
+            {
+              "name": "delete",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "string"
+                }
+              ],
+              "returns": "void"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

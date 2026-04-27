@@ -1,0 +1,8 @@
+/** Value object representing a delivery time window. */
+export interface DeliveryWindow {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  name: string;
+  description: string;
+}

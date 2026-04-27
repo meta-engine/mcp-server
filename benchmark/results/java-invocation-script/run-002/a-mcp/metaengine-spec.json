@@ -1,0 +1,2094 @@
+{
+  "language": "java",
+  "packageName": "com.metaengine.demo",
+  "classes": [
+    {
+      "name": "Order",
+      "typeIdentifier": "order",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "ordering/aggregates",
+      "comment": "Order aggregate root for the ordering domain."
+    },
+    {
+      "name": "OrderLine",
+      "typeIdentifier": "order-line",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "ordering/value_objects",
+      "comment": "OrderLine value object."
+    },
+    {
+      "name": "ShippingAddress",
+      "typeIdentifier": "shipping-address",
+      "constructorParameters": [
+        {
+          "name": "street",
+          "primitiveType": "String"
+        },
+        {
+          "name": "city",
+          "primitiveType": "String"
+        },
+        {
+          "name": "country",
+          "primitiveType": "String"
+        },
+        {
+          "name": "postalCode",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "ordering/value_objects",
+      "comment": "ShippingAddress value object."
+    },
+    {
+      "name": "BillingAddress",
+      "typeIdentifier": "billing-address",
+      "constructorParameters": [
+        {
+          "name": "street",
+          "primitiveType": "String"
+        },
+        {
+          "name": "city",
+          "primitiveType": "String"
+        },
+        {
+          "name": "country",
+          "primitiveType": "String"
+        },
+        {
+          "name": "postalCode",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "ordering/value_objects",
+      "comment": "BillingAddress value object."
+    },
+    {
+      "name": "OrderTotal",
+      "typeIdentifier": "order-total",
+      "constructorParameters": [
+        {
+          "name": "amount",
+          "primitiveType": "Number"
+        },
+        {
+          "name": "currency",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "ordering/value_objects",
+      "comment": "OrderTotal value object."
+    },
+    {
+      "name": "OrderService",
+      "typeIdentifier": "order-service",
+      "customCode": [
+        {
+          "code": "public $order create($order input) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "public Optional<$order> findById(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "public List<$order> list(double limit) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "public void delete(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}"
+        }
+      ],
+      "path": "ordering/services",
+      "comment": "OrderService service."
+    },
+    {
+      "name": "OrderRepository",
+      "typeIdentifier": "order-repository",
+      "customCode": [
+        {
+          "code": "public $order create($order input) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "public Optional<$order> findById(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "public List<$order> list(double limit) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "public void delete(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}"
+        }
+      ],
+      "path": "ordering/services",
+      "comment": "OrderRepository service."
+    },
+    {
+      "name": "OrderValidator",
+      "typeIdentifier": "order-validator",
+      "customCode": [
+        {
+          "code": "public $order create($order input) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "public Optional<$order> findById(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "public List<$order> list(double limit) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$order",
+              "typeIdentifier": "order"
+            }
+          ]
+        },
+        {
+          "code": "public void delete(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}"
+        }
+      ],
+      "path": "ordering/services",
+      "comment": "OrderValidator service."
+    },
+    {
+      "name": "Product",
+      "typeIdentifier": "product",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "catalog/aggregates",
+      "comment": "Product aggregate root for the catalog domain."
+    },
+    {
+      "name": "Sku",
+      "typeIdentifier": "sku",
+      "constructorParameters": [
+        {
+          "name": "value",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "catalog/value_objects",
+      "comment": "Sku value object."
+    },
+    {
+      "name": "Price",
+      "typeIdentifier": "price",
+      "constructorParameters": [
+        {
+          "name": "amount",
+          "primitiveType": "Number"
+        },
+        {
+          "name": "currency",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "catalog/value_objects",
+      "comment": "Price value object."
+    },
+    {
+      "name": "ProductDescription",
+      "typeIdentifier": "product-description",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "catalog/value_objects",
+      "comment": "ProductDescription value object."
+    },
+    {
+      "name": "Category",
+      "typeIdentifier": "category",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "catalog/value_objects",
+      "comment": "Category value object."
+    },
+    {
+      "name": "ProductService",
+      "typeIdentifier": "product-service",
+      "customCode": [
+        {
+          "code": "public $product create($product input) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "public Optional<$product> findById(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "public List<$product> list(double limit) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "public void delete(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}"
+        }
+      ],
+      "path": "catalog/services",
+      "comment": "ProductService service."
+    },
+    {
+      "name": "ProductRepository",
+      "typeIdentifier": "product-repository",
+      "customCode": [
+        {
+          "code": "public $product create($product input) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "public Optional<$product> findById(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "public List<$product> list(double limit) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "public void delete(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}"
+        }
+      ],
+      "path": "catalog/services",
+      "comment": "ProductRepository service."
+    },
+    {
+      "name": "PricingEngine",
+      "typeIdentifier": "pricing-engine",
+      "customCode": [
+        {
+          "code": "public $product create($product input) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "public Optional<$product> findById(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "public List<$product> list(double limit) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$product",
+              "typeIdentifier": "product"
+            }
+          ]
+        },
+        {
+          "code": "public void delete(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}"
+        }
+      ],
+      "path": "catalog/services",
+      "comment": "PricingEngine service."
+    },
+    {
+      "name": "Invoice",
+      "typeIdentifier": "invoice",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "billing/aggregates",
+      "comment": "Invoice aggregate root for the billing domain."
+    },
+    {
+      "name": "InvoiceLine",
+      "typeIdentifier": "invoice-line",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "billing/value_objects",
+      "comment": "InvoiceLine value object."
+    },
+    {
+      "name": "TaxLine",
+      "typeIdentifier": "tax-line",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "billing/value_objects",
+      "comment": "TaxLine value object."
+    },
+    {
+      "name": "Discount",
+      "typeIdentifier": "discount",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "billing/value_objects",
+      "comment": "Discount value object."
+    },
+    {
+      "name": "PaymentTerms",
+      "typeIdentifier": "payment-terms",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "billing/value_objects",
+      "comment": "PaymentTerms value object."
+    },
+    {
+      "name": "InvoiceService",
+      "typeIdentifier": "invoice-service",
+      "customCode": [
+        {
+          "code": "public $invoice create($invoice input) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "public Optional<$invoice> findById(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "public List<$invoice> list(double limit) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "public void delete(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}"
+        }
+      ],
+      "path": "billing/services",
+      "comment": "InvoiceService service."
+    },
+    {
+      "name": "InvoiceRepository",
+      "typeIdentifier": "invoice-repository",
+      "customCode": [
+        {
+          "code": "public $invoice create($invoice input) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "public Optional<$invoice> findById(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "public List<$invoice> list(double limit) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "public void delete(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}"
+        }
+      ],
+      "path": "billing/services",
+      "comment": "InvoiceRepository service."
+    },
+    {
+      "name": "TaxCalculator",
+      "typeIdentifier": "tax-calculator",
+      "customCode": [
+        {
+          "code": "public $invoice create($invoice input) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "public Optional<$invoice> findById(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "public List<$invoice> list(double limit) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$invoice",
+              "typeIdentifier": "invoice"
+            }
+          ]
+        },
+        {
+          "code": "public void delete(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}"
+        }
+      ],
+      "path": "billing/services",
+      "comment": "TaxCalculator service."
+    },
+    {
+      "name": "Shipment",
+      "typeIdentifier": "shipment",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "shipping/aggregates",
+      "comment": "Shipment aggregate root for the shipping domain."
+    },
+    {
+      "name": "TrackingNumber",
+      "typeIdentifier": "tracking-number",
+      "constructorParameters": [
+        {
+          "name": "value",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "shipping/value_objects",
+      "comment": "TrackingNumber value object."
+    },
+    {
+      "name": "DeliveryWindow",
+      "typeIdentifier": "delivery-window",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "shipping/value_objects",
+      "comment": "DeliveryWindow value object."
+    },
+    {
+      "name": "ShipmentRoute",
+      "typeIdentifier": "shipment-route",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "shipping/value_objects",
+      "comment": "ShipmentRoute value object."
+    },
+    {
+      "name": "ShipmentService",
+      "typeIdentifier": "shipment-service",
+      "customCode": [
+        {
+          "code": "public $shipment create($shipment input) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "public Optional<$shipment> findById(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "public List<$shipment> list(double limit) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "public void delete(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}"
+        }
+      ],
+      "path": "shipping/services",
+      "comment": "ShipmentService service."
+    },
+    {
+      "name": "ShipmentRepository",
+      "typeIdentifier": "shipment-repository",
+      "customCode": [
+        {
+          "code": "public $shipment create($shipment input) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "public Optional<$shipment> findById(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "public List<$shipment> list(double limit) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "public void delete(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}"
+        }
+      ],
+      "path": "shipping/services",
+      "comment": "ShipmentRepository service."
+    },
+    {
+      "name": "CarrierGateway",
+      "typeIdentifier": "carrier-gateway",
+      "customCode": [
+        {
+          "code": "public $shipment create($shipment input) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "public Optional<$shipment> findById(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "public List<$shipment> list(double limit) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$shipment",
+              "typeIdentifier": "shipment"
+            }
+          ]
+        },
+        {
+          "code": "public void delete(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}"
+        }
+      ],
+      "path": "shipping/services",
+      "comment": "CarrierGateway service."
+    },
+    {
+      "name": "User",
+      "typeIdentifier": "user",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "identity/aggregates",
+      "comment": "User aggregate root for the identity domain."
+    },
+    {
+      "name": "Email",
+      "typeIdentifier": "email",
+      "constructorParameters": [
+        {
+          "name": "value",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "identity/value_objects",
+      "comment": "Email value object."
+    },
+    {
+      "name": "PasswordHash",
+      "typeIdentifier": "password-hash",
+      "constructorParameters": [
+        {
+          "name": "value",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "identity/value_objects",
+      "comment": "PasswordHash value object."
+    },
+    {
+      "name": "Profile",
+      "typeIdentifier": "profile",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "identity/value_objects",
+      "comment": "Profile value object."
+    },
+    {
+      "name": "Permission",
+      "typeIdentifier": "permission",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "identity/value_objects",
+      "comment": "Permission value object."
+    },
+    {
+      "name": "UserService",
+      "typeIdentifier": "user-service",
+      "customCode": [
+        {
+          "code": "public $user create($user input) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$user",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "public Optional<$user> findById(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$user",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "public List<$user> list(double limit) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$user",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "public void delete(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}"
+        }
+      ],
+      "path": "identity/services",
+      "comment": "UserService service."
+    },
+    {
+      "name": "UserRepository",
+      "typeIdentifier": "user-repository",
+      "customCode": [
+        {
+          "code": "public $user create($user input) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$user",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "public Optional<$user> findById(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$user",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "public List<$user> list(double limit) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$user",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "public void delete(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}"
+        }
+      ],
+      "path": "identity/services",
+      "comment": "UserRepository service."
+    },
+    {
+      "name": "AuthService",
+      "typeIdentifier": "auth-service",
+      "customCode": [
+        {
+          "code": "public $user create($user input) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$user",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "public Optional<$user> findById(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$user",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "public List<$user> list(double limit) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$user",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "public void delete(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}"
+        }
+      ],
+      "path": "identity/services",
+      "comment": "AuthService service."
+    },
+    {
+      "name": "TokenService",
+      "typeIdentifier": "token-service",
+      "customCode": [
+        {
+          "code": "public $user create($user input) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$user",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "public Optional<$user> findById(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$user",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "public List<$user> list(double limit) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$user",
+              "typeIdentifier": "user"
+            }
+          ]
+        },
+        {
+          "code": "public void delete(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}"
+        }
+      ],
+      "path": "identity/services",
+      "comment": "TokenService service."
+    },
+    {
+      "name": "StockItem",
+      "typeIdentifier": "stock-item",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "inventory/aggregates",
+      "comment": "StockItem aggregate root for the inventory domain."
+    },
+    {
+      "name": "WarehouseLocation",
+      "typeIdentifier": "warehouse-location",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "inventory/value_objects",
+      "comment": "WarehouseLocation value object."
+    },
+    {
+      "name": "Quantity",
+      "typeIdentifier": "quantity",
+      "constructorParameters": [
+        {
+          "name": "amount",
+          "primitiveType": "Number"
+        },
+        {
+          "name": "unit",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "inventory/value_objects",
+      "comment": "Quantity value object."
+    },
+    {
+      "name": "Reservation",
+      "typeIdentifier": "reservation",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "inventory/value_objects",
+      "comment": "Reservation value object."
+    },
+    {
+      "name": "StockService",
+      "typeIdentifier": "stock-service",
+      "customCode": [
+        {
+          "code": "public $stock-item create($stock-item input) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$stock-item",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "public Optional<$stock-item> findById(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$stock-item",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "public List<$stock-item> list(double limit) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$stock-item",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "public void delete(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}"
+        }
+      ],
+      "path": "inventory/services",
+      "comment": "StockService service."
+    },
+    {
+      "name": "StockRepository",
+      "typeIdentifier": "stock-repository",
+      "customCode": [
+        {
+          "code": "public $stock-item create($stock-item input) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$stock-item",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "public Optional<$stock-item> findById(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$stock-item",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "public List<$stock-item> list(double limit) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$stock-item",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "public void delete(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}"
+        }
+      ],
+      "path": "inventory/services",
+      "comment": "StockRepository service."
+    },
+    {
+      "name": "ReservationService",
+      "typeIdentifier": "reservation-service",
+      "customCode": [
+        {
+          "code": "public $stock-item create($stock-item input) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$stock-item",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "public Optional<$stock-item> findById(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$stock-item",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "public List<$stock-item> list(double limit) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$stock-item",
+              "typeIdentifier": "stock-item"
+            }
+          ]
+        },
+        {
+          "code": "public void delete(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}"
+        }
+      ],
+      "path": "inventory/services",
+      "comment": "ReservationService service."
+    },
+    {
+      "name": "Notification",
+      "typeIdentifier": "notification",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "notification/aggregates",
+      "comment": "Notification aggregate root for the notification domain."
+    },
+    {
+      "name": "Template",
+      "typeIdentifier": "template",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "notification/value_objects",
+      "comment": "Template value object."
+    },
+    {
+      "name": "Recipient",
+      "typeIdentifier": "recipient",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "notification/value_objects",
+      "comment": "Recipient value object."
+    },
+    {
+      "name": "DeliveryAttempt",
+      "typeIdentifier": "delivery-attempt",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "notification/value_objects",
+      "comment": "DeliveryAttempt value object."
+    },
+    {
+      "name": "NotificationService",
+      "typeIdentifier": "notification-service",
+      "customCode": [
+        {
+          "code": "public $notification create($notification input) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "public Optional<$notification> findById(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "public List<$notification> list(double limit) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "public void delete(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}"
+        }
+      ],
+      "path": "notification/services",
+      "comment": "NotificationService service."
+    },
+    {
+      "name": "NotificationRepository",
+      "typeIdentifier": "notification-repository",
+      "customCode": [
+        {
+          "code": "public $notification create($notification input) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "public Optional<$notification> findById(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "public List<$notification> list(double limit) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "public void delete(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}"
+        }
+      ],
+      "path": "notification/services",
+      "comment": "NotificationRepository service."
+    },
+    {
+      "name": "DeliveryDispatcher",
+      "typeIdentifier": "delivery-dispatcher",
+      "customCode": [
+        {
+          "code": "public $notification create($notification input) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "public Optional<$notification> findById(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "public List<$notification> list(double limit) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$notification",
+              "typeIdentifier": "notification"
+            }
+          ]
+        },
+        {
+          "code": "public void delete(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}"
+        }
+      ],
+      "path": "notification/services",
+      "comment": "DeliveryDispatcher service."
+    },
+    {
+      "name": "Event",
+      "typeIdentifier": "event",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "analytics/aggregates",
+      "comment": "Event aggregate root for the analytics domain."
+    },
+    {
+      "name": "EventPayload",
+      "typeIdentifier": "event-payload",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "analytics/value_objects",
+      "comment": "EventPayload value object."
+    },
+    {
+      "name": "Metric",
+      "typeIdentifier": "metric",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "analytics/value_objects",
+      "comment": "Metric value object."
+    },
+    {
+      "name": "Dimension",
+      "typeIdentifier": "dimension",
+      "constructorParameters": [
+        {
+          "name": "id",
+          "primitiveType": "String"
+        },
+        {
+          "name": "createdAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "updatedAt",
+          "primitiveType": "Date"
+        },
+        {
+          "name": "name",
+          "primitiveType": "String"
+        },
+        {
+          "name": "description",
+          "primitiveType": "String"
+        }
+      ],
+      "path": "analytics/value_objects",
+      "comment": "Dimension value object."
+    },
+    {
+      "name": "EventService",
+      "typeIdentifier": "event-service",
+      "customCode": [
+        {
+          "code": "public $event create($event input) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "public Optional<$event> findById(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "public List<$event> list(double limit) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "public void delete(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}"
+        }
+      ],
+      "path": "analytics/services",
+      "comment": "EventService service."
+    },
+    {
+      "name": "EventRepository",
+      "typeIdentifier": "event-repository",
+      "customCode": [
+        {
+          "code": "public $event create($event input) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "public Optional<$event> findById(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "public List<$event> list(double limit) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "public void delete(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}"
+        }
+      ],
+      "path": "analytics/services",
+      "comment": "EventRepository service."
+    },
+    {
+      "name": "MetricsAggregator",
+      "typeIdentifier": "metrics-aggregator",
+      "customCode": [
+        {
+          "code": "public $event create($event input) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "public Optional<$event> findById(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "public List<$event> list(double limit) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}",
+          "templateRefs": [
+            {
+              "placeholder": "$event",
+              "typeIdentifier": "event"
+            }
+          ]
+        },
+        {
+          "code": "public void delete(String id) {\n    throw new UnsupportedOperationException(\"not implemented\");\n}"
+        }
+      ],
+      "path": "analytics/services",
+      "comment": "MetricsAggregator service."
+    }
+  ],
+  "enums": [
+    {
+      "name": "OrderStatus",
+      "typeIdentifier": "order-status",
+      "members": [
+        {
+          "name": "Draft",
+          "value": 0
+        },
+        {
+          "name": "Placed",
+          "value": 1
+        },
+        {
+          "name": "Paid",
+          "value": 2
+        },
+        {
+          "name": "Shipped",
+          "value": 3
+        },
+        {
+          "name": "Delivered",
+          "value": 4
+        },
+        {
+          "name": "Cancelled",
+          "value": 5
+        }
+      ],
+      "path": "ordering/enums",
+      "comment": "OrderStatus enum."
+    },
+    {
+      "name": "ProductState",
+      "typeIdentifier": "product-state",
+      "members": [
+        {
+          "name": "Draft",
+          "value": 0
+        },
+        {
+          "name": "Active",
+          "value": 1
+        },
+        {
+          "name": "Archived",
+          "value": 2
+        }
+      ],
+      "path": "catalog/enums",
+      "comment": "ProductState enum."
+    },
+    {
+      "name": "InvoiceStatus",
+      "typeIdentifier": "invoice-status",
+      "members": [
+        {
+          "name": "Pending",
+          "value": 0
+        },
+        {
+          "name": "Paid",
+          "value": 1
+        },
+        {
+          "name": "Overdue",
+          "value": 2
+        },
+        {
+          "name": "Void",
+          "value": 3
+        }
+      ],
+      "path": "billing/enums",
+      "comment": "InvoiceStatus enum."
+    },
+    {
+      "name": "Carrier",
+      "typeIdentifier": "carrier",
+      "members": [
+        {
+          "name": "Ups",
+          "value": 0
+        },
+        {
+          "name": "Fedex",
+          "value": 1
+        },
+        {
+          "name": "Dhl",
+          "value": 2
+        },
+        {
+          "name": "Usps",
+          "value": 3
+        }
+      ],
+      "path": "shipping/enums",
+      "comment": "Carrier enum."
+    },
+    {
+      "name": "ShipmentState",
+      "typeIdentifier": "shipment-state",
+      "members": [
+        {
+          "name": "Pending",
+          "value": 0
+        },
+        {
+          "name": "InTransit",
+          "value": 1
+        },
+        {
+          "name": "Delivered",
+          "value": 2
+        },
+        {
+          "name": "Lost",
+          "value": 3
+        }
+      ],
+      "path": "shipping/enums",
+      "comment": "ShipmentState enum."
+    },
+    {
+      "name": "Role",
+      "typeIdentifier": "role",
+      "members": [
+        {
+          "name": "Admin",
+          "value": 0
+        },
+        {
+          "name": "User",
+          "value": 1
+        },
+        {
+          "name": "Service",
+          "value": 2
+        }
+      ],
+      "path": "identity/enums",
+      "comment": "Role enum."
+    },
+    {
+      "name": "StockState",
+      "typeIdentifier": "stock-state",
+      "members": [
+        {
+          "name": "InStock",
+          "value": 0
+        },
+        {
+          "name": "Reserved",
+          "value": 1
+        },
+        {
+          "name": "Depleted",
+          "value": 2
+        }
+      ],
+      "path": "inventory/enums",
+      "comment": "StockState enum."
+    },
+    {
+      "name": "Channel",
+      "typeIdentifier": "channel",
+      "members": [
+        {
+          "name": "Email",
+          "value": 0
+        },
+        {
+          "name": "Sms",
+          "value": 1
+        },
+        {
+          "name": "Push",
+          "value": 2
+        },
+        {
+          "name": "Webhook",
+          "value": 3
+        }
+      ],
+      "path": "notification/enums",
+      "comment": "Channel enum."
+    },
+    {
+      "name": "DeliveryState",
+      "typeIdentifier": "delivery-state",
+      "members": [
+        {
+          "name": "Queued",
+          "value": 0
+        },
+        {
+          "name": "Sent",
+          "value": 1
+        },
+        {
+          "name": "Delivered",
+          "value": 2
+        },
+        {
+          "name": "Failed",
+          "value": 3
+        }
+      ],
+      "path": "notification/enums",
+      "comment": "DeliveryState enum."
+    },
+    {
+      "name": "EventType",
+      "typeIdentifier": "event-type",
+      "members": [
+        {
+          "name": "Click",
+          "value": 0
+        },
+        {
+          "name": "View",
+          "value": 1
+        },
+        {
+          "name": "Purchase",
+          "value": 2
+        },
+        {
+          "name": "Signup",
+          "value": 3
+        }
+      ],
+      "path": "analytics/enums",
+      "comment": "EventType enum."
+    }
+  ]
+}
