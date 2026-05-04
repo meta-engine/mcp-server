@@ -2,6 +2,46 @@
 
 All notable changes to MetaEngine MCP Server will be documented in this file.
 
+## [1.3.0] - 2026-05-04
+
+### Added — `generate_openapi`
+
+- Two shared options across all 10 frameworks:
+  - `typeMappings` — override how spec types are emitted (e.g. `{decimal: 'string'}` to keep precision in JS).
+  - `includeTags` — restrict generation to operations matching one of these tags.
+- New per-framework options: `angularOptions.useInterceptors`, `goOptions.usePointersForOmittable` and `goOptions.useValidateStructTags`, `kotlinOptions.usePlugins`.
+
+### Added — `generate_graphql`
+
+- New shared options: `customScalars` (map GraphQL custom scalars to target-language types), `optionsObjectThreshold`.
+- GraphQL framework options now reach feature parity with OpenAPI — middleware hooks, types-barrel, response date transformation, Go context + struct-tag validation, Kotlin Ktor plugins, Java Spring `@Component` + base-URL property, Python sync methods + camelCase aliases, Swift / C# middleware, and Result-pattern + `import.meta.env` for TypeScript Fetch are all reachable from the GraphQL tool now.
+
+### Added — `generate_protobuf`
+
+- New shared option: `optionsObjectThreshold`.
+- Protobuf framework options gain coverage that previously only existed for OpenAPI: Angular interceptors + date transformation, Fetch result-pattern, Go context / JSON-library / struct-tag validation, Kotlin plugins, and `csharpOptions.useDependencyInjection` (HttpClientFactory + scoped-service registration).
+
+### Added — `generate_sql`
+
+- Four new shared options across all 11 languages:
+  - `singularTypeNames` — singularize plural table names (table `users` becomes type `User`).
+  - `precisionSafeDecimals` — emit decimals as precision-safe types (e.g. `string` in JS) instead of float.
+  - `jsonAs` — control how JSON columns are typed (`'string'` keeps raw text, `'object'` parses).
+  - `schemaPrefix` — prepend the SQL schema name to generated type names (e.g. `Auth_User`).
+
+### Added — `generate_code`
+
+- Enum members support `stringValue` alongside numeric `value` for languages where members carry string-typed values (TypeScript string-literal unions, Java `String`-backed enums); `value` is now nullable.
+
+### Fixed
+
+- `generate_sql` with `pythonOptions.modelStyle: 'pydantic'` was silently producing `typing.Protocol` output instead of `pydantic.BaseModel`. Now correctly maps to Pydantic.
+- `generate_code` with an enum member missing both `value` and `stringValue` was silently treated as `value: 0`; now returns a validation error so the misconfig surfaces immediately.
+
+### Changed
+
+- Typed API client regenerated against the latest WebAPI Swagger.
+
 ## [1.2.2] - 2026-04-24
 
 ### Added
