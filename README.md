@@ -100,6 +100,16 @@ For reproducible measurements across languages, models, and spec shapes, see [`b
 
 ---
 
+## Context Durability
+
+In long-running sessions where context may be summarized (compaction), MetaEngine survives in three ways:
+
+- **Short loop by design** — the MCP returns many files per call rather than per turn, so the conversation stays small enough that compaction is rarely triggered (~5 turns vs ~75 for file-by-file `Write` — see [benchmark](./benchmark) for measurements).
+- **Recovery path** — the full AI guide is embedded in the tool description on first use; after a successful call, the description swaps to a short directive that points the assistant back at `metaengine_initialize`, which returns the guide content directly. If compaction wipes the guide, the breadcrumb is enough to reload it.
+- **Disk-backed state** — when the spec is loaded via `load_spec_from_file`, it lives outside the conversation. A compacted (or fully reset) session can re-run the producing script and pick up without re-reading anything.
+
+---
+
 ## Documentation
 
 The AI guide is automatically embedded in the tool description on first use — no manual reading required. For reference:
