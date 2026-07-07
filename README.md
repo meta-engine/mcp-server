@@ -4,23 +4,31 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![MCP](https://img.shields.io/badge/MCP-Compatible-green)](https://modelcontextprotocol.io)
 
-**Model Context Protocol server for AI-assisted code generation across 11 languages.**
+**Code generation, handed to your agent.**
 
-Turn one conversation into 50 consistent files. Claude architects, MetaEngine builds.
+MetaEngine exposes its code-generation platform — spec converters for OpenAPI, GraphQL, Protobuf, and SQL, plus a batch type generator — as Model Context Protocol tools. Connect the server to Claude Code, Claude Desktop, Cursor, Cline, or any MCP-aware assistant, and *"regenerate my billing client from the new OpenAPI spec"* becomes a real, typed, ready-to-commit diff.
+
+Listed on the [official MCP Registry](https://registry.modelcontextprotocol.io) as `eu.metaengine/mcp-server`.
 
 ---
 
 ## Quick Links
 
-- **NPM Package**: [@metaengine/mcp-server](https://www.npmjs.com/package/@metaengine/mcp-server)
-- **Website**: [metaengine.eu/mcp](https://www.metaengine.eu/mcp)
+- **npm package**: [@metaengine/mcp-server](https://www.npmjs.com/package/@metaengine/mcp-server)
+- **Website & docs**: [metaengine.eu/mcp](https://www.metaengine.eu/mcp)
 - **Playground**: [metaengine.eu/playground](https://www.metaengine.eu/playground)
 
 ---
 
 ## Installation
 
-Add to `~/.claude/mcp.json` (Claude Code) or Claude Desktop config:
+Claude Code:
+
+```bash
+claude mcp add metaengine -- npx -y @metaengine/mcp-server
+```
+
+Claude Desktop, Cursor, Cline, or any other MCP client — add to the client's MCP config (`claude_desktop_config.json`, `.cursor/mcp.json`, …):
 
 ```json
 {
@@ -37,64 +45,42 @@ That's it. No API key, no signup, free to use.
 
 ---
 
-## What Claude Can Generate
+## Tools
 
-- `generate_code` — classes, interfaces, enums, and generics → ready-to-compile source files
-- `generate_openapi` — typed clients and servers from an OpenAPI spec (10 frameworks)
-- `generate_graphql` — typed clients from GraphQL SDL (10 frameworks)
-- `generate_protobuf` — typed stubs from `.proto` files (10 frameworks)
-- `generate_sql` — language models from SQL DDL (11 languages)
+Seven tools. One call each. Plain text back.
 
-Claude picks the right tool based on your spec.
+| Tool | What it does |
+| --- | --- |
+| `generate_openapi` | Typed HTTP client from an OpenAPI 3.x document, passed inline or by URL — 10 frameworks |
+| `generate_graphql` | Typed client from a GraphQL SDL schema, optionally with reusable named fragments — 10 frameworks |
+| `generate_protobuf` | Typed client from Protocol Buffers (`.proto`) definitions — 10 frameworks |
+| `generate_sql` | Typed model classes from SQL DDL (`CREATE TABLE`), parsed dialect-agnostically — 11 languages |
+| `generate_code` | Arbitrary type graphs (classes, interfaces, enums, generics) from one structured spec, with imports and cross-references resolved — 11 languages |
+| `load_spec_from_file` | Runs a `generate_code` spec from disk, so multi-file architectures stay version-controlled and context usage drops to a file path |
+| `metaengine_initialize` | Primes the agent before its first generation: patterns, examples, and language-specific rules |
 
----
-
-## What It Does
-
-MetaEngine is a specialized tool for AI assistants like Claude Code and Claude Desktop. Instead of generating files one by one, you describe what you need in natural language — Claude constructs the spec, and MetaEngine generates all files in one round trip with automatic imports and namespace resolution.
-
-### When Claude Uses This Tool
-
-- Generating **20-100 interconnected files** where consistency matters
-- **Multi-language projects** (same architecture in TypeScript, Python, Go, C#, Java, Kotlin, Groovy, Scala, Swift, PHP, Rust)
-- **Pattern multiplication** (same structure applied to many entities)
-- Complex **import management** across deep namespaces
-
-### When Claude Generates Directly
-
-- **1-15 files** — direct generation is faster for small tasks
-- **Exploratory coding** where structure is evolving
-- **One-off scripts** and utilities
-- **Rapid prototyping** where flexibility beats consistency
-
-Both approaches are valid. Claude picks the right tool for the job.
+Every call is stateless and self-contained: pass the spec inline (or by file path), pick a framework or language, get a write summary back as text. `dryRun` returns the generated contents inline instead of writing — ready to diff. `skipExisting` (default) protects files you've already customized.
 
 ---
 
-## Supported Languages
+## Spec-first development
 
-- TypeScript
-- Python
-- Go
-- C#
-- Java
-- Kotlin
-- Groovy
-- Scala
-- Swift
-- PHP
-- Rust
+Your specs are already the source of truth — the OpenAPI document, the GraphQL schema, the `.proto` files, the DDL. This server puts them to work inside the agent loop: when a spec changes, the agent regenerates the typed surface instead of hand-editing it.
 
-Each generates idiomatic code (data classes in Kotlin, case classes in Scala, structs in Swift and Rust, etc.)
+- **4 source specs** — OpenAPI 3.x, GraphQL SDL, Protocol Buffers, SQL DDL
+- **10 client frameworks** — Angular, React, TypeScript Fetch, Go net/http, Java Spring, Python httpx, C# HttpClient, Kotlin Ktor, Rust Reqwest, Swift URLSession
+- **11 languages** for type and model generation — TypeScript, Python, Go, C#, Java, Kotlin, Groovy, Scala, Swift, PHP, Rust — each emitted idiomatically (data classes in Kotlin, case classes in Scala, structs in Swift and Rust)
+- **Deterministic** — generation is byte-reproducible at a fixed engine version, so agents can retry without drift
+
+The converters surfaced through MCP are the same compiler pipeline that powers the [MetaEngine Playground](https://www.metaengine.eu/playground): a spec is parsed, normalized to MetaEngine's intermediate representation, and emitted through a language-specific target. Versions stay in lockstep across surfaces.
+
+For small tasks — a handful of files, exploratory code, one-off scripts — an agent's direct generation is simpler, and agents are told exactly that. The server earns its place when the work is spec-driven, polyglot, or structurally repetitive.
 
 ---
 
-## Performance
+## Measured behavior in agent loops
 
-- **Single round-trip generation** — 25-100 files in one call
-- **Shorter agent loops** vs file-by-file `Write` — agents that batch through this MCP run with substantially fewer turns and lower cumulative context re-reads.
-
-The tipping point is around 20 files — below that, Claude's direct generation is simpler.
+Agents that batch through this MCP run with substantially fewer turns and lower cumulative context re-reads than a file-by-file `Write` loop (~5 turns vs ~75 for the same DDD codebase).
 
 For reproducible measurements across languages, models, and spec shapes, see [`benchmark/`](./benchmark) — a self-contained harness with the prompts, judging tools, and 15 canonical result folders. Numbers there are illustrations from one author's runs at N=5 per cell; reproduce in your own environment to see what holds for you.
 
@@ -123,7 +109,7 @@ The AI guide is automatically embedded in the tool description on first use — 
 
 - **Free** — no API key, no signup, unlimited requests
 - **Private** — specs sent for generation are never saved or logged (see [PRIVACY.md](./PRIVACY.md))
-- **Local** — MCP server runs on your machine, MIT licensed
+- **Local** — MCP server runs on your machine over stdio, MIT licensed
 - **Terms** — See [TERMS.md](./TERMS.md) for usage terms
 
 ---
