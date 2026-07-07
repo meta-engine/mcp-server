@@ -2,6 +2,19 @@
 
 All notable changes to MetaEngine MCP Server will be documented in this file.
 
+## [1.4.1] - 2026-07-07
+
+### Added
+
+- **Listed on the official MCP Registry** as `eu.metaengine/mcp-server` (DNS-verified namespace). MCP clients that browse the registry — such as VS Code's MCP server gallery — can now discover and install the server directly; `package.json` carries the matching `mcpName` field.
+
+### Changed
+
+- **README repositioned around spec-first development** — the OpenAPI / GraphQL / Protobuf / SQL converters lead, followed by the full seven-tool catalog and the agent-loop benchmark summary. The install section now includes the `claude mcp add` one-liner and names Cursor and Cline alongside Claude Code and Claude Desktop.
+- **npm description and keywords** now name the spec converters (`openapi`, `graphql`, `protobuf`, `sql`) and additional MCP clients (`cursor`, `cline`) for better discovery on npm.
+
+No changes to the tool surface or generated output.
+
 ## [1.4.0] - 2026-06-29
 
 ### Fixed
