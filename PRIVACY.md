@@ -34,24 +34,43 @@ Submitted generation content and generated source files are request-scoped:
 - Specification, schema, DDL, Protocol Buffer, source, and `customCode` contents are not persisted or logged
 - Generated file contents are returned to the caller and are not persisted or logged
 - Validation rejects are recorded only by fixed field category and count; rejected values are not logged
-- Failure telemetry records exception types only; exception messages are not logged because they can quote submitted content
+- Failure event traces record only a bounded exception type chain; exception messages are not logged because they can quote submitted content
 
-The hosted API does not retain user identifiers, account identifiers, API keys, authentication tokens, IP addresses, or location data as generation telemetry. The service requires no account or API key.
+The hosted API's generation telemetry pipeline removes caller identity and content-bearing context. It does not retain user or account identifiers, authentication values, IP addresses, location, device or session values, caller-supplied trace or correlation context, caller Host/query/full request URLs, or arbitrary request properties. The service requires no account or API key.
 
 ---
 
 ## Anonymous Operational Metadata We Retain
 
-The hosted API retains the following request-level operational metadata for service reliability, performance analysis, and support:
+Anonymous operational metadata is retained for service reliability, performance analysis, and support. The request fields and generation-event properties below are the application-level allowlists; Azure's standard telemetry-record, service-resource, and SDK envelope is disclosed separately under **Infrastructure and Third-Party Services**.
 
-- **Request envelope** — request timestamp, response latency, request size in kilobytes (`RequestSizeKB`), HTTP status code, and error type
-- **Incident reference** — a server-minted incident/correlation ID, also returned to the caller on errors so a support request can identify the failed operation
-- **MCP client version** — the `X-MCP-Version` value only when it is version-shaped and no more than 32 characters; otherwise recorded as `unknown`
-- **Target** — target language
+### Request Telemetry
+
+- **Endpoint family and method** — a normalized value identifying `POST MCP generation` or `POST Converter generation`; the caller Host, path, query, full request URL, and request Source field are removed
+- **Request outcome** — request timestamp, duration, HTTP response status/result code, and success outcome
+- **Request size** — `Content-Length` converted to kilobytes as `RequestSizeKB` when that header-derived value is available
+- **Telemetry reference** — a server-minted 32-character hexadecimal identifier used for the telemetry operation and request; incoming `Request-Id`, `traceparent`, `tracestate`, baggage, `Request-Context`, `Correlation-Context`, `ai_legacyRootId`, and parent/correlation values are stripped or replaced
+- **MCP client version (`McpVersion`)** — retained only for MCP generation requests and events; the `X-MCP-Version` value is kept only when it is version-shaped and no more than 32 characters, otherwise it is recorded as `unknown`
+
+### Generation Event Telemetry
+
+Generation traces use a fixed non-content message and retain only these classified fields:
+
+- **Incident reference (`IncidentId`)** — a server-minted 32-character hexadecimal incident ID, also returned to the caller on errors so a support request can identify the failed operation
+- **Converter kind (`Api`)** — the bounded source format `OpenAPI`, `GraphQL`, `Protobuf`, or `SQL` when applicable
+- **Target (`Language`, `Target`, or `Framework`)** — the classified target language or client framework, using the field that applies to that generation event
 - **Entity counts** — counts only for classes, interfaces, enums, array types, dictionary types, custom files, concrete generic classes, and concrete generic interfaces; names and contents are not retained
-- **Validation outcome** — validation error count and a breakdown over fixed JSON-path field names, capped at 10 distinct fields, plus an omitted-field count when more categories are present; rejected values are not logged
+- **Fixed request-rejection outcome** — the reason `configuration-not-deserialized` when an MCP request cannot be deserialized; no rejected value or parser message is retained
+- **Type-limit outcome** — submitted billable type count (`TypeCount`) and configured maximum (`MaxAllowed`) when the MCP request exceeds that limit
+- **Validation outcome** — validation error count and a breakdown over fixed allowlisted JSON-path field categories, capped at 10 distinct fields, plus an omitted-field count when more categories are present; rejected values are not logged
 - **Generation outcome** — elapsed generation time, response file count, generated-content UTF-8 byte count, and warning count
 - **Failure shape** — exception type chain with up to five causes; exception messages are not logged
+
+Application Insights `ExceptionTelemetry`, `EventTelemetry`, and unrecognized telemetry shapes generated during a generation request are dropped rather than retained.
+
+### External Dependency Telemetry
+
+When the hosted API resolves an OpenAPI document supplied by URL, it retains only a fixed external-dependency label/type plus the dependency timestamp, duration, success outcome, and status/result code. The submitted URL, domain, path, query, properties, and metrics are redacted.
 
 This metadata is not tied to an account or user identity. It does not contain submitted specification values or generated file contents.
 
@@ -62,9 +81,11 @@ This metadata is not tied to an account or user identity. It does not contain su
 - Entity, member, file, or user-supplied names
 - Validation rejected values or other submitted literals
 - Exception messages
-- User or account identifiers
-- IP addresses or location data
+- User, account, or authenticated-user identifiers
+- IP addresses, location, user-agent, device, or session data
 - API keys, credentials, or authentication tokens
+- Caller Host, path, query, full request URL, or submitted external-dependency URL/domain
+- Caller-supplied `Request-Id`, `traceparent`, `tracestate`, baggage, `Request-Context`, `Correlation-Context`, `ai_legacyRootId`, parent/correlation values, arbitrary properties, metrics, or global context
 
 ---
 
@@ -80,6 +101,7 @@ Anonymous operational metadata is used only to:
 1. Monitor reliability and performance
 2. Diagnose incidents using the correlation ID supplied to the caller
 3. Understand aggregate request and output shape without retaining content
+4. Monitor the success, status, and timing of redacted external URL resolution
 
 ---
 
@@ -94,7 +116,7 @@ Anonymous operational metadata is used only to:
 
 - Generation content is held only for in-memory request processing and response delivery
 - The MetaEngine application does not write submitted generation content or generated source files to persistent storage or application logs
-- Only the anonymous operational metadata enumerated above is retained
+- Only the allowlisted anonymous operational metadata and Azure telemetry-record, service-resource, and SDK envelope disclosed above and below are retained
 
 ---
 
@@ -114,7 +136,9 @@ Source or `customCode` content explicitly included in a generation payload is pa
 
 ## Infrastructure and Third-Party Services
 
-The hosted MetaEngine API runs on Microsoft Azure. Azure Monitor/Application Insights receives the anonymous operational metadata enumerated in this policy as an infrastructure and operational telemetry processor.
+The hosted MetaEngine API runs on Microsoft Azure. Azure Monitor/Application Insights receives the sanitized request telemetry, allowlisted generation events, and redacted external-dependency outcomes enumerated in this policy as an infrastructure and operational telemetry processor.
+
+Azure Monitor also attaches its standard telemetry-record, service-resource, and SDK envelope, such as record type/timestamp/severity where applicable, Azure resource identity, and Application Insights SDK/version metadata. Those fields identify the retained record, MetaEngine service, and telemetry runtime, not the caller. The application clears the service hostname/role name and the caller user, account, authentication, IP, location, device, session, and correlation context fields described above.
 
 Submitted generation content, generated file contents, validation rejected values, and exception messages are excluded from that telemetry. MetaEngine does not use generation content or operational metadata for advertising or profiling, and the MCP server does not use tracking pixels or cookies.
 
@@ -162,5 +186,5 @@ For privacy or data-practice questions:
 - The MCP adapter runs locally over stdio; generation runs in the hosted MetaEngine API
 - Submitted specifications and any explicitly included source content receive ephemeral processing
 - Submitted generation content and generated file contents are not persisted or logged
-- Anonymous operational metadata is retained exactly as enumerated in this policy
+- Application-level operational metadata is retained only through the allowlists enumerated in this policy, with Azure's telemetry-record, service-resource, and SDK envelope disclosed separately
 - Existing project source files are not scanned or uploaded automatically

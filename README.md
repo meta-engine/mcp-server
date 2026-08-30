@@ -110,7 +110,7 @@ The AI guide is automatically embedded in the tool description on first use — 
 - **Local adapter** — the local MCP server runs on your machine over stdio, started via `npx`; the package is MIT licensed
 - **Hosted generation** — every generation payload is sent over HTTPS to the hosted MetaEngine API for ephemeral processing, then generated files return to the local adapter
 - **Explicit payload boundary** — the server does not automatically scan or upload existing project source files; source or `customCode` content explicitly included in a generation request is part of that request and is sent to the hosted MetaEngine API
-- **Content privacy** — submitted generation content and generated file contents are not persisted or logged; anonymous operational metadata is retained as enumerated in the [Privacy Policy](./PRIVACY.md)
+- **Content privacy** — submitted generation content and generated file contents are not persisted or logged; anonymous operational metadata is retained through the application-level allowlists, with Azure's standard telemetry-record, service-resource, and SDK envelope disclosed separately in the [Privacy Policy](./PRIVACY.md)
 - **Free access** — no API key or account is required
 - **Terms** — See [TERMS.md](./TERMS.md) for usage terms
 
