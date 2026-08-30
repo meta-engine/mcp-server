@@ -1,7 +1,7 @@
 # Terms of Service
 
 **Effective Date**: November 27, 2025
-**Last Updated**: November 27, 2025
+**Last Updated**: August 30, 2026
 
 ## Agreement to Terms
 
@@ -11,11 +11,13 @@ By using MetaEngine MCP Server ("the Service"), you agree to these Terms of Serv
 
 ## Description of Service
 
-MetaEngine MCP Server is a Model Context Protocol server that generates source code in multiple programming languages (TypeScript, Python, Go, C#, Java, Kotlin, Groovy, Scala) based on type specifications provided by AI assistants.
+MetaEngine MCP Server is a Model Context Protocol server that generates source code in multiple programming languages (TypeScript, Python, Go, C#, Java, Kotlin, Groovy, Scala, Swift, PHP, Rust) based on type specifications provided by AI assistants.
 
 The Service consists of:
-1. **Local MCP Server** - Runs on your machine via npm/npx
-2. **MetaEngine API** - Cloud service that processes generation requests
+1. **Local MCP Server** — Runs on your machine over stdio via npm/npx
+2. **Hosted MetaEngine API** — Receives generation payloads for ephemeral processing and returns generated files
+
+The local server does not automatically scan or upload existing project source files. Source or `customCode` content explicitly included in a generation request is part of that request and is sent to the hosted MetaEngine API.
 
 ---
 
@@ -37,9 +39,10 @@ Full license text: [LICENSE](./LICENSE)
 The MetaEngine API (code generation service) is provided **free of charge** with:
 
 - ✅ **No API key required** - Anonymous usage
-- ✅ **No rate limits** - Unlimited requests
+- ✅ **Protective rate limits only** - Applied only to prevent abuse
 - ✅ **No signup required** - Immediate access
-- ✅ **No usage tracking** - Requests are not logged
+- ✅ **Content-scoped retention** - Submitted generation content and generated file contents are not persisted or logged
+- ✅ **Anonymous operations** - Operational metadata is retained as enumerated in the Privacy Policy
 
 ---
 
@@ -134,10 +137,11 @@ You are responsible for:
 See our **[Privacy Policy](./PRIVACY.md)** for details on data handling.
 
 **Summary:**
-- Specifications sent to the API are processed ephemerally
-- **No data is saved or logged**
-- Generated code is returned and immediately discarded from our systems
-- Your existing code **never leaves your machine**
+- The local MCP server runs over stdio; generation payloads are sent to the hosted MetaEngine API for ephemeral processing
+- Submitted generation content and generated file contents are not persisted or logged
+- Anonymous operational metadata is retained as enumerated in the Privacy Policy
+- The server does not automatically scan or upload existing project source files
+- Source or `customCode` content explicitly included in a generation payload is part of that payload and is sent to the hosted MetaEngine API
 
 ---
 
@@ -260,4 +264,4 @@ Repository: https://github.com/meta-engine/mcp-server
 
 By using MetaEngine MCP Server, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.
 
-**Last Updated**: November 27, 2025
+**Last Updated**: August 30, 2026

@@ -1,139 +1,138 @@
 # Privacy Policy
 
 **Effective Date**: November 27, 2025
-**Last Updated**: November 27, 2025
+
+**Last Updated**: August 30, 2026
 
 ## Overview
 
-MetaEngine MCP Server is designed with privacy as a core principle. This document explains what data is collected, how it's used, and how it's protected.
+MetaEngine MCP Server has two execution boundaries. The local MCP server runs on your machine over stdio and handles tool calls and local file writes. Code generation occurs in the hosted MetaEngine API, where each submitted generation payload receives ephemeral processing and the generated files are returned to the local server.
+
+This policy distinguishes generation content from the anonymous operational metadata retained to operate and support the hosted service.
 
 ---
 
-## What Data We Collect
+## Generation Data Sent to the Hosted API
 
-### Code Generation Specifications
+A generation request may contain:
 
-When you use MetaEngine MCP Server through Claude Code, Claude Desktop, or any MCP-compatible AI assistant, the following data is sent to the MetaEngine API:
+- **Semantic type specifications** — structured definitions of classes, interfaces, enums, generics, and related types
+- **Converter inputs** — OpenAPI documents or URLs, GraphQL schemas, Protocol Buffer definitions, or SQL DDL
+- **Target selection** — the requested language or client framework
+- **Generator options** — the options needed to produce the requested output
+- **Explicit source content** — source or `customCode` content explicitly included in a generation request is part of that request and is sent to the hosted MetaEngine API
+- **MCP package version** — sent in the `X-MCP-Version` request header
 
-- **Type specifications** (JSON structures describing classes, interfaces, types to generate)
-- **Language selection** (e.g., TypeScript, Python, Go)
-- **Configuration options** (output paths, file naming preferences)
+The local MCP server does not automatically scan or upload existing project source files. A generation specification explicitly supplied inline or through `load_spec_from_file` is read locally and sent as the generation payload. Existing source content is sent only when the client or assistant deliberately includes that content in the submitted specification, such as a `customCode` block or custom file.
 
-### What We DO NOT Collect
+---
 
-- **Your existing source code** — never sent to our servers
-- **File contents** — only generation specs are transmitted
-- **Personal information** — no names, emails, or identifying data
-- **Specification contents** — not logged or saved (ephemeral processing only)
-- **Generated code** — returned to you and immediately discarded
-- **User identifiers** — anonymous service, no tracking of individual users
-- **API keys or credentials** — MetaEngine requires no authentication
+## Generation Content We Do Not Retain
+
+Submitted generation content and generated source files are request-scoped:
+
+- Specification, schema, DDL, Protocol Buffer, source, and `customCode` contents are not persisted or logged
+- Generated file contents are returned to the caller and are not persisted or logged
+- Validation rejects are recorded only by fixed field category and count; rejected values are not logged
+- Failure telemetry records exception types only; exception messages are not logged because they can quote submitted content
+
+The hosted API does not retain user identifiers, account identifiers, API keys, authentication tokens, IP addresses, or location data as generation telemetry. The service requires no account or API key.
+
+---
+
+## Anonymous Operational Metadata We Retain
+
+The hosted API retains the following request-level operational metadata for service reliability, performance analysis, and support:
+
+- **Request envelope** — request timestamp, response latency, request size in kilobytes (`RequestSizeKB`), HTTP status code, and error type
+- **Incident reference** — a server-minted incident/correlation ID, also returned to the caller on errors so a support request can identify the failed operation
+- **MCP client version** — the `X-MCP-Version` value only when it is version-shaped and no more than 32 characters; otherwise recorded as `unknown`
+- **Target** — target language
+- **Entity counts** — counts only for classes, interfaces, enums, array types, dictionary types, custom files, concrete generic classes, and concrete generic interfaces; names and contents are not retained
+- **Validation outcome** — validation error count and a breakdown over fixed JSON-path field names, capped at 10 distinct fields, plus an omitted-field count when more categories are present; rejected values are not logged
+- **Generation outcome** — elapsed generation time, response file count, generated-content UTF-8 byte count, and warning count
+- **Failure shape** — exception type chain with up to five causes; exception messages are not logged
+
+This metadata is not tied to an account or user identity. It does not contain submitted specification values or generated file contents.
+
+### Content Not Collected in Operational Logs
+
+- Type specification, schema, DDL, Protocol Buffer, source, or `customCode` contents
+- Generated code contents
+- Entity, member, file, or user-supplied names
+- Validation rejected values or other submitted literals
+- Exception messages
+- User or account identifiers
+- IP addresses or location data
+- API keys, credentials, or authentication tokens
 
 ---
 
 ## How We Use Data
 
-### Generation Purposes Only
+Submitted generation data is used only to:
 
-Data sent to the MetaEngine API is used exclusively for:
+1. Process the requested specification through the selected generator
+2. Return the generated files to the local MCP server
 
-1. **Code generation** — processing type specifications to produce source files
-2. **Returning generated code** — sending the output back to your local machine
+Anonymous operational metadata is used only to:
 
-### Data Retention
-
-**Code Specifications and Generated Code:**
-
-Type specifications and generated code are **never saved or logged**:
-
-- Spec contents exist **only in memory** during the API request
-- Generated code is **immediately discarded** after the response is sent
-- **No persistent storage** of specification contents or generated code
-- **No retention** of your type definitions or output
-
-**Performance Telemetry (Anonymous):**
-
-For performance monitoring and API reliability, we collect **anonymous request metadata only**:
-
-- ✅ Request timestamp
-- ✅ Response latency (processing time)
-- ✅ Request size (bytes)
-- ✅ HTTP status codes
-- ✅ Error types (if any)
-
-**NOT Collected:**
-- ❌ Type specification contents
-- ❌ Generated code contents
-- ❌ User identifiers or personal information
-- ❌ IP addresses or location data
-- ❌ Authentication tokens (none exist)
-
-This telemetry is **anonymous** and used solely for performance optimization and service reliability monitoring.
+1. Monitor reliability and performance
+2. Diagnose incidents using the correlation ID supplied to the caller
+3. Understand aggregate request and output shape without retaining content
 
 ---
 
-## Data Security
+## Security
 
 ### Transmission
 
-- All API requests use **HTTPS encryption** (TLS 1.2+)
-- Data is encrypted in transit between your machine and MetaEngine servers
+- Requests to the hosted MetaEngine API use HTTPS encryption
+- Generation content is encrypted in transit between the local MCP server and the hosted API
 
-### Processing
+### Processing and Storage
 
-- Data is processed **ephemerally** in server memory
-- **No disk writes** of user specifications or generated code
-- Server memory is cleared immediately after each request
-
----
-
-## Third-Party Services
-
-MetaEngine MCP Server does **not** use:
-
-- Analytics services (Google Analytics, Mixpanel, etc.)
-- Tracking pixels or cookies
-- Third-party data processors
-- Advertising networks
-
-The MetaEngine API is self-hosted and does not share data with any third parties.
+- Generation content is held only for in-memory request processing and response delivery
+- The MetaEngine application does not write submitted generation content or generated source files to persistent storage or application logs
+- Only the anonymous operational metadata enumerated above is retained
 
 ---
 
 ## Local MCP Server
 
-The MetaEngine MCP Server runs **locally on your machine** via npx. The local server:
+The npm package runs locally over stdio. It:
 
-- **Only communicates with the MetaEngine API** for code generation
-- **Does not send telemetry** or usage data
-- **Does not access files** outside the specified output directories
-- **Does not make network requests** except to the MetaEngine API
+- Receives tool calls from the configured MCP client
+- Reads a specification file only when `load_spec_from_file` is called with that path
+- Sends generation payloads to the hosted MetaEngine API for ephemeral processing
+- Writes returned files to the requested output directory, or returns them inline for a dry run
+- Does not automatically scan or upload existing project source files
+
+Source or `customCode` content explicitly included in a generation payload is part of that payload and is sent to the hosted MetaEngine API. The local server does not send a separate analytics or advertising telemetry stream.
+
+---
+
+## Infrastructure and Third-Party Services
+
+The hosted MetaEngine API runs on Microsoft Azure. Azure Monitor/Application Insights receives the anonymous operational metadata enumerated in this policy as an infrastructure and operational telemetry processor.
+
+Submitted generation content, generated file contents, validation rejected values, and exception messages are excluded from that telemetry. MetaEngine does not use generation content or operational metadata for advertising or profiling, and the MCP server does not use tracking pixels or cookies.
 
 ---
 
 ## Your Control
 
-### What You Can Control
-
-- **Installation**: You choose when to install and configure the MCP server
-- **Usage**: The server only runs when invoked by your AI assistant
-- **Output paths**: You specify where generated files are written
-- **Removal**: Simply remove the MCP server from your configuration to stop using it
-
-### No Accounts or Tracking
-
-MetaEngine MCP Server requires:
-
-- **No account creation** — use immediately without signup
-- **No API keys** — completely anonymous usage
-- **No user identification** — we cannot identify individual users
-- **No usage quotas** — unlimited requests with no tracking
+- **Installation** — you choose whether to configure the MCP server
+- **Invocation** — generation runs only when your MCP client invokes a generation tool
+- **Payload** — you and your MCP client control the specifications and any explicit source content included in each request
+- **Output** — you select where returned files are written and can use dry-run mode to receive them inline
+- **Removal** — removing the MCP server from your client configuration stops its use
 
 ---
 
 ## Children's Privacy
 
-MetaEngine MCP Server does not knowingly collect any information from users under the age of 13. The service is designed for software developers and does not target children.
+MetaEngine MCP Server is intended for software development and does not knowingly collect personal information from children under 13.
 
 ---
 
@@ -141,31 +140,27 @@ MetaEngine MCP Server does not knowingly collect any information from users unde
 
 We may update this Privacy Policy from time to time. Changes will be posted at:
 
-- This repository: [PRIVACY.md](https://github.com/meta-engine/mcp-server/blob/main/PRIVACY.md)
-- Website: [metaengine.eu/mcp](https://www.metaengine.eu/mcp)
+- [The public MCP server repository](https://github.com/meta-engine/mcp-server/blob/main/PRIVACY.md)
+- [The MetaEngine MCP website](https://www.metaengine.eu/mcp)
 
-Continued use of MetaEngine MCP Server after changes constitutes acceptance of the updated policy.
+Continued use of MetaEngine MCP Server after a change constitutes acceptance of the updated policy.
 
 ---
 
 ## Contact
 
-If you have questions about this Privacy Policy or data practices:
+For privacy or data-practice questions:
 
 - **Email**: info@metaengine.eu
-- **Issues**: [GitHub Issues](https://github.com/meta-engine/mcp-server/issues)
+- **Issues**: [github.com/meta-engine/mcp-server/issues](https://github.com/meta-engine/mcp-server/issues)
 - **Website**: [metaengine.eu](https://www.metaengine.eu)
 
 ---
 
 ## Summary
 
-**TL;DR**:
-
-- ✅ Specs sent to API for code generation
-- ✅ **Never saved or logged** — ephemeral processing only
-- ✅ No personal data collected
-- ✅ No tracking or analytics
-- ✅ Free and anonymous
-- ✅ HTTPS encrypted transmission
-- ✅ Open source MCP protocol (MIT licensed)
+- The MCP adapter runs locally over stdio; generation runs in the hosted MetaEngine API
+- Submitted specifications and any explicitly included source content receive ephemeral processing
+- Submitted generation content and generated file contents are not persisted or logged
+- Anonymous operational metadata is retained exactly as enumerated in this policy
+- Existing project source files are not scanned or uploaded automatically

@@ -107,9 +107,11 @@ The AI guide is automatically embedded in the tool description on first use — 
 
 ## Privacy & Pricing
 
-- **Free** — no API key, no signup, unlimited requests
-- **Private** — specs sent for generation are never saved or logged (see [PRIVACY.md](./PRIVACY.md))
-- **Local** — MCP server runs on your machine over stdio, MIT licensed
+- **Local adapter** — the local MCP server runs on your machine over stdio, started via `npx`; the package is MIT licensed
+- **Hosted generation** — every generation payload is sent over HTTPS to the hosted MetaEngine API for ephemeral processing, then generated files return to the local adapter
+- **Explicit payload boundary** — the server does not automatically scan or upload existing project source files; source or `customCode` content explicitly included in a generation request is part of that request and is sent to the hosted MetaEngine API
+- **Content privacy** — submitted generation content and generated file contents are not persisted or logged; anonymous operational metadata is retained as enumerated in the [Privacy Policy](./PRIVACY.md)
+- **Free access** — no API key or account is required
 - **Terms** — See [TERMS.md](./TERMS.md) for usage terms
 
 ---

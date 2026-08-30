@@ -1,0 +1,35 @@
+name: Public data-flow contract
+
+on:
+  pull_request:
+    paths:
+      - "PRIVACY.md"
+      - "README.md"
+      - "TERMS.md"
+      - "scripts/verify-privacy-docs.mjs"
+      - ".github/workflows/public-data-flow-contract.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "PRIVACY.md"
+      - "README.md"
+      - "TERMS.md"
+      - "scripts/verify-privacy-docs.mjs"
+      - ".github/workflows/public-data-flow-contract.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify public data-flow disclosures
+        run: node scripts/verify-privacy-docs.mjs
