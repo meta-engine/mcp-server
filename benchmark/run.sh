@@ -11,11 +11,9 @@
 #                  prompts/$LANGUAGE/agent-a-mcp-gen-${ARM}.md.
 #                  Defined arms: inline | script | heredoc (TypeScript only for now)
 #   PARALLEL=N     run up to N runs concurrently (default 1 = sequential).
-#                  PARALLEL=2 verified safe; PARALLEL=5 attempted to compress
-#                  wall-clock at the cost of cross-session cache warming.
-#                  Caveat: parallel runs share a cold cache start. Comparison
-#                  within a run stays apples-to-apples; absolute numbers may
-#                  differ from sequential runs and are recorded as such.
+#                  Canonical multilang cells used 2; invocation cells used 5;
+#                  Sonnet cells used 1. Concurrency is part of the experiment,
+#                  not evidence that cache state was controlled.
 set -euo pipefail
 
 ROOT=$(cd "$(dirname "$0")" && pwd)

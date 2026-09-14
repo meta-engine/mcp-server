@@ -20,9 +20,14 @@ These are the 15 result folders that produced the numbers in [`../FINDINGS.md`](
 | [`ts-monolith-sonnet-inline/`](ts-monolith-sonnet-inline/summary.md) | `20260426-213406-typescript-inline-sonnet-monolith` | TS inline arm, modular-monolith spec, Sonnet 4.6, N=5 PARALLEL=1 |
 | [`ts-monolith-sonnet-script/`](ts-monolith-sonnet-script/summary.md) | `20260426-223154-typescript-script-sonnet-monolith` | TS script arm, modular-monolith spec, Sonnet 4.6, N=5 PARALLEL=1 |
 
-Notes:
+## Reading the evidence
 
-- Python's inline-vs-script comparison uses `python-multilang/` (the canonical inline baseline) and `python-invocation-script/` (the script arm). All other languages have dedicated inline + script folders.
-- The TypeScript topology comparison (`ts-multilang/`) was run at PARALLEL=2; the three-arm invocation experiment (`ts-invocation-*`) was run at PARALLEL=5 to compress wall-clock. Within an experiment the comparison stays apples-to-apples; absolute numbers between experiments don't because cold-cache premium differs.
-- The two **Sonnet** runs were intentionally PARALLEL=1 (serial). A discarded PARALLEL=2 Sonnet run showed parallel-specific cache anomalies on top of an already-anomalous Sonnet caching behavior on long loops; PARALLEL=1 isolates the model effect cleanly. See `../FINDINGS.md` "Cross-model" section for what we observed.
-- Older / smoke / killed iterations from the development process are not included — only the canonical 15 are kept here.
+The inventory above preserves the original experiment names and timestamps. `canonical.json` provides the same model/concurrency/shape information to the recomputation pipeline. `corrected-results.json` is the measurement-schema-2 view, rebuilt from source streams with their hashes.
+
+Python's inline comparison uses `python-multilang/`; its script cell used different concurrency. The TypeScript multilang cell used two concurrent iterations, and its invocation cells used five. Sonnet cells were serial. These differences should be disclosed, not assumed to isolate cache effects.
+
+The original interpretation confused CLI `num_turns` with model responses. Sonnet's low cache-read totals coincide with batched Writes in very few assistant responses; the traces do not establish a cache-policy anomaly. See [the correction and definitions](../FINDINGS.md).
+
+Only the 15 canonical experiments are included; smoke, interrupted and discarded development runs are not part of this collection. Within each canonical cell, failed judge verdicts remain in the means. This selection and the small sample constrain generalization.
+
+Regenerate the summaries and corrected JSON with `python3 tools/recompute.py` from the benchmark directory. Check for drift with `--check`. Original streams, generated artifacts and historical `result.json` files remain unchanged, including their obsolete derived measurement fields.

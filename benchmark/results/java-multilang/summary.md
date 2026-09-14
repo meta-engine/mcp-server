@@ -1,91 +1,80 @@
 # MetaEngine MCP — Benchmark Summary
 
-> **These numbers are illustrations from one author's run on one spec on one day.** MetaEngine's whole philosophy is *try it yourself* — the harness is the deliverable, not the numbers. Reproduce in your own environment before quoting anything.
+Experiment: `java-multilang`. Means [min–max]; all recorded runs, including failed judgments.
 
-Runs requested: **5** per variant. Completed: a-mcp **5/5**, b-baseline **5/5**. Results: `<benchmark>/results/20260426-030529-java`
+Regenerated from original streams with measurement schema 2. Historical result.json files
+remain unchanged; their legacy visible/thinking decomposition must not be used.
 
-**The headline is steady-state** — what each codebase costs once the model has been instructed on the MCP (or, equivalently, what it would cost if MetaEngine were in the model's training corpus). Warmup is reported separately as a one-time outside-training tax that wouldn't exist in an integrated world.
+## Generation with a prepared brief
 
-## Steady-state — per-codebase cost
+The assisted generation session receives the separate warm-up's brief in its prompt.
+This measures a prepared workflow; it does not simulate training or guarantee future cache state.
 
-This is what every codebase costs after the one-time warmup. If MetaEngine were in the model's training, this would be the *first*-codebase cost too.
+| Session | n | Assistant messages | Tool calls | Output tokens | Cache-read tokens | Pass |
+| --- | --- | --- | --- | --- | --- | --- |
+| generation | 5 | 5.0 [5.0–5.0] | 4.0 [4.0–4.0] | 20,955 [17,324–24,018] | 233,577 [230,228–238,464] | 5/5 |
+| baseline | 5 | 76.6 [73.0–82.0] | 75.6 [72.0–81.0] | 26,435 [23,821–30,468] | 5,095,268 [4,640,866–5,783,206] | 5/5 |
+| warmup | 5 | 8.4 [7.0–10.0] | 7.4 [6.0–9.0] | 12,549 [10,170–13,616] | 309,261 [247,734–397,154] | — |
 
-| | output_tokens | cost USD | turns | cache_read | pass |
-|---|---|---|---|---|---|
-| a-mcp gen        |     20,955 | $ 1.3801 |  5.0 |     233,577 | 5/5 |
-| b-baseline       |     26,435 | $ 3.7399 | 76.6 |   5,095,268 | 5/5 |
-| **reduction**    | ** 20.7%** | ** 63.1%** | **15.3× fewer** | ** 95.4%** | — |
+## Duration and recorded API-equivalent cost
 
-## Agent-loop efficiency (structural — independent of training)
+These are the original result event's duration and cost fields. Cost is a dated
+API-price calculation, not a subscription bill or a measure of subscription allowance.
 
-The cache_read difference is structural: it comes from **tool topology**, not from the model knowing MetaEngine.
+| Session | Duration ms | Recorded cost USD |
+| --- | --- | --- |
+| generation | 176,938 [134,012–209,740] | 1.3801 [1.2860–1.4574] |
+| baseline | 326,978 [292,335–357,548] | 3.7399 [3.3259–4.3633] |
+| warmup | 178,210 [141,974–202,615] | 0.8972 [0.7120–0.9988] |
 
-- **Topology A (Write loop):** Many small tool calls — one per output. Each turn re-reads cumulative context. cache_read accumulates ~quadratically with output count.
-- **Topology B (batched single call):** One large structured tool input → all outputs in one tool_result. cache_read is bounded.
+Warm-up plus generation, per paired run:
 
-Any MCP that consolidates multi-output work into one call benefits — this isn't MetaEngine-specific. It's a generalizable design pattern.
+- Output tokens: 33,504 [30,940–36,480]
+- Summed session duration ms: 355,147 [316,046–388,782]
+- Recorded cost USD: 2.2773 [2.0709–2.3658]
 
-| session | turns | cache_read tokens | per-turn |
-|---|---|---|---|
-| a-mcp warmup | 8.4 ± 1.1 | 309,261 ± 58,549 | 36,625 ± 2,054 |
-| a-mcp gen | 5.0 ± 0.0 | 233,577 ± 3,177 | 46,715 ± 635 |
-| b-baseline | 76.6 ± 4.9 | 5,095,268 ± 581,971 | 66,352 ± 3,285 |
+## Observable content size
 
-> Per-turn cache_read is similar (~40-60k); the headline gap comes from the **turn count**. Implication for smaller-context models: baseline at 73 turns is already large for a 200k-context model — the same workload could fail on Sonnet/Haiku, not just cost more. Topology B keeps loops short enough that cheaper models can do the same work.
+Characters count text blocks and Python's sorted-key JSON serialization of tool input
+(`json.dumps`, default escaping and spacing). They are not token counts or wire bytes.
+Assistant-event usage is not a visible-text token measurement. No thinking-token residual is inferred.
 
-## Wall-clock (indicative only — depends on Anthropic load)
+| Session | Text characters | Tool-input characters |
+| --- | --- | --- |
+| generation | 204 [137–326] | 36,978 [36,468–37,768] |
+| baseline | 174 [86–334] | 50,382 [44,693–58,290] |
+| warmup | 117 [11–241] | 29,879 [26,360–33,102] |
 
-Per-session `duration_ms` from each `claude -p` result event. Not reproducible across runs/days, but useful for spotting trends when other variables are held constant.
+## Per-run message and call counts
 
-| session | duration mean | api_ms mean |
-|---|---|---|
-| a-mcp warmup | 178.2s ± 22.2s | 178.9s |
-| a-mcp gen | 176.9s ± 27.6s | 176.7s |
-| b-baseline | 327.0s ± 26.7s | 327.2s |
+`assistant_messages` counts distinct assistant message IDs; multiple tool blocks may
+share one message. It is a trace-observed response count, not a count of invisible retries.
+In these traces the CLI's `num_turns` equals tool calls plus one; it is retained separately.
 
-Script total wall-clock: **2107s** (35m 7s).
-
-## Warmup — one-time outside-training tax
-
-This is what a non-trained model pays to learn the MCP correctly via runtime docs. If MetaEngine were integrated into Claude Code's built-ins or the model's training, this row would be ~0.
-
-| | output_tokens | cost USD | turns | summary written |
-|---|---|---|---|---|
-| a-mcp warmup | 12,549 ± 1,410 | $0.8972 ± $0.1093 | 8.4 ± 1.1 | 27,783 ± 2,635 chars |
-
-## First-codebase total (for completeness)
-
-What a user pays who runs MetaEngine *exactly once* and never again — warmup is not amortized. This is the worst-case framing.
-
-- a-mcp (warmup + gen): 33,504 output tokens, $2.2773
-- b-baseline:           26,435 output tokens, $3.7399
-- Cost: 39.1% reduction — much smaller than steady-state because warmup is a one-shot.
-
-## Output token decomposition (descriptive)
-
-Authoritative `output_tokens` = visible text + tool_use input bytes (model-generated structured arguments) + thinking-block tokens (encrypted, billed). Per-event stream usage shows only the visible portion; the result event aggregates all three.
-
-| session | visible (exact) | tool_input (≈chars/3.5) | thinking residual | sum (=auth) |
-|---|---|---|---|---|
-| a-mcp warmup | 273 ± 37 | 8,575 ± 785 | 3,701 ± 766 | 12,549 ± 1,410 |
-| a-mcp gen | 97 ± 33 | 10,604 ± 149 | 10,254 ± 2,352 | 20,955 ± 2,389 |
-| b-baseline | 5,163 ± 183 | 15,321 ± 1,710 | 5,951 ± 1,026 | 26,435 ± 2,872 |
-
-## Per-run
-
-| run | a-mcp warmup $ | a-mcp gen $ | a-mcp total $ | a-mcp output | baseline $ | baseline output | a-files | b-files |
-|---|---|---|---|---|---|---|---|---|
-| 001 | $0.7120 | $1.3589 | $2.0709 | 31,382 | $4.2399 | 28,239 | 71 | 71 |
-| 002 | $0.9188 | $1.3852 | $2.3040 | 33,799 | $3.4220 | 25,671 | 71 | 71 |
-| 003 | $0.9084 | $1.4574 | $2.3658 | 36,480 | $4.3633 | 30,468 | 71 | 71 |
-| 004 | $0.9480 | $1.4130 | $2.3610 | 34,919 | $3.3483 | 23,976 | 71 | 71 |
-| 005 | $0.9988 | $1.2860 | $2.2848 | 30,940 | $3.3259 | 23,821 | 71 | 71 |
+| Run | Session | CLI num_turns | Assistant messages | Tool calls | Cache-read tokens | Verdict |
+| --- | --- | --- | --- | --- | --- | --- |
+| run-001 | warmup | 7 | 7 | 6 | 247,734 | — |
+| run-001 | generation | 5 | 5 | 4 | 230,228 | pass |
+| run-001 | baseline | 82 | 82 | 81 | 5,677,908 | pass |
+| run-002 | warmup | 10 | 10 | 9 | 397,154 | — |
+| run-002 | generation | 5 | 5 | 4 | 234,244 | pass |
+| run-002 | baseline | 73 | 73 | 72 | 4,722,414 | pass |
+| run-003 | warmup | 8 | 8 | 7 | 274,465 | — |
+| run-003 | generation | 5 | 5 | 4 | 231,378 | pass |
+| run-003 | baseline | 82 | 82 | 81 | 5,783,206 | pass |
+| run-004 | warmup | 9 | 9 | 8 | 335,328 | — |
+| run-004 | generation | 5 | 5 | 4 | 238,464 | pass |
+| run-004 | baseline | 73 | 73 | 72 | 4,651,947 | pass |
+| run-005 | warmup | 8 | 8 | 7 | 291,624 | — |
+| run-005 | generation | 5 | 5 | 4 | 233,570 | pass |
+| run-005 | baseline | 73 | 73 | 72 | 4,640,866 | pass |
 
 ## Caveats
 
-- Authoritative numbers come from `claude -p`'s result event (`usage.output_tokens`, `total_cost_usd`). Per-event stream usage shows only visible-text output, which under-reports by excluding thinking and tool_use input bytes.
-- The two-session methodology gives **exact** phase split: each session has its own result event total. The gen session has the warmup's knowledge brief in its user prompt (a few hundred input tokens) — slightly inflating gen vs an ideal trained-model case, in the honest direction.
-- Output token decomposition (visible / tool_input / thinking) is *descriptive only* — the visible+tool_input parts are exact-per-message but tool_input tokens are estimated from chars (3.5/token). Thinking is the residual. The sum equals the authoritative total.
-- A model trained natively on MetaEngine would have warmup ≈ 0 (it would already know the API). Steady-state approximates that.
-- Failed/partial runs are *not* filtered. Pass rate alongside cost is the full picture.
-- Wall-clock is reported as indicative only — depends on Anthropic server load and is not reproducible run-to-run.
+- Five runs per cell on one day and a limited spec grid; no general savings or reliability estimate.
+- The baseline is prompted to use Write per file; it can still emit multiple Write calls in one response.
+- Fewer tool calls need not mean fewer model responses. Cache reads alone do not diagnose cache policy.
+- Arms use different prompts; batches differ in concurrency and warm-up briefs. This is not a randomized causal experiment.
+- A pass checks the compiler and the checked-in structural judge, not runtime semantics.
+- Failed judgments remain in means. Missing or inconsistent source evidence causes recomputation to fail.
+- New runs use today's configured tools and service behavior; they cannot recreate the historical environment exactly.
