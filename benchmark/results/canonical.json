@@ -1,0 +1,137 @@
+[
+  {
+    "folder": "java-invocation-inline",
+    "date": "2026-04-26",
+    "model": "claude-opus-4-7",
+    "parallel": 5,
+    "shape": "ddd",
+    "language": "java",
+    "arm": "inline"
+  },
+  {
+    "folder": "java-invocation-script",
+    "date": "2026-04-26",
+    "model": "claude-opus-4-7",
+    "parallel": 5,
+    "shape": "ddd",
+    "language": "java",
+    "arm": "script"
+  },
+  {
+    "folder": "java-multilang",
+    "date": "2026-04-26",
+    "model": "claude-opus-4-7",
+    "parallel": 2,
+    "shape": "ddd",
+    "language": "java",
+    "arm": "inline"
+  },
+  {
+    "folder": "python-invocation-script",
+    "date": "2026-04-26",
+    "model": "claude-opus-4-7",
+    "parallel": 5,
+    "shape": "ddd",
+    "language": "python",
+    "arm": "script"
+  },
+  {
+    "folder": "python-multilang",
+    "date": "2026-04-26",
+    "model": "claude-opus-4-7",
+    "parallel": 2,
+    "shape": "ddd",
+    "language": "python",
+    "arm": "inline"
+  },
+  {
+    "folder": "ts-inline-sonnet",
+    "date": "2026-04-26",
+    "model": "claude-sonnet-4-6",
+    "parallel": 1,
+    "shape": "ddd",
+    "language": "typescript",
+    "arm": "inline"
+  },
+  {
+    "folder": "ts-invocation-heredoc",
+    "date": "2026-04-26",
+    "model": "claude-opus-4-7",
+    "parallel": 5,
+    "shape": "ddd",
+    "language": "typescript",
+    "arm": "heredoc"
+  },
+  {
+    "folder": "ts-invocation-inline",
+    "date": "2026-04-26",
+    "model": "claude-opus-4-7",
+    "parallel": 5,
+    "shape": "ddd",
+    "language": "typescript",
+    "arm": "inline"
+  },
+  {
+    "folder": "ts-invocation-script",
+    "date": "2026-04-26",
+    "model": "claude-opus-4-7",
+    "parallel": 5,
+    "shape": "ddd",
+    "language": "typescript",
+    "arm": "script"
+  },
+  {
+    "folder": "ts-monolith-opus-inline",
+    "date": "2026-04-26",
+    "model": "claude-opus-4-7",
+    "parallel": 2,
+    "shape": "monolith",
+    "language": "typescript",
+    "arm": "inline"
+  },
+  {
+    "folder": "ts-monolith-opus-script",
+    "date": "2026-04-26",
+    "model": "claude-opus-4-7",
+    "parallel": 2,
+    "shape": "monolith",
+    "language": "typescript",
+    "arm": "script"
+  },
+  {
+    "folder": "ts-monolith-sonnet-inline",
+    "date": "2026-04-26",
+    "model": "claude-sonnet-4-6",
+    "parallel": 1,
+    "shape": "monolith",
+    "language": "typescript",
+    "arm": "inline"
+  },
+  {
+    "folder": "ts-monolith-sonnet-script",
+    "date": "2026-04-26",
+    "model": "claude-sonnet-4-6",
+    "parallel": 1,
+    "shape": "monolith",
+    "language": "typescript",
+    "arm": "script"
+  },
+  {
+    "folder": "ts-multilang",
+    "date": "2026-04-26",
+    "model": "claude-opus-4-7",
+    "parallel": 2,
+    "shape": "ddd",
+    "language": "typescript",
+    "arm": "inline"
+  },
+  {
+    "folder": "ts-script-sonnet",
+    "date": "2026-04-26",
+    "model": "claude-sonnet-4-6",
+    "parallel": 1,
+    "shape": "ddd",
+    "language": "typescript",
+    "arm": "script"
+  }
+]

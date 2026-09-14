@@ -80,7 +80,7 @@ For small tasks — a handful of files, exploratory code, one-off scripts — an
 
 ## Measured behavior in agent loops
 
-Agents that batch through this MCP run with substantially fewer turns and lower cumulative context re-reads than a file-by-file `Write` loop (~5 turns vs ~75 for the same DDD codebase).
+A single MCP call can produce many files, reducing required tool operations. Model responses are a separate measure: in the recorded TypeScript runs Opus often issued one Write per response, while Sonnet usually batched the Writes. The corrected [benchmark findings](./benchmark/FINDINGS.md) separate those counts and retain output-token totals and pass rates.
 
 For reproducible measurements across languages, models, and spec shapes, see [`benchmark/`](./benchmark) — a self-contained harness with the prompts, judging tools, and 15 canonical result folders. Numbers there are illustrations from one author's runs at N=5 per cell; reproduce in your own environment to see what holds for you.
 
@@ -90,7 +90,7 @@ For reproducible measurements across languages, models, and spec shapes, see [`b
 
 In long-running sessions where context may be summarized (compaction), MetaEngine survives in three ways:
 
-- **Short loop by design** — the MCP returns many files per call rather than per turn, so the conversation stays small enough that compaction is rarely triggered (~5 turns vs ~75 for file-by-file `Write` — see [benchmark](./benchmark) for measurements).
+- **Multiple artifacts per call** — the MCP can generate a set of related files in one operation. This can shorten sequential workflows; response count and compaction behavior still depend on the agent and workload. See the [benchmark](./benchmark) for bounded measurements.
 - **Recovery path** — the full AI guide is embedded in the tool description on first use; after a successful call, the description swaps to a short directive that points the assistant back at `metaengine_initialize`, which returns the guide content directly. If compaction wipes the guide, the breadcrumb is enough to reload it.
 - **Disk-backed state** — when the spec is loaded via `load_spec_from_file`, it lives outside the conversation. A compacted (or fully reset) session can re-run the producing script and pick up without re-reading anything.
 

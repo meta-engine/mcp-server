@@ -1,123 +1,94 @@
-# MetaEngine MCP — Agent-Loop Efficiency Harness
+# MetaEngine MCP — Agent-Loop Measurement Harness
 
-I'm a practitioner — I build MetaEngine — not a researcher. While testing the MCP server I noticed two patterns I find genuinely interesting: agents using the MCP show meaningfully shorter loops and lower derived cost than agents writing the same code by hand. I built this harness to share what I saw, and because I think the mechanisms might be worth other people looking at too.
+This harness compares a prompted `Write`-per-file workflow with MetaEngine generation, then compares inline JSON with a transformer that writes generator input to a file. It includes original traces, prompts, generated code and judge results from 15 experiments, with five runs per cell on 2026-04-26.
 
-**The harness is the contribution. The numbers come from N=5 runs per cell across a grid of three languages (TS / Java / Python), two models (Opus 4.7 / Sonnet 4.6), two spec shapes (uniform DDD / modular-monolith), and three invocation arms (inline / script / heredoc) — though not every combination in the grid is filled in.** They illustrate the patterns; they aren't claims about how much MetaEngine "saves." Run it yourself, on your own spec, with your own model — that's what would tell you whether the patterns hold for you.
+**Tool calls and model responses are different measurements.** A model can request many Writes in one response. The [findings](FINDINGS.md) explain a correction discovered while auditing the traces: the CLI's `num_turns` counted tool operations plus one in these runs, not model responses. Earlier narration/thinking token decompositions were also unsupported. Original evidence is preserved; corrected reports and figures use independently counted assistant messages and tool calls.
 
-## Two patterns, in one sentence each (plus one robustness note)
+The transformer arm emitted fewer output tokens in the recorded TypeScript comparisons on both models. A reduction in model responses did not hold universally: Sonnet often batched the baseline writes into one response. These are observations from specified workflows, not general savings claims.
 
-1. **Topology** — when an MCP returns many generated artifacts in one call, the agent loop runs ~11–15× shorter than a Write-tool loop emitting one file per turn. cache_read accumulation drops correspondingly.
-2. **Invocation** — when an agent writes a transformer script that produces the MCP's input file at runtime instead of inlining the spec as tool arguments, output tokens drop ~70–77% and gen wall-clock roughly halves. This works because tool_use input bytes are billed as output tokens; routing data through disk avoids that billing channel.
-3. **Robustness** — both patterns reproduce across TypeScript / Java / Python, across a model swap (Opus → Sonnet 4.6), and across a spec-shape swap (uniform DDD → modular-monolith with cross-module refs and shared kernel). Several priors I went in with turned out partial or wrong — Java and Python cost reductions were more workload-specific than expected, and the cross-model Sonnet inversion on the inline arm was sharper than predicted. The wrong-prior stories are documented in [`FINDINGS.md`](FINDINGS.md) rather than buried.
+## Verify the historical measurements offline
 
-Numbers, mechanisms, and limits in [`FINDINGS.md`](FINDINGS.md). The invocation pattern comes with a precondition (the spec must be computable from a smaller source you already have); the topology pattern doesn't. The two-layer model that decomposes which findings survive a model swap and which don't is the framing I'd most like other people to take away — see the *Two-layer model* section in FINDINGS.
-
-## How to reproduce
+Requires Python 3; no packages, model calls or server access:
 
 ```bash
-RUNS=1 ./run.sh                                                  # smoke: ~10 min, ~$5 on Opus 4.7
-RUNS=5 PARALLEL=2 ./run.sh                                       # canonical TS inline: ~30 min, ~$28 on Opus 4.7
-ARM=script LANGUAGE=python RUNS=5 PARALLEL=2 ./run.sh            # script arm on Python
+cd benchmark
+python3 tools/recompute.py --check
+python3 -m unittest discover -s tests -v
 ```
 
-> **About the dollar figures.** The "$N" amounts are token usage × Anthropic's *published API rates* (snapshot 2026-04-26) — they're a comparable, model-neutral measurement of work done. Claude Max / Pro subscribers pay flat-rate plans, not these numbers; this is not your actual bill. Use the dollar amounts to compare *between* variants — that comparison is what the harness measures. If you're a subscription user, the equivalent reading is "how much of your usage budget would each variant consume."
-
-### What you'll see
-
-After a smoke run, the auto-generated `results/<run>/summary.md` has a steady-state table that looks like:
-
-```
-| | output_tokens | cost USD | turns | cache_read | pass |
-|---|---|---|---|---|---|
-| a-mcp gen        |  18,872 | $1.32 |  5.0 |   231,174 | 4/5 |
-| b-baseline       |  21,007 | $3.43 | 76.4 | 4,799,141 | 5/5 |
-| **reduction**    | **10.2%** | **61.6%** | **15.3× fewer** | **95.2%** | — |
-```
-
-That's one canonical TS run. Read the **Caveats** section at the bottom of the same file before quoting anything. Eyeball `run-NNN/<variant>/output/` directly if you want to see the actual generated code — the report can lie.
-
-Env vars:
-
-- `RUNS=N` — iterations per variant (default 3).
-- `PARALLEL=N` — concurrent runs (default 1).
-  - `PARALLEL=2` is verified safe.
-  - Higher values trade parallelism for cold-cache premium.
-  - Rate limits become the binding constraint above 2–3.
-- `LANGUAGE` — `typescript` | `java` | `python` (default `typescript`).
-- `ARM` — `inline` (default) | `script` (recommended for cost-minimization) | `heredoc` (retired methodological control, kept callable for reproducibility).
-- `MODEL` — leave unset for default; set to `sonnet` to reproduce the cross-model section.
-- `SPEC` — alternate spec JSON.
-
-After a run finishes:
-- `results/<timestamp>-<lang>-<arm>/summary.md` — aggregate report (read the **Caveats** section)
-- `results/<timestamp>-<lang>-<arm>/run-NNN/<variant>/output/` — actual generated code
-
-To regenerate the charts in [`figures/`](figures/) after promoting a new experiment to `results/`:
+To regenerate the corrected JSON and all canonical summaries:
 
 ```bash
-./tools/setup-charts.sh                     # one-time: creates .venv, installs matplotlib
-./.venv/bin/python ./tools/plot.py          # any time data changes
+python3 tools/recompute.py
 ```
 
-The charts are referenced inline from [`FINDINGS.md`](FINDINGS.md).
+`results/canonical.json` identifies the 15 experiments, including model, concurrency and shape. `results/corrected-results.json` stores the recomputed session measurements and SHA-256 hashes of their source streams. Missing or inconsistent evidence is an error; it is never silently reported as a zero-cost run.
+
+`result.json` and `stream.ndjson` in the canonical run folders are historical evidence. Their original result totals remain valid inputs to this analysis, but the old derived `phases` and `measurement` fields must not be reused. The offline path reads the streams and verifies agreement with the stored result totals.
+
+## Run a new experiment
+
+A new experiment consumes Claude usage and uses the currently available package and hosted service. It does not recreate the historical service environment exactly. The scripts use `--dangerously-skip-permissions`; run them in an environment appropriate for executing the supplied prompts and generated code.
+
+Prerequisites:
+
+- An authenticated `claude` CLI.
+- Node.js and `npx` for the MCP adapter and TypeScript compiler gate.
+- Python 3; Java experiments additionally need `javac`.
+- MetaEngine MCP registered in the Claude configuration used for the run:
+
+```bash
+claude mcp add metaengine npx -- -y @metaengine/mcp-server@latest
+```
+
+Use an explicit model when comparing experiments:
+
+```bash
+MODEL=claude-opus-4-7 RUNS=1 PARALLEL=1 ./run.sh
+MODEL=claude-opus-4-7 RUNS=5 PARALLEL=2 ./run.sh
+MODEL=claude-opus-4-7 ARM=script RUNS=5 PARALLEL=5 ./run.sh
+MODEL=claude-sonnet-4-6 ARM=inline RUNS=5 PARALLEL=1 ./run.sh
+```
+
+Those identifiers describe the historical models; availability and service behavior can change. The first two commands use the inline arm; the third is the transformer arm. The invocation comparison used five concurrent runs in each arm, while the original multilang cells used two. The Sonnet cells ran serially. See [the experiment inventory](results/README.md).
+
+Configuration:
+
+| Variable | Meaning |
+| --- | --- |
+| `RUNS` | Iterations per variant; default 3. |
+| `PARALLEL` | Concurrent iterations; default 1. Record it when comparing cells. |
+| `LANGUAGE` | `typescript`, `java` or `python`; default TypeScript. |
+| `ARM` | `inline`, `script` or TypeScript-only `heredoc`; default inline. |
+| `MODEL` | Model identifier passed to Claude; unset means the local CLI default. |
+| `SHAPE` | `ddd` or `monolith`; default ddd. |
+| `SPEC` | Alternate source spec path. |
+
+The assisted variant runs warm-up and generation as separate sessions. Its generated knowledge brief is included in the second prompt. The baseline runs once with an empty strict MCP configuration. The judge checks compilation (`tsc --strict`, `javac`, or Python `py_compile`) and selected structural properties; it does not prove runtime equivalence. Failed judge verdicts remain in the means. An interrupted or malformed session prevents a summary from being presented as complete.
+
+New runs write `results/<timestamp>-<language>-<arm>/summary.md` and retain their streams and output folders. Generation-only results describe a prepared brief; read the warm-up-plus-generation totals for first use. Recorded dollar amounts are API-equivalent costs from that run, not a subscription bill or a direct measurement of subscription allowance.
+
+## Regenerate figures
+
+```bash
+./tools/setup-charts.sh
+./.venv/bin/python tools/plot.py
+```
+
+The figure script consumes the corrected JSON. Every comparison uses that cell's own baseline. It shows content characters separately from token totals; it never treats characters as an exact token decomposition.
 
 ## Layout
 
-```
-benchmark/
-├── README.md                       # this file
-├── FINDINGS.md                     # the two observations + caveats + how to interpret
-├── run.sh                          # orchestrator
-├── spec/
-│   ├── generate-spec.py            # deterministic 71-entity DDD spec generator
-│   └── large.json                  # the spec used in every canonical run
-├── prompts/<lang>/                 # typescript / java / python — same shape per language
-│   ├── agent-a-mcp-warmup.md       # session 1: read MCP docs, write knowledge brief
-│   ├── agent-a-mcp-gen-{inline,script,heredoc}.md   # session 2: gen via various invocation patterns
-│   └── agent-b-baseline.md         # baseline: write each file via Write
-├── tools/
-│   ├── run-agent.sh                # orchestrates a-mcp two-session + baseline single-session
-│   ├── parse-stream.py             # extracts authoritative totals from claude stream-json
-│   ├── judge.py                    # structural verification + per-language compile gate
-│   ├── judge.sh                    # wrapper around judge.py
-│   ├── aggregate.py                # report generation
-│   ├── setup-charts.sh             # one-time chart venv setup (matplotlib)
-│   └── plot.py                     # regenerable chart pipeline (reads results/, writes figures/)
-├── figures/                        # charts referenced from FINDINGS.md, regenerable
-│   ├── headline-absolute.png       # MCP vs traditional Write loop, absolute numbers
-│   ├── cross-model-reductions.png  # same data as %-reduction
-│   ├── cross-shape-reductions.png  # DDD vs modular-monolith %-reduction per (model, arm)
-│   ├── multilang-topology.png      # Opus TS / Java / Python a-mcp vs baseline
-│   ├── output-decomposition.png    # where the bytes go (visible / tool_input / thinking)
-│   └── baseline-cache-per-run.png  # Sonnet cache anomaly, log-scale
-└── results/                        # the 15 canonical runs that produced the numbers in FINDINGS
-    ├── README.md                   # mapping friendly names → original timestamps
-    ├── ts-multilang/               # topology comparison (a-mcp vs baseline) on TypeScript
-    ├── java-multilang/             # topology comparison on Java
-    ├── python-multilang/           # topology comparison on Python
-    ├── ts-invocation-{inline,script,heredoc}/   # three-arm invocation experiment, TypeScript
-    ├── java-invocation-{inline,script}/         # cross-language script reproduction, Java
-    ├── python-invocation-script/                # cross-language script reproduction, Python
-    ├── ts-{inline,script}-sonnet/               # cross-model reproduction on Sonnet 4.6
-    └── ts-monolith-{opus,sonnet}-{inline,script}/   # cross-shape reproduction (modular-monolith)
-```
+- `prompts/`: workflow instructions by language and shape.
+- `spec/`: deterministic synthetic source specifications and generators.
+- `tools/stream_metrics.py`: observable stream measurements.
+- `tools/result_reader.py`: source consistency checks and session records.
+- `tools/report.py`: per-experiment report rendering.
+- `tools/recompute.py`: offline canonical regeneration and drift check.
+- `tools/aggregate.py`: report one new experiment.
+- `tools/judge.py`: compiler and structural checks.
+- `results/`: original evidence, experiment inventory and corrected measurements.
+- `figures/`: regenerable charts referenced by the findings.
+- `tests/`: measurement regressions, including batched Writes and tool-only messages.
 
-## Prerequisites
-
-- `claude` CLI authenticated (`claude --version`)
-- MetaEngine MCP configured (`claude mcp list`):
-  ```bash
-  claude mcp add metaengine npx -- -y @metaengine/mcp-server@latest
-  ```
-- `python3` (stdlib only — no extra deps)
-- `npx` (for the TypeScript compile gate; `javac` for Java; `python3 -m py_compile` for Python)
-
-The harness uses your default MCP config for `a-mcp`; `b-baseline` uses `--strict-mcp-config` with an empty config to guarantee no MCP access.
-
-## What I'm not claiming
-
-- That MetaEngine is X% cheaper than Y. The numbers are what one author saw on one day on one workload.
-- That this generalizes to any spec, any language, any model. The harness covers two spec shapes (DDD + modular-monolith), three languages (TS / Java / Python), and two models (Opus 4.7 / Sonnet 4.6) at N=5 per cell — not every combination is filled in, and N=5 isn't enough to put confidence intervals on most cell-level numbers.
-- That the patterns are mine to prove. I'm sharing what I noticed because the mechanisms (turns × cumulative re-read; tool_use bytes as output tokens) seem structural enough that others might find them worth testing too.
-
-If any of this looks worth investigating further, the harness is here for you to fork. If you reproduce, falsify, or measure something that contradicts what's here, I'd genuinely like to know — disagreement is more useful to me than confirmation.
+The useful next step is another experiment on your workload. This small sample does not establish general resource savings, reliability, cache policy, or performance at larger spec sizes.
