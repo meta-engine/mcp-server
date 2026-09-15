@@ -22,6 +22,7 @@ class PrivacyDocumentationContract {
     this.requirePolicyDates(documents, violations);
     this.requireProcessingBoundary(documents, violations);
     this.requireSourcePayloadDistinction(documents, violations);
+    this.requireLocalFileDisclosure(documents.get("PRIVACY.md"), violations);
     this.requireContentRetentionDistinction(documents, violations);
     this.requireSupportedLanguageDisclosure(documents.get("TERMS.md"), violations);
     this.requireRetentionDisclosure(documents.get("PRIVACY.md"), violations);
@@ -110,6 +111,16 @@ class PrivacyDocumentationContract {
     }
   }
 
+  requireLocalFileDisclosure(privacy, violations) {
+    this.requirePatterns("PRIVACY.md", privacy, [
+      ["native specification file reads", /Reads a native specification file when `load_spec_from_file`[^.\n]*path/i],
+      ["recipe and used input file reads", /Reads a recipe file when `generate_from_recipe`[^.\n]*`recipeFilePath`[^.\n]*declared local JSON input files when an instance uses them/i],
+      ["native generation payload", /native generation specifications supplied inline or read locally through `load_spec_from_file`[^.\n]*generation payload/i],
+      ["local recipe expansion", /With `generate_from_recipe`[^.\n]*inline recipe[^.\n]*`recipeFilePath` locally[^.\n]*reads declared JSON input files when an instance uses them[^.\n]*expands the recipe locally/i],
+      ["expanded payload transmission", /Only the resulting generation payload is sent to the hosted API[^.\n]*input values are sent only when incorporated into that payload/i],
+    ], violations);
+  }
+
   requireContentRetentionDistinction(documents, violations) {
     for (const [name, text] of documents) {
       this.requirePatterns(
@@ -167,7 +178,7 @@ class PrivacyDocumentationContract {
           /classes, interfaces, enums, array types, dictionary types, custom files, concrete generic classes, and concrete generic interfaces/i,
         ],
         ["fixed rejection reason", /configuration-not-deserialized/i],
-        ["type-limit count", /billable type count[^.\n]*TypeCount/i],
+        ["type-limit count", /submitted counted type total[^.\n]*TypeCount/i],
         ["type-limit maximum", /configured maximum[^.\n]*MaxAllowed/i],
         ["validation error count", /validation error count/i],
         ["fixed JSON-path fields", /fixed allowlisted JSON-path field categories/i],

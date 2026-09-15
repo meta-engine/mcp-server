@@ -25,7 +25,7 @@ A generation request may contain:
 - **Explicit source content** — source or `customCode` content explicitly included in a generation request is part of that request and is sent to the hosted MetaEngine API
 - **MCP package version** — sent in the `X-MCP-Version` request header
 
-The local MCP server does not automatically scan or upload existing project source files. A generation specification explicitly supplied inline or through `load_spec_from_file` is read locally and sent as the generation payload. Existing source content is sent only when the client or assistant deliberately includes that content in the submitted specification, such as a `customCode` block or custom file.
+The local MCP server does not automatically scan or upload existing project source files. It sends native generation specifications supplied inline or read locally through `load_spec_from_file` as the generation payload. With `generate_from_recipe`, it accepts an inline recipe or reads `recipeFilePath` locally, reads declared JSON input files when an instance uses them, and expands the recipe locally. Only the resulting generation payload is sent to the hosted API; input values are sent only when incorporated into that payload. Existing source content is sent only when the client or assistant deliberately includes that content through the specification or recipe, such as a `customCode` block or custom file.
 
 ---
 
@@ -127,7 +127,8 @@ Anonymous operational metadata is used only to:
 The npm package runs locally over stdio. It:
 
 - Receives tool calls from the configured MCP client
-- Reads a specification file only when `load_spec_from_file` is called with that path
+- Reads a native specification file when `load_spec_from_file` is called with that path
+- Reads a recipe file when `generate_from_recipe` is called with `recipeFilePath`, and reads declared local JSON input files when an instance uses them
 - Sends generation payloads to the hosted MetaEngine API for ephemeral processing
 - Writes returned files to the requested output directory, or returns them inline for a dry run
 - Does not automatically scan or upload existing project source files

@@ -7,6 +7,7 @@ on:
       - "README.md"
       - "TERMS.md"
       - "scripts/verify-privacy-docs.mjs"
+      - "scripts/verify-privacy-docs.test.mjs"
       - ".github/workflows/public-data-flow-contract.yml"
   push:
     branches:
@@ -16,6 +17,7 @@ on:
       - "README.md"
       - "TERMS.md"
       - "scripts/verify-privacy-docs.mjs"
+      - "scripts/verify-privacy-docs.test.mjs"
       - ".github/workflows/public-data-flow-contract.yml"
 
 permissions:
@@ -33,3 +35,5 @@ jobs:
           node-version: 22
       - name: Verify public data-flow disclosures
         run: node scripts/verify-privacy-docs.mjs
+      - name: Verify disclosure contract regressions
+        run: node --test scripts/verify-privacy-docs.test.mjs
