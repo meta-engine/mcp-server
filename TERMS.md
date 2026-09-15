@@ -1,7 +1,7 @@
 # Terms of Service
 
 **Effective Date**: November 27, 2025
-**Last Updated**: August 30, 2026
+**Last Updated**: September 15, 2026
 
 ## Agreement to Terms
 
@@ -264,4 +264,4 @@ Repository: https://github.com/meta-engine/mcp-server
 
 By using MetaEngine MCP Server, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.
 
-**Last Updated**: August 30, 2026
+**Last Updated**: September 15, 2026

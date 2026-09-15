@@ -1,439 +1,246 @@
-# MetaEngine MCP Server - Usage Examples
+# Generation examples
 
-All examples use the new API structure with separate arrays. Examples are shown for TypeScript but work identically for Python, Go, C#, Java, Kotlin, Groovy, and Scala.
+These complete recipes demonstrate structured declarations, reusable templates, and target-language methods connected to the same graph with `templateRefs`. Call `generate_from_recipe` with `{"recipe": <document>, "outputPath": "src/generated"}`, or save a document and use `recipeFilePath`.
 
----
+Save either JSON document below and invoke it through your MCP client using `recipeFilePath`. Compile the returned source in your target project to check its language settings and dependencies.
 
-## Example 1: Array Types
+## TypeScript: linked models and behavior
 
-### Input:
+The model template generates `Item`. `Batch` and `IItemReader` refer to that type, including from raw method bodies/signatures. The array definition is virtual. The ESM option selects relative `.js` imports in the generated TypeScript source.
+
 ```json
 {
+  "recipeVersion": 1,
   "language": "typescript",
-  "initialize": true,
-  "classes": [
-    {"name": "Product", "typeIdentifier": "product", "properties": [{"name": "id", "primitiveType": "String"}]}
-  ],
-  "arrayTypes": [
-    {"typeIdentifier": "product-array", "elementTypeIdentifier": "product"},
-    {"typeIdentifier": "string-array", "elementPrimitiveType": "String"}
-  ],
-  "classes": [{
-    "name": "Cart",
-    "typeIdentifier": "cart",
-    "properties": [
-      {"name": "items", "typeIdentifier": "product-array", "comment": "Products in cart"},
-      {"name": "tags", "typeIdentifier": "string-array", "comment": "Cart tags"}
-    ]
-  }]
-}
-```
-
-### Generated Output:
-```typescript
-// product.ts
-export class Product {
-  id = '';
-}
-
-// cart.ts
-import { Product } from './product';
-
-export class Cart {
-  /** Products in cart */
-  items = new Array<Product>();
-  /** Cart tags */
-  tags = new Array<string>();
-}
-```
-
----
-
-## Example 2: Dictionary Types (All 4 Combinations)
-
-### Input:
-```json
-{
-  "language": "typescript",
-  "initialize": true,
-  "classes": [
-    {"name": "User", "typeIdentifier": "user", "properties": [{"name": "id", "primitiveType": "String"}]},
-    {"name": "Metadata", "typeIdentifier": "metadata", "properties": [{"name": "value", "primitiveType": "Any"}]}
-  ],
-  "dictionaryTypes": [
-    {
-      "typeIdentifier": "dict-prim-prim",
-      "keyPrimitiveType": "String",
-      "valuePrimitiveType": "Number"
-    },
-    {
-      "typeIdentifier": "dict-prim-custom",
-      "keyPrimitiveType": "String",
-      "valueTypeIdentifier": "user"
-    },
-    {
-      "typeIdentifier": "dict-custom-prim",
-      "keyTypeIdentifier": "user",
-      "valuePrimitiveType": "String"
-    },
-    {
-      "typeIdentifier": "dict-custom-custom",
-      "keyTypeIdentifier": "user",
-      "valueTypeIdentifier": "metadata"
-    }
-  ],
-  "classes": [{
-    "name": "DataStore",
-    "typeIdentifier": "store",
-    "properties": [
-      {"name": "scores", "typeIdentifier": "dict-prim-prim"},
-      {"name": "userLookup", "typeIdentifier": "dict-prim-custom"},
-      {"name": "userNames", "typeIdentifier": "dict-custom-prim"},
-      {"name": "userMetadata", "typeIdentifier": "dict-custom-custom"}
-    ]
-  }]
-}
-```
-
-### Generated Output:
-```typescript
-// user.ts
-export class User {
-  id = '';
-}
-
-// metadata.ts
-export class Metadata {
-  value!: unknown;
-}
-
-// data-store.ts
-import { User } from './user';
-import { Metadata } from './metadata';
-
-export class DataStore {
-  scores: Record<string, number> = {};
-  userLookup: Record<string, User> = {};
-  userNames: Record<User, string> = {};
-  userMetadata: Record<User, Metadata> = {};
-}
-```
-
----
-
-## Example 3: NestJS Service with templateRefs
-
-### Input:
-```json
-{
-  "language": "typescript",
-  "classes": [
-    {"name": "Pet", "typeIdentifier": "pet", "properties": [{"name": "name", "primitiveType": "String"}]}
-  ],
-  "arrayTypes": [
-    {"typeIdentifier": "pet-array", "elementTypeIdentifier": "pet"}
-  ],
-  "classes": [{
-    "name": "PetService",
-    "typeIdentifier": "pet-service",
-    "path": "services",
-    "decorators": [
-      {"code": "@Injectable({ providedIn: 'root' })"}
-    ],
-    "customImports": [
-      {"path": "@nestjs/common", "types": ["Injectable", "inject"]},
-      {"path": "@nestjs/common/http", "types": ["HttpClient"]},
-      {"path": "rxjs", "types": ["Observable"]}
-    ],
-    "customCode": [
-      {"code": "private http = inject(HttpClient);"},
-      {"code": "private baseUrl = '/api/pets';"},
-      {
-        "code": "getAll(): Observable<$petArray> { return this.http.get<$petArray>(this.baseUrl); }",
-        "templateRefs": [{"placeholder": "$petArray", "typeIdentifier": "pet-array"}]
-      },
-      {
-        "code": "getById(id: string): Observable<$pet> { return this.http.get<$pet>(`${this.baseUrl}/${id}`); }",
-        "templateRefs": [{"placeholder": "$pet", "typeIdentifier": "pet"}]
-      },
-      {
-        "code": "create(pet: $pet): Observable<$pet> { return this.http.post<$pet>(this.baseUrl, pet); }",
-        "templateRefs": [{"placeholder": "$pet", "typeIdentifier": "pet"}]
-      }
-    ]
-  }]
-}
-```
-
-### Generated Output:
-```typescript
-// pet.ts
-export class Pet {
-  name!: string;
-}
-
-// services/pet-service.ts
-import { Injectable, inject } from '@nestjs/common';
-import { HttpClient } from '@nestjs/common/http';
-import { Observable } from 'rxjs';
-import { Pet } from '../pet';
-
-@Injectable({ providedIn: 'root' })
-export class PetService {
-
-  private http = inject(HttpClient);
-
-  private baseUrl = '/api/pets';
-
-  getAll(): Observable<Array<Pet>> {
-    return this.http.get<Array<Pet>>(this.baseUrl);
-  }
-
-  getById(id: string): Observable<Pet> {
-    return this.http.get<Pet>(`${this.baseUrl}/${id}`);
-  }
-
-  create(pet: Pet): Observable<Pet> {
-    return this.http.post<Pet>(this.baseUrl, pet);
-  }
-}
-```
-
-**Note**: Each customCode block gets automatic newlines! Template refs (`$pet`, `$petArray`) trigger automatic imports.
-
----
-
-## Example 4: Generic Repository Pattern
-
-### Input:
-```json
-{
-  "language": "typescript",
-  "classes": [
-    {
-      "name": "BaseEntity",
-      "typeIdentifier": "base-entity",
-      "isAbstract": true,
-      "properties": [{"name": "id", "primitiveType": "String"}]
-    },
-    {
-      "name": "Repository",
-      "typeIdentifier": "repo-generic",
-      "genericArguments": [
-        {
-          "name": "T",
-          "constraintTypeIdentifier": "base-entity",
-          "propertyName": "items",
-          "isArrayProperty": true
-        }
+  "typeScriptOptions": {
+    "relativeImportExtension": "js"
+  },
+  "templates": {
+    "model": {
+      "parameters": [
+        "name",
+        "id",
+        "fields"
       ],
-      "customCode": [
-        {"code": "add(item: T): void { this.items.push(item); }"},
-        {"code": "getAll(): T[] { return this.items; }"},
-        {"code": "findById(id: string): T | undefined { return this.items.find(i => i.id === id); }"}
-      ]
-    },
+      "body": {
+        "classes": [
+          {
+            "name": {
+              "$param": "name"
+            },
+            "id": {
+              "$param": "id"
+            },
+            "path": "Models",
+            "properties": {
+              "$param": "fields"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "instances": [
     {
-      "name": "User",
-      "typeIdentifier": "user",
-      "baseClassTypeIdentifier": "base-entity",
-      "properties": [{"name": "email", "primitiveType": "String"}]
+      "template": "model",
+      "values": [
+        {
+          "name": "Item",
+          "id": "item",
+          "fields": {
+            "Id": "string",
+            "Price": {
+              "type": "number"
+            }
+          }
+        }
+      ]
     }
   ],
-  "concreteGenericClasses": [{
-    "identifier": "user-repository",
-    "genericClassIdentifier": "repo-generic",
-    "genericArguments": [{"typeIdentifier": "user"}]
-  }],
-  "classes": [{
-    "name": "UserController",
-    "typeIdentifier": "controller",
-    "customCode": [{
-      "code": "private repo: $userRepo = new Repository<User>();",
-      "templateRefs": [{"placeholder": "$userRepo", "typeIdentifier": "user-repository"}]
-    }]
-  }]
+  "interfaces": [
+    {
+      "name": "IItemReader",
+      "id": "reader",
+      "fileName": "item-reader",
+      "path": "Contracts",
+      "customCode": [
+        {
+          "code": "read(): Promise<$item>;",
+          "templateRefs": [
+            {
+              "placeholder": "$item",
+              "typeIdentifier": "item"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "classes": [
+    {
+      "name": "Batch",
+      "id": "batch",
+      "path": "Services",
+      "properties": {
+        "Primary": {
+          "ref": "item"
+        },
+        "All": {
+          "ref": "item-list"
+        }
+      },
+      "customCode": [
+        {
+          "code": "total(item: $item): number { return item.Price; }",
+          "templateRefs": [
+            {
+              "placeholder": "$item",
+              "typeIdentifier": "item"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "arrayTypes": [
+    {
+      "id": "item-list",
+      "elementTypeIdentifier": "item"
+    }
+  ]
 }
 ```
 
-### Generated Output:
-```typescript
-// base-entity.ts
-export abstract class BaseEntity {
-  id!: string;
-}
+## C#: the same structure with native code
 
-// repository.ts
-import { BaseEntity } from './base-entity';
+The same recipe constructs apply. C# method bodies and native numeric types are explicit: `decimal` is supplied as a native `type`. `packageName` provides the root namespace; `Models`, `Services`, and `Contracts` contribute the type paths.
 
-export class Repository<T extends BaseEntity> {
-  items!: T[];
-
-  add(item: T): void { this.items.push(item); }
-
-  getAll(): T[] { return this.items; }
-
-  findById(id: string): T | undefined { return this.items.find(i => i.id === id); }
-}
-
-// user.ts
-import { BaseEntity } from './base-entity';
-
-export class User extends BaseEntity {
-  email!: string;
-}
-
-// user-controller.ts
-import { Repository } from './repository';
-import { User } from './user';
-
-export class UserController {
-
-  private repo: Repository<User> = new Repository<User>();
+```json
+{
+  "recipeVersion": 1,
+  "language": "csharp",
+  "packageName": "Recipe.Example",
+  "templates": {
+    "model": {
+      "parameters": [
+        "name",
+        "id",
+        "fields"
+      ],
+      "body": {
+        "classes": [
+          {
+            "name": {
+              "$param": "name"
+            },
+            "id": {
+              "$param": "id"
+            },
+            "path": "Models",
+            "properties": {
+              "$param": "fields"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "instances": [
+    {
+      "template": "model",
+      "values": [
+        {
+          "name": "Item",
+          "id": "item",
+          "fields": {
+            "Id": "string",
+            "Price": {
+              "type": "decimal"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "interfaces": [
+    {
+      "name": "IItemReader",
+      "id": "reader",
+      "fileName": "item-reader",
+      "path": "Contracts",
+      "customCode": [
+        {
+          "code": "Task<$item> Read();",
+          "templateRefs": [
+            {
+              "placeholder": "$item",
+              "typeIdentifier": "item"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "classes": [
+    {
+      "name": "Batch",
+      "id": "batch",
+      "path": "Services",
+      "properties": {
+        "Primary": {
+          "ref": "item"
+        },
+        "All": {
+          "ref": "item-list"
+        }
+      },
+      "customCode": [
+        {
+          "code": "public decimal Total($item item) { return item.Price; }",
+          "templateRefs": [
+            {
+              "placeholder": "$item",
+              "typeIdentifier": "item"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "arrayTypes": [
+    {
+      "id": "item-list",
+      "elementTypeIdentifier": "item"
+    }
+  ]
 }
 ```
 
-**Note**: `concreteGenericClasses` creates the inline type `Repository<User>` with perfect imports!
+## Native payloads
 
----
+`generate_code` continues to accept native property arrays, and `load_spec_from_file` accepts those same payloads from disk. For example:
 
-## Example 5: Type Aliases via Custom Files
-
-### Input:
 ```json
 {
   "language": "typescript",
-  "customFiles": [{
-    "name": "types",
-    "path": "utils",
-    "customCode": [
-      {"code": "export type UserId = string;"},
-      {"code": "export type Timestamp = number;"},
-      {"code": "export type Status = 'active' | 'inactive' | 'pending';"},
-      {"code": "export type ResultSet<T> = { data: T[]; total: number; page: number; };"}
-    ]
-  }],
-  "classes": [{
-    "name": "UserService",
-    "typeIdentifier": "service",
-    "path": "services",
-    "customImports": [
-      {"path": "../utils/types", "types": ["UserId", "Status", "ResultSet"]}
-    ],
-    "customCode": [
-      {"code": "async getUser(id: UserId): Promise<User> { return null as any; }"},
-      {"code": "updateStatus(id: UserId, status: Status): void { }"},
-      {"code": "getResults<T>(data: T[]): ResultSet<T> { return {data, total: data.length, page: 1}; }"}
-    ]
-  }]
+  "interfaces": [
+    { "name": "User", "typeIdentifier": "user", "properties": [{ "name": "id", "primitiveType": "String" }] },
+    { "name": "Order", "typeIdentifier": "order", "properties": [{ "name": "user", "typeIdentifier": "user" }] }
+  ],
+  "outputPath": "src/models"
 }
 ```
 
-### Generated Output:
-```typescript
-// utils/types.ts
-export type UserId = string;
-export type Timestamp = number;
-export type Status = 'active' | 'inactive' | 'pending';
-export type ResultSet<T> = { data: T[]; total: number; page: number; };
+For a native type expression referencing a generated type, preserve the explicit link:
 
-// services/user-service.ts
-import { UserId, Status, ResultSet } from '../utils/types';
-
-export class UserService {
-
-  async getUser(id: UserId): Promise<User> {
-    return null as any;
-  }
-
-  updateStatus(id: UserId, status: Status): void { }
-
-  getResults<T>(data: T[]): ResultSet<T> {
-    return {data, total: data.length, page: 1};
-  }
-}
-```
-
----
-
-## Example 6: Constructor Parameters (Critical Pattern)
-
-### ❌ WRONG - Causes Error:
 ```json
 {
-  "language": "typescript",
-  "enums": [{
-    "name": "Status",
-    "typeIdentifier": "status",
-    "members": [{"name": "Active", "value": 1}]
-  }],
-  "classes": [{
-    "name": "User",
-    "typeIdentifier": "user",
-    "constructorParameters": [
-      {"name": "email", "type": "string"},
-      {"name": "status", "typeIdentifier": "status"}
-    ],
-    "properties": [
-      {"name": "email", "type": "string"},        // ❌ DUPLICATE!
-      {"name": "status", "typeIdentifier": "status"},  // ❌ DUPLICATE!
-      {"name": "createdAt", "primitiveType": "Date"}
-    ]
-  }]
+  "name": "users",
+  "type": "Map<string, $user>",
+  "templateRefs": [{ "placeholder": "$user", "typeIdentifier": "user" }]
 }
 ```
 
-**Error**: "Sequence contains more than one matching element"
+This fragment belongs in a TypeScript property's native array; include the `user` type in the same request. Recipes also accept the fragment's type/templateRefs fields in a compact property value.
 
-### ✅ CORRECT:
-```json
-{
-  "language": "typescript",
-  "enums": [{
-    "name": "Status",
-    "typeIdentifier": "status",
-    "members": [{"name": "Active", "value": 1}]
-  }],
-  "classes": [{
-    "name": "User",
-    "typeIdentifier": "user",
-    "constructorParameters": [
-      {"name": "email", "type": "string"},
-      {"name": "status", "typeIdentifier": "status"}
-    ],
-    "properties": [
-      {"name": "createdAt", "primitiveType": "Date"}  // ✅ Only ADDITIONAL properties
-    ]
-  }]
-}
-```
-
-### Generated Output:
-```typescript
-import { Status } from './status.enum';
-
-export class User {
-  createdAt!: Date;
-
-  constructor(public email: string, public status: Status) {}
-}
-```
-
-**Constructor parameters automatically become properties** - don't duplicate them!
-
----
-
-## Key Takeaways
-
-1. **ArrayTypes & DictionaryTypes** - don't generate files, create reusable type references
-2. **Constructor parameters** - auto-become properties, don't duplicate!
-3. **One customCode per method** - automatic newlines between blocks
-4. **Template refs** (`$placeholder`) - trigger automatic imports for generated types
-5. **Type aliases** - use customFiles, not classes
-6. **Concrete generics** - use `concreteGenericClasses` for type references like `Repository<User>`
-7. **All related types** - generate in ONE call for perfect cross-references
-
----
-
-For detailed explanations, see **AI_ASSISTANT_GUIDE.md**.
-For quick reference, see **QUICK_START.md**.
+[Full recipe grammar](./RECIPES.md) · [Generation guide](./METAENGINE_AI_GUIDE.md)

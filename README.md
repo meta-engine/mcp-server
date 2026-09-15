@@ -2,136 +2,117 @@
 
 [![npm version](https://img.shields.io/npm/v/@metaengine/mcp-server.svg)](https://www.npmjs.com/package/@metaengine/mcp-server)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![MCP](https://img.shields.io/badge/MCP-Compatible-green)](https://modelcontextprotocol.io)
 
-**Code generation, handed to your agent.**
+Generate related source files from a type graph, a compact JSON recipe, or an API schema through your MCP client.
 
-MetaEngine exposes its code-generation platform — spec converters for OpenAPI, GraphQL, Protobuf, and SQL, plus a batch type generator — as Model Context Protocol tools. Connect the server to Claude Code, Claude Desktop, Cursor, Cline, or any MCP-aware assistant, and *"regenerate my billing client from the new OpenAPI spec"* becomes a real, typed, ready-to-commit diff.
+MetaEngine combines structured classes, interfaces, enums, collections, and generics with target-language code supplied in `customCode`. Explicit references connect that code to the same type graph, so the generator can resolve names and imports across the batch. Use it for models, services, adapters, or other structures you describe; the format does not prescribe an application architecture.
 
-Listed on the [official MCP Registry](https://registry.modelcontextprotocol.io) as `eu.metaengine/mcp-server`.
+## Install
 
----
-
-## Quick Links
-
-- **npm package**: [@metaengine/mcp-server](https://www.npmjs.com/package/@metaengine/mcp-server)
-- **Website & docs**: [metaengine.eu/mcp](https://www.metaengine.eu/mcp)
-- **Playground**: [metaengine.eu/playground](https://www.metaengine.eu/playground)
-
----
-
-## Installation
-
-Claude Code:
-
-```bash
-claude mcp add metaengine -- npx -y @metaengine/mcp-server
-```
-
-Claude Desktop, Cursor, Cline, or any other MCP client — add to the client's MCP config (`claude_desktop_config.json`, `.cursor/mcp.json`, …):
+Node.js 18 or later is required. Add the server to your MCP client's configuration:
 
 ```json
 {
   "mcpServers": {
     "metaengine": {
       "command": "npx",
-      "args": ["-y", "@metaengine/mcp-server"]
+      "args": ["-y", "@metaengine/mcp-server@1.5.0"]
     }
   }
 }
 ```
 
-That's it. No API key, no signup, free to use.
+For Claude Code:
 
----
+```bash
+claude mcp add metaengine -- npx -y @metaengine/mcp-server@1.5.0
+```
+
+The hosted service requires no API key or account. MCP clients include Claude Code, Claude Desktop, Cursor, Cline, and others with stdio support.
+
+## Start with a recipe
+
+Call `generate_from_recipe` with these arguments:
+
+```json
+{
+  "recipe": {
+    "recipeVersion": 1,
+    "language": "typescript",
+    "typeScriptOptions": { "relativeImportExtension": "js" },
+    "classes": [
+      { "name": "Customer", "id": "customer", "properties": { "id": "string", "name": "string" } },
+      { "name": "Order", "properties": { "customer": { "ref": "customer" }, "total": "number", "note?": "string" } }
+    ]
+  },
+  "outputPath": "src/models"
+}
+```
+
+The local MCP server expands the recipe into the existing generation payload, sends that payload to the MetaEngine API, and writes the returned files. Add named templates and parameter rows when structures repeat. Existing `customCode`, `templateRefs`, imports, decorators, inheritance, and generic definitions remain available.
+
+A version-controlled recipe can be invoked with `{"recipeFilePath":"specs/models.recipe.json"}`. Reading a file avoids resending its contents in the tool call. Files still need to be authored or maintained.
+
+[Recipe grammar and examples](./RECIPES.md) · [Generation guide](./METAENGINE_AI_GUIDE.md) · [Language examples](./EXAMPLES.md)
 
 ## Tools
 
-Seven tools. One call each. Plain text back.
-
-| Tool | What it does |
+| Tool | Purpose |
 | --- | --- |
-| `generate_openapi` | Typed HTTP client from an OpenAPI 3.x document, passed inline or by URL — 10 frameworks |
-| `generate_graphql` | Typed client from a GraphQL SDL schema, optionally with reusable named fragments — 10 frameworks |
-| `generate_protobuf` | Typed client from Protocol Buffers (`.proto`) definitions — 10 frameworks |
-| `generate_sql` | Typed model classes from SQL DDL (`CREATE TABLE`), parsed dialect-agnostically — 11 languages |
-| `generate_code` | Arbitrary type graphs (classes, interfaces, enums, generics) from one structured spec, with imports and cross-references resolved — 11 languages |
-| `load_spec_from_file` | Runs a `generate_code` spec from disk, so multi-file architectures stay version-controlled and context usage drops to a file path |
-| `metaengine_initialize` | Primes the agent before its first generation: patterns, examples, and language-specific rules |
+| `generate_from_recipe` | Expand compact JSON fields, named templates, and local JSON input rows into the existing type graph, then generate files. |
+| `generate_code` | Generate from the complete native JSON type graph, including arbitrary target-language code with explicit references. |
+| `load_spec_from_file` | Read a native `generate_code` payload from a local JSON file. |
+| `generate_openapi` | Generate a typed client from an OpenAPI document supplied inline or by URL. |
+| `generate_graphql` | Generate a typed client from GraphQL SDL, with optional named fragments. |
+| `generate_protobuf` | Generate a typed client from Protocol Buffers definitions. |
+| `generate_sql` | Generate model types from SQL DDL. |
+| `metaengine_initialize` | Load generation rules and language notes for the assistant. |
 
-Every call is stateless and self-contained: pass the spec inline (or by file path), pick a framework or language, get a write summary back as text. `dryRun` returns the generated contents inline instead of writing — ready to diff. `skipExisting` (default) protects files you've already customized.
+Type and model generation supports TypeScript, Python, Go, C#, Java, Kotlin, Groovy, Scala, Swift, PHP, and Rust. Client generation targets Angular, React, TypeScript Fetch, Go net/http, Java Spring, Python httpx, C# HttpClient, Kotlin Ktor, Rust Reqwest, and Swift URLSession.
 
----
+`generate_code`, `load_spec_from_file`, and `generate_from_recipe` share generation and file-writing behavior:
 
-## Spec-first development
+- `outputPath` chooses the local output directory; the default is the MCP server's working directory.
+- `skipExisting` defaults to `true`. Set it to `false` to overwrite generated files.
+- `dryRun: true` returns generated file contents without writing them. Generation still calls the hosted API.
+- Related type references resolve within one batch. Include the complete graph in that call.
+- The hosted limit is 250 counted types per generation request. The exact count is described in [the recipe guide](./RECIPES.md#limits).
 
-Your specs are already the source of truth — the OpenAPI document, the GraphQL schema, the `.proto` files, the DDL. This server puts them to work inside the agent loop: when a spec changes, the agent regenerates the typed surface instead of hand-editing it.
+For Node16/NodeNext TypeScript ESM, use `typeScriptOptions: {"relativeImportExtension":"js"}`. Other TypeScript output retains extensionless relative imports by default.
 
-- **4 source specs** — OpenAPI 3.x, GraphQL SDL, Protocol Buffers, SQL DDL
-- **10 client frameworks** — Angular, React, TypeScript Fetch, Go net/http, Java Spring, Python httpx, C# HttpClient, Kotlin Ktor, Rust Reqwest, Swift URLSession
-- **11 languages** for type and model generation — TypeScript, Python, Go, C#, Java, Kotlin, Groovy, Scala, Swift, PHP, Rust — each emitted idiomatically (data classes in Kotlin, case classes in Scala, structs in Swift and Rust)
-- **Deterministic** — generation is byte-reproducible at a fixed engine version, so agents can retry without drift
+## Where recipes help
 
-The converters surfaced through MCP are the same compiler pipeline that powers the [MetaEngine Playground](https://www.metaengine.eu/playground): a spec is parsed, normalized to MetaEngine's intermediate representation, and emitted through a language-specific target. Versions stay in lockstep across surfaces.
+Field maps remove repeated property metadata. Templates describe repeated structure once and bind explicit parameter values. Local JSON inputs can supply those values from a file you already maintain. The adapter executes no JavaScript from a recipe.
 
-For small tasks — a handful of files, exploratory code, one-off scripts — an agent's direct generation is simpler, and agents are told exactly that. The server earns its place when the work is spec-driven, polyglot, or structurally repetitive.
+Savings depend on the amount of repetition, the chosen model and tokenizer, and the surrounding agent workflow. Custom business logic still needs to be written. A recorded development fixture compares a 59-interface recipe with its expanded payload; it measures JSON bytes, not model tokens or usage-limit guarantees.
 
----
+The compact format keeps one readable path for common declarations and the existing native fields for advanced code. Native type expressions and `customCode` remain specific to their target language. Review and compile generated code in your project, including its dependencies and compiler settings.
 
-## Measured behavior in agent loops
+## Privacy and execution
+
+The local MCP server runs over stdio and performs recipe expansion, declared local file reads, and generated-file writes. The hosted MetaEngine API performs ephemeral processing of the expanded generation payload and returns source files.
+
+The server does not automatically scan or upload existing project source files. Source or `customCode` content explicitly included in a generation request is part of that request and is sent to the hosted MetaEngine API. Values read from recipe inputs are included only when the recipe uses them in the expanded payload.
+
+Submitted generation content and generated file contents are not persisted or logged; anonymous operational metadata is retained. See the [Privacy Policy](./PRIVACY.md) and [Terms](./TERMS.md) for the processing and retention details.
+
+## Recorded agent workflows
 
 A single MCP call can produce many files, reducing required tool operations. Model responses are a separate measure: in the recorded TypeScript runs Opus often issued one Write per response, while Sonnet usually batched the Writes. The corrected [benchmark findings](./benchmark/FINDINGS.md) separate those counts and retain output-token totals and pass rates.
 
 For reproducible measurements across languages, models, and spec shapes, see [`benchmark/`](./benchmark) — a self-contained harness with the prompts, judging tools, and 15 canonical result folders. Numbers there are illustrations from one author's runs at N=5 per cell; reproduce in your own environment to see what holds for you.
 
----
+## Links
 
-## Context Durability
-
-In long-running sessions where context may be summarized (compaction), MetaEngine survives in three ways:
-
-- **Multiple artifacts per call** — the MCP can generate a set of related files in one operation. This can shorten sequential workflows; response count and compaction behavior still depend on the agent and workload. See the [benchmark](./benchmark) for bounded measurements.
-- **Recovery path** — the full AI guide is embedded in the tool description on first use; after a successful call, the description swaps to a short directive that points the assistant back at `metaengine_initialize`, which returns the guide content directly. If compaction wipes the guide, the breadcrumb is enough to reload it.
-- **Disk-backed state** — when the spec is loaded via `load_spec_from_file`, it lives outside the conversation. A compacted (or fully reset) session can re-run the producing script and pick up without re-reading anything.
-
----
-
-## Documentation
-
-The AI guide is automatically embedded in the tool description on first use — no manual reading required. For reference:
-
-- **METAENGINE_AI_GUIDE.md** — Critical rules, patterns, language notes, and common mistakes
-- **EXAMPLES.md** — Real-world usage with input/output across all languages
-
----
-
-## Privacy & Pricing
-
-- **Local adapter** — the local MCP server runs on your machine over stdio, started via `npx`; the package is MIT licensed
-- **Hosted generation** — every generation payload is sent over HTTPS to the hosted MetaEngine API for ephemeral processing, then generated files return to the local adapter
-- **Explicit payload boundary** — the server does not automatically scan or upload existing project source files; source or `customCode` content explicitly included in a generation request is part of that request and is sent to the hosted MetaEngine API
-- **Content privacy** — submitted generation content and generated file contents are not persisted or logged; anonymous operational metadata is retained through the application-level allowlists, with Azure's standard telemetry-record, service-resource, and SDK envelope disclosed separately in the [Privacy Policy](./PRIVACY.md)
-- **Free access** — no API key or account is required
-- **Terms** — See [TERMS.md](./TERMS.md) for usage terms
-
----
-
-## Support
-
-- **Issues**: [GitHub Issues](https://github.com/meta-engine/mcp-server/issues)
-- **Email**: info@metaengine.eu
-- **Website**: [metaengine.eu](https://www.metaengine.eu)
-
----
+- [npm package](https://www.npmjs.com/package/@metaengine/mcp-server)
+- [Website](https://www.metaengine.eu/mcp)
+- [Playground](https://www.metaengine.eu/playground)
+- [Documentation and issues](https://github.com/meta-engine/mcp-server)
 
 ## License
 
-MIT License - see [LICENSE](./LICENSE) file for details.
+MIT
 
----
+## About this repository
 
-## About This Repository
-
-This is the **documentation and issue tracking repository** for MetaEngine MCP Server. The compiled NPM package is available at [@metaengine/mcp-server](https://www.npmjs.com/package/@metaengine/mcp-server).
-
-Source code is proprietary, but the MCP server is free to use under MIT license.
+This repository contains public documentation, examples, benchmarks, and issue tracking for MetaEngine MCP Server. The compiled npm package is available at [@metaengine/mcp-server](https://www.npmjs.com/package/@metaengine/mcp-server). The server implementation is maintained in a private repository.

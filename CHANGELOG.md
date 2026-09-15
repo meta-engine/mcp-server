@@ -2,6 +2,22 @@
 
 All notable changes to MetaEngine MCP Server will be documented in this file.
 
+## [1.5.0] - 2026-09-15
+
+### Added
+
+- `generate_from_recipe` accepts an inline versioned JSON recipe or a local recipe file. Compact property maps, explicit references, named templates, parameter rows, and declared local JSON inputs expand in the local Node adapter into the existing generation payload.
+- Existing native fields remain available, including target-language `customCode`, `templateRefs`, imports, constructors, and generics. Recipes execute no JavaScript.
+- Local validation checks recipe structure, bindings, identifiers, references, and expansion limits before hosted generation. Recipe plus input files share a 5 MiB budget; the expanded payload has a separate 5 MiB budget.
+
+### Changed
+
+- The hosted generation limit is 250 counted types, using the existing API counting rule documented in [RECIPES.md](./RECIPES.md#limits).
+- Generation tools share the API and file-writing path. The writer preflights returned paths and duplicate targets before writes.
+- The README, AI guide, examples, and privacy explanation now describe the recipe workflow and its local/hosted processing boundary.
+
+A recorded 59-interface development comparison expands to the same native payload with 41.4% fewer minified JSON bytes. This measures one fixture, not model tokens or a general usage reduction. Existing historical agent benchmarks remain separate.
+
 ## [1.4.1] - 2026-07-07
 
 ### Added

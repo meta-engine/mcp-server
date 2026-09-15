@@ -2,13 +2,15 @@
 
 **Effective Date**: November 27, 2025
 
-**Last Updated**: August 30, 2026
+**Last Updated**: September 15, 2026
 
 ## Overview
 
 MetaEngine MCP Server has two execution boundaries. The local MCP server runs on your machine over stdio and handles tool calls and local file writes. Code generation occurs in the hosted MetaEngine API, where each submitted generation payload receives ephemeral processing and the generated files are returned to the local server.
 
 This policy distinguishes generation content from the anonymous operational metadata retained to operate and support the hosted service.
+
+For JSON recipes, the local server expands templates and reads explicitly declared local JSON inputs when they are used. It sends the expanded generation payload to the hosted API. Recipe paths and template declarations are not sent as part of that payload; input values are sent when the recipe incorporates them into generated type definitions or code.
 
 ---
 
@@ -23,7 +25,7 @@ A generation request may contain:
 - **Explicit source content** — source or `customCode` content explicitly included in a generation request is part of that request and is sent to the hosted MetaEngine API
 - **MCP package version** — sent in the `X-MCP-Version` request header
 
-The local MCP server does not automatically scan or upload existing project source files. A generation specification explicitly supplied inline or through `load_spec_from_file` is read locally and sent as the generation payload. Existing source content is sent only when the client or assistant deliberately includes that content in the submitted specification, such as a `customCode` block or custom file.
+The local MCP server does not automatically scan or upload existing project source files. It sends native generation specifications supplied inline or read locally through `load_spec_from_file` as the generation payload. With `generate_from_recipe`, it accepts an inline recipe or reads `recipeFilePath` locally, reads declared JSON input files when an instance uses them, and expands the recipe locally. Only the resulting generation payload is sent to the hosted API; input values are sent only when incorporated into that payload. Existing source content is sent only when the client or assistant deliberately includes that content through the specification or recipe, such as a `customCode` block or custom file.
 
 ---
 
@@ -61,7 +63,7 @@ Generation traces use a fixed non-content message and retain only these classifi
 - **Target (`Language`, `Target`, or `Framework`)** — the classified target language or client framework, using the field that applies to that generation event
 - **Entity counts** — counts only for classes, interfaces, enums, array types, dictionary types, custom files, concrete generic classes, and concrete generic interfaces; names and contents are not retained
 - **Fixed request-rejection outcome** — the reason `configuration-not-deserialized` when an MCP request cannot be deserialized; no rejected value or parser message is retained
-- **Type-limit outcome** — submitted billable type count (`TypeCount`) and configured maximum (`MaxAllowed`) when the MCP request exceeds that limit
+- **Type-limit outcome** — submitted counted type total (`TypeCount`) and configured maximum (`MaxAllowed`) when the MCP request exceeds that limit
 - **Validation outcome** — validation error count and a breakdown over fixed allowlisted JSON-path field categories, capped at 10 distinct fields, plus an omitted-field count when more categories are present; rejected values are not logged
 - **Generation outcome** — elapsed generation time, response file count, generated-content UTF-8 byte count, and warning count
 - **Failure shape** — exception type chain with up to five causes; exception messages are not logged
@@ -125,7 +127,8 @@ Anonymous operational metadata is used only to:
 The npm package runs locally over stdio. It:
 
 - Receives tool calls from the configured MCP client
-- Reads a specification file only when `load_spec_from_file` is called with that path
+- Reads a native specification file when `load_spec_from_file` is called with that path
+- Reads a recipe file when `generate_from_recipe` is called with `recipeFilePath`, and reads declared local JSON input files when an instance uses them
 - Sends generation payloads to the hosted MetaEngine API for ephemeral processing
 - Writes returned files to the requested output directory, or returns them inline for a dry run
 - Does not automatically scan or upload existing project source files
