@@ -180,10 +180,12 @@ Independent local expansion bounds are:
 | Boundary | Maximum |
 | --- | --- |
 | Recipe plus files read during the call | 5 MiB of UTF-8 JSON in total |
-| Expanded payload | 5 MiB of UTF-8 JSON |
+| Template expansion and normalized native payload | 5 MiB of UTF-8 JSON each |
 | JSON nesting | 64 levels |
-| JSON nodes visited across inputs and template expansion | 100,000 |
+| JSON nodes visited across inputs, template expansion, and compact normalization | 100,000 in total |
 | Template parameter rows expanded | 1,000 |
+
+Node and byte budgets are checked while copying values and normalizing compact maps. Formatted strings are measured before concatenation. Input files count only when the call reads them; declaring an unused input does not read its file. These are JSON size and traversal limits, not a limit on the Node.js process’s total memory.
 
 These bounds apply even when a definition does not count toward the hosted type limit. Split large work into complete reference graphs with explicit external imports between batches.
 
