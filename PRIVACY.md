@@ -2,13 +2,15 @@
 
 **Effective Date**: November 27, 2025
 
-**Last Updated**: August 30, 2026
+**Last Updated**: September 15, 2026
 
 ## Overview
 
 MetaEngine MCP Server has two execution boundaries. The local MCP server runs on your machine over stdio and handles tool calls and local file writes. Code generation occurs in the hosted MetaEngine API, where each submitted generation payload receives ephemeral processing and the generated files are returned to the local server.
 
 This policy distinguishes generation content from the anonymous operational metadata retained to operate and support the hosted service.
+
+For JSON recipes, the local server expands templates and reads explicitly declared local JSON inputs when they are used. It sends the expanded generation payload to the hosted API. Recipe paths and template declarations are not sent as part of that payload; input values are sent when the recipe incorporates them into generated type definitions or code.
 
 ---
 
@@ -61,7 +63,7 @@ Generation traces use a fixed non-content message and retain only these classifi
 - **Target (`Language`, `Target`, or `Framework`)** — the classified target language or client framework, using the field that applies to that generation event
 - **Entity counts** — counts only for classes, interfaces, enums, array types, dictionary types, custom files, concrete generic classes, and concrete generic interfaces; names and contents are not retained
 - **Fixed request-rejection outcome** — the reason `configuration-not-deserialized` when an MCP request cannot be deserialized; no rejected value or parser message is retained
-- **Type-limit outcome** — submitted billable type count (`TypeCount`) and configured maximum (`MaxAllowed`) when the MCP request exceeds that limit
+- **Type-limit outcome** — submitted counted type total (`TypeCount`) and configured maximum (`MaxAllowed`) when the MCP request exceeds that limit
 - **Validation outcome** — validation error count and a breakdown over fixed allowlisted JSON-path field categories, capped at 10 distinct fields, plus an omitted-field count when more categories are present; rejected values are not logged
 - **Generation outcome** — elapsed generation time, response file count, generated-content UTF-8 byte count, and warning count
 - **Failure shape** — exception type chain with up to five causes; exception messages are not logged
