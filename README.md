@@ -16,7 +16,7 @@ Node.js 18 or later is required. Add the server to your MCP client's configurati
   "mcpServers": {
     "metaengine": {
       "command": "npx",
-      "args": ["-y", "@metaengine/mcp-server@1.5.0"]
+      "args": ["-y", "@metaengine/mcp-server@1.6.0"]
     }
   }
 }
@@ -25,7 +25,7 @@ Node.js 18 or later is required. Add the server to your MCP client's configurati
 For Claude Code:
 
 ```bash
-claude mcp add metaengine -- npx -y @metaengine/mcp-server@1.5.0
+claude mcp add metaengine -- npx -y @metaengine/mcp-server@1.6.0
 ```
 
 The hosted service requires no API key or account. MCP clients include Claude Code, Claude Desktop, Cursor, Cline, and others with stdio support.
@@ -68,7 +68,9 @@ A version-controlled recipe can be invoked with `{"recipeFilePath":"specs/models
 | `generate_sql` | Generate model types from SQL DDL. |
 | `metaengine_initialize` | Load generation rules and language notes for the assistant. |
 
-Type and model generation supports TypeScript, Python, Go, C#, Java, Kotlin, Groovy, Scala, Swift, PHP, and Rust. Client generation targets Angular, React, TypeScript Fetch, Go net/http, Java Spring, Python httpx, C# HttpClient, Kotlin Ktor, Rust Reqwest, and Swift URLSession.
+Type and model generation supports TypeScript, Python, Go, C#, Java, Kotlin, Groovy, Scala, Swift, PHP, and Rust. OpenAPI client generation targets Angular, React, TypeScript Fetch, Go net/http, Java Spring, Python httpx, C# HttpClient, Kotlin Ktor, Rust Reqwest, Swift URLSession, and Dart Dio.
+
+Select Dart with `framework: "dart-dio"` in `generate_openapi`. Use `dartDioOptions` for Dio timeout overrides in milliseconds and OAuth2 refresh.
 
 `generate_code`, `load_spec_from_file`, and `generate_from_recipe` share generation and file-writing behavior:
 

@@ -2,6 +2,12 @@
 
 All notable changes to MetaEngine MCP Server will be documented in this file.
 
+## [1.6.0] - 2026-11-25
+
+### Added
+
+- `generate_openapi` supports Dart clients built with Dio. Select `framework: "dart-dio"` and use `dartDioOptions` for Dio timeout overrides in milliseconds or OAuth2 refresh.
+
 ## [1.5.0] - 2026-09-15
 
 ### Added
