@@ -2,6 +2,12 @@
 
 All notable changes to MetaEngine MCP Server will be documented in this file.
 
+## [1.6.1] - 2026-11-26
+
+### Fixed
+
+- The npm and MCP Registry descriptions now show 12 output languages across MCP tools and identify Dart Dio as an OpenAPI target.
+
 ## [1.6.0] - 2026-11-25
 
 ### Added

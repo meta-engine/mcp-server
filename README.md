@@ -16,7 +16,7 @@ Node.js 18 or later is required. Add the server to your MCP client's configurati
   "mcpServers": {
     "metaengine": {
       "command": "npx",
-      "args": ["-y", "@metaengine/mcp-server@1.6.0"]
+      "args": ["-y", "@metaengine/mcp-server@1.6.1"]
     }
   }
 }
@@ -25,7 +25,7 @@ Node.js 18 or later is required. Add the server to your MCP client's configurati
 For Claude Code:
 
 ```bash
-claude mcp add metaengine -- npx -y @metaengine/mcp-server@1.6.0
+claude mcp add metaengine -- npx -y @metaengine/mcp-server@1.6.1
 ```
 
 The hosted service requires no API key or account. MCP clients include Claude Code, Claude Desktop, Cursor, Cline, and others with stdio support.
